@@ -2,21 +2,19 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ff8400" >
+    android:background="#7986CB" >
 
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:id="@+id/scrollView2" >
 
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:stretchColumns="*"
-            android:shrinkColumns="*"
-            android:layout_margin="16dp">
+            android:layout_margin="16dp"
+            android:shrinkColumns="1">
 
             <TableRow
                 android:layout_width="fill_parent"
@@ -26,32 +24,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/txtCurrencyB"
                     android:id="@+id/textView16" />
 
                 <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/spinner" />
+                    android:id="@+id/spnCurrencyB">
+                </Spinner>
             </TableRow>
 
             <TableRow
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"  >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/txtExchangeRate"
                     android:id="@+id/textView17" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
-                    android:id="@+id/editText" />
+                    android:id="@+id/edtExchangeRateB" />
             </TableRow>
 
             <TableRow
@@ -62,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/txtSumm"
                     android:id="@+id/textView18" />
 
                 <EditText
@@ -70,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
-                    android:id="@+id/editText2" />
+                    android:id="@+id/edtSummBvalue" />
             </TableRow>
 
             <TableRow
@@ -81,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/txtPercent"
                     android:id="@+id/textView19" />
 
                 <EditText
@@ -89,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
-                    android:id="@+id/editText3" />
+                    android:id="@+id/edtPercentB" />
             </TableRow>
 
             <TableRow
@@ -100,13 +99,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/txtCapital"
                     android:id="@+id/textView20" />
 
                 <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/spinner2" />
+                    android:id="@+id/spnCapitalB" />
             </TableRow>
 
             <TableRow
@@ -117,14 +116,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/txtAddPercent"
                     android:id="@+id/textView21" />
 
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New CheckBox"
-                    android:id="@+id/checkBox" />
+                    android:layout_gravity="center"
+                    android:id="@+id/chbAddPercentOnB" />
             </TableRow>
 
             <TableRow
@@ -135,7 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/txtDateBegin"
                     android:id="@+id/textView22" />
 
                 <EditText
@@ -143,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="date"
                     android:ems="10"
-                    android:id="@+id/editText4" />
+                    android:id="@+id/edtBeginDateB" />
             </TableRow>
 
             <TableRow
@@ -154,7 +153,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/txtTimeperiodText"
                     android:id="@+id/textView23" />
 
                 <LinearLayout
@@ -163,18 +162,20 @@
                     android:layout_height="fill_parent">
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/editText5"
-                        android:layout_weight="1" />
+                        android:id="@+id/edtTimeperiodB"
+                        android:layout_weight="2"
+                        android:nestedScrollingEnabled="true" />
 
                     <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/spinner3"
-                        android:layout_weight="5" />
+                        android:id="@+id/spnTimeperiodB"
+                        android:layout_weight="5"
+                        android:spinnerMode="dropdown" />
                 </LinearLayout>
 
             </TableRow>
@@ -187,7 +188,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/txtDateEnd"
                     android:id="@+id/textView24" />
 
                 <EditText
@@ -195,64 +196,80 @@
                     android:layout_height="wrap_content"
                     android:inputType="date"
                     android:ems="10"
-                    android:id="@+id/editText6" />
+                    android:id="@+id/edtEndDateB" />
             </TableRow>
 
             <TableRow
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="wrap_content">
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Button"
-                    android:id="@+id/button2" />
+                    android:text="@string/btnCancel"
+                    android:id="@+id/btnCancelB" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Button"
-                    android:id="@+id/button3" />
+                    android:text="@string/btnCalc"
+                    android:id="@+id/btnCalcB" />
             </TableRow>
 
             <TableRow
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/txtGrow"
                     android:id="@+id/textView25" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:id="@+id/textView28" />
+                    android:id="@+id/txtGrowB" />
 
             </TableRow>
 
             <TableRow
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
+                    android:text="@string/txtProfit"
                     android:id="@+id/textView26" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:id="@+id/textView29" />
+                    android:id="@+id/txtProfitB" />
 
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/txtFullSumm"
+                    android:id="@+id/textView27" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/txtFullSummValueB" />
             </TableRow>
 
             <TableRow
@@ -263,17 +280,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:id="@+id/textView27" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Medium Text"
-                    android:id="@+id/textView30" />
+                    android:id="@+id/textViewEmptyForScroll" />
             </TableRow>
+
         </TableLayout>
+
     </ScrollView>
 
 

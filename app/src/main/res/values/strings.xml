@@ -6,28 +6,58 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-    <string name="nav_item_home">Home</string>
-    <string name="nav_item_friends">Friends</string>
-    <string name="nav_item_notifications">Messages</string>
+    <!--<string name="nav_item_home">Home</string>-->
+    <!--<string name="nav_item_friends">Friends</string>-->
+    <!--<string name="nav_item_notifications">Messages</string>-->
 
-    <!-- navigation drawer item labels  -->
-    <string-array name="nav_drawer_labels">
-        <item>@string/nav_item_home</item>
-        <item>@string/nav_item_friends</item>
-        <item>@string/nav_item_notifications</item>
-    </string-array>
+    <!--&lt;!&ndash; navigation drawer item labels  &ndash;&gt;-->
+    <!--<string-array name="nav_drawer_labels">-->
+        <!--<item>@string/nav_item_home</item>-->
+        <!--<item>@string/nav_item_friends</item>-->
+        <!--<item>@string/nav_item_notifications</item>-->
+    <!--</string-array>-->
 
     <string name="title_messages">Messages</string>
     <string name="title_friends">Friends</string>
     <string name="title_home">Home</string>
 
-
-
+    <string name="choose_data">Выберите дату</string>
+    choose_data
 
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
 
-    <string name="hello_world">Hello world!</string>
+
+    <string name="txtCurrencyA">Валюта 1</string>
+    <string name="txtCurrencyB">Валюта 2      </string>
+    <string name="txtExchangeRate">Курс валюты</string>
+    <string name="txtSumm">Сумма</string>
+    <string name="txtPercent">Процент</string>
+    <string name="txtCapital">Капитализация</string>
+    <string name="txtAddPercent">Причисление %</string>
+    <string name="txtDateBegin">Дата начала</string>
+    <string name="txtTimeperiodText">Срок</string>
+    <string name="txtDateEnd">Дата окончания</string>
+    <string name="btnCancel">Отмена</string>
+    <string name="btnCalc">Рассчитать</string>
+    <string name="btnAdd">Добавить</string>
+    <string name="txtGrow">Прирост %</string>
+    <string name="txtProfit">Прибыль число</string>
+    <string name="txtFullSumm">Итого на вкладе</string>
+
+    <string-array name="timeperiods_array">
+        <item>день</item>
+        <item>месяц</item>
+        <item>год</item>
+    </string-array>
+
+    <string-array name="capitals_array">
+        <item>в конце срока</item>
+        <item>ежедневно</item>
+        <item>ежемесячно</item>
+        <item>раз в квартал</item>
+        <item>ежегодно</item>
+    </string-array>
 
 </resources>

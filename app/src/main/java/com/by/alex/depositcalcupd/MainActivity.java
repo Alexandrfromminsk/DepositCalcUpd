@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,14 +16,13 @@ import com.by.alex.depositcalcupd.adapter.TabsPagerAdapter;
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
 
-
     ViewPager mViewPager;
     ActionBar actionBar;
     TabsPagerAdapter mAdapter;
 
     private String[] tabs = {"Валюта 1", "Валюта 2", "Сравнение"};
 
-    private Toolbar mToolbar;
+    //private Toolbar mToolbar;
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -32,7 +30,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+       // mToolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(mToolbar);
 
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
