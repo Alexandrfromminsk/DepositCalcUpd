@@ -60,4 +60,10 @@
         <item>ежегодно</item>
     </string-array>
 
+    <string-array name="tabs_array">
+        <item>Валюта 1</item>
+        <item>Валюта 2</item>
+        <item>Сравнение</item>
+    </string-array>
+
 </resources>

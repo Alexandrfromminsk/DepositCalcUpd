@@ -1,6 +1,8 @@
 package com.by.alex.depositcalcupd;
 
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -21,6 +23,20 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     TabsPagerAdapter mAdapter;
 
     private String[] tabs = {"Валюта 1", "Валюта 2", "Сравнение"};
+    //private String[] tabs = getString(R.array.tabs_array);
+
+
+    SharedPreferences mSettings;
+
+    public static final String APP_PREFERENCES = "calcsettings";
+    public static final String CURRENCY_A = "BLR";
+    public static final String BEGIN_DATE = "BEGIN_DATE";
+    public static final String END_DATE = "END_DATE";
+    public static final String EXC_RATE_NOW = "EXC_RATE_NOW";
+    public static final String SUMM_A_VALUE = "SUMM_A_VALUE";
+    public static final String PERCENT_A = "PERCENT_A";
+    public static final String TIMEPERIOD = "TIMEPERIOD";
+    public static final String ADD_PERCENT = "ADD_PERCENT";
 
     //private Toolbar mToolbar;
 
@@ -72,7 +88,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
             }
+
+
         });
+
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
 
     }
@@ -117,40 +137,3 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     }
 }
-
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-//    public static class PlaceholderFragment extends Fragment {
-//        /**
-//         * The fragment argument representing the section number for this
-//         * fragment.
-//         */
-//        private static final String ARG_SECTION_NUMBER = "section_number";
-//
-//        /**
-//         * Returns a new instance of this fragment for the given section
-//         * number.
-//         */
-//        public static PlaceholderFragment newInstance(int sectionNumber) {
-//            PlaceholderFragment fragment = new PlaceholderFragment();
-//            Bundle args = new Bundle();
-//            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-//            fragment.setArguments(args);
-//            return fragment;
-//        }
-//
-//        public PlaceholderFragment() {
-//        }
-//
-//        @Override
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                                 Bundle savedInstanceState) {
-//            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-//            return rootView;
-//        }
-//    }
-//
-//
-//}
