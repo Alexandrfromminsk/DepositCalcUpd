@@ -41,7 +41,16 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
         cal.set(year, month, day);
 
         EditText timeperiod = (EditText) getActivity().findViewById(R.id.edtTimeperiod);
-        int tpr = Integer.parseInt(timeperiod.getText().toString());
+        int tpr;
+
+        try {
+            tpr = Integer.parseInt(timeperiod.getText().toString());
+        }
+        catch (NumberFormatException e) {
+            e.printStackTrace();
+            tpr = 0;
+        }
+
 
         Spinner spnTimeperiod = (Spinner) getActivity().findViewById(R.id.spnTimeperiod);
         int dmy = spnTimeperiod.getSelectedItemPosition();

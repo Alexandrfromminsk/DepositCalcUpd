@@ -1,8 +1,6 @@
 package com.by.alex.depositcalcupd;
 
 import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -21,22 +19,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     ViewPager mViewPager;
     ActionBar actionBar;
     TabsPagerAdapter mAdapter;
+    public static final String APP_PREFERENCES = "calcsettings";
 
     private String[] tabs = {"Валюта 1", "Валюта 2", "Сравнение"};
     //private String[] tabs = getString(R.array.tabs_array);
-
-
-    SharedPreferences mSettings;
-
-    public static final String APP_PREFERENCES = "calcsettings";
-    public static final String CURRENCY_A = "BLR";
-    public static final String BEGIN_DATE = "BEGIN_DATE";
-    public static final String END_DATE = "END_DATE";
-    public static final String EXC_RATE_NOW = "EXC_RATE_NOW";
-    public static final String SUMM_A_VALUE = "SUMM_A_VALUE";
-    public static final String PERCENT_A = "PERCENT_A";
-    public static final String TIMEPERIOD = "TIMEPERIOD";
-    public static final String ADD_PERCENT = "ADD_PERCENT";
 
     //private Toolbar mToolbar;
 
@@ -92,7 +78,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         });
 
-        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
 
     }
@@ -136,4 +121,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
 
     }
+
+
 }
