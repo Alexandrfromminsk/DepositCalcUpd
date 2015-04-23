@@ -5,10 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -25,7 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class CurrencyOneFragment extends Fragment implements OnClickListener, OnFocusChangeListener {
+public class CurrencyOneFragment extends Fragment implements OnClickListener, TextWatcher {
 
     Button btnCalc, btnAdd, btnCancel;
     EditText edtCurrencyA, edtExcRateNow, edtSummAvalue, edtPercentA, edtBeginDate, edtTimeperiod;
@@ -66,16 +67,16 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, On
 
         edtExcRateNow = (EditText) rootView.findViewById(R.id.edtExchangeRate);
         edtSummAvalue = (EditText) rootView.findViewById(R.id.edtSummAvalue);
-        edtSummAvalue.setOnFocusChangeListener(this);
+        edtSummAvalue.addTextChangedListener(this);
         edtPercentA = (EditText) rootView.findViewById(R.id.edtPercent);
-        edtPercentA.setOnFocusChangeListener(this);
+        edtPercentA.addTextChangedListener(this);
         edtBeginDate = (EditText) rootView.findViewById(R.id.edtBeginDate);
-        edtBeginDate.setOnFocusChangeListener(this);
+        edtBeginDate.addTextChangedListener(this);
         edtTimeperiod = (EditText) rootView.findViewById(R.id.edtTimeperiod);
-        edtTimeperiod.setOnFocusChangeListener(this);
+        edtTimeperiod.addTextChangedListener(this);
 
         chbAddPercentOn = (CheckBox) rootView.findViewById(R.id.chbAddPercentOn);
-        chbAddPercentOn.setOnFocusChangeListener(this);
+        chbAddPercentOn.setOnClickListener(this);
 
         edtDateEnd = (TextView) rootView.findViewById(R.id.edtEndDate);
         txtProfitAValue = (TextView) rootView.findViewById(R.id.txtProfit);
@@ -94,7 +95,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, On
 
         // Apply the adapter to the spinner
         spnTimeperiod.setAdapter(adapter);
-        spnTimeperiod.setOnFocusChangeListener(this);
         spnTimeperiod.setOnItemSelectedListener(new OnItemSelectedListener() {
                                                     @Override
                                                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -112,7 +112,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, On
                 R.array.capitals_array, android.R.layout.simple_spinner_item);
         // Apply the adapter to the spinner
         spnCapital.setAdapter(adapter);
-        spnCapital.setOnFocusChangeListener(this);
         spnCapital.setOnItemSelectedListener(new OnItemSelectedListener() {
                                                  @Override
                                                  public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -128,7 +127,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, On
 
         edtBeginDate = (EditText) rootView.findViewById(R.id.edtBeginDate);
         edtBeginDate.setOnClickListener(this);
-
 
 
         if(savedInstanceState == null){
@@ -194,25 +192,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, On
                 calc_it();
                 break;
         }
-    }
-
-    @Override
-    public void onFocusChange(View view, boolean b) {
-
-        switch (view.getId()) {
-            case R.id.edtTimeperiod:
-                // Timeperiod field
-                setEndDate();
-                break;
-            case R.id.spnTimeperiod:
-                // Timeperiod spinner
-                setEndDate();
-                break;
-            default:
-                calc_it();
-                break;
-        }
-
     }
 
     public void calc_it(){
@@ -282,5 +261,20 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, On
     public void onDestroy() {
         super.onDestroy();
         saveSettings();
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        calc_it();
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
     }
 }
