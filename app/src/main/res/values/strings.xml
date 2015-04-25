@@ -30,18 +30,14 @@
 
 
     <string name="txtCurrencyA">Валюта 1</string>
-    <string name="txtCurrencyB">Валюта 2      </string>
-    <string name="txtExchangeRate">Курс валюты</string>
+    <string name="txtCurrencyB">Валюта 2 </string>
+    <string name="txtExchangeRate">Конверсия</string>
     <string name="txtSumm">Сумма</string>
     <string name="txtPercent">Процент</string>
     <string name="txtCapital">Капитализация</string>
-    <string name="txtAddPercent">Причисление %</string>
     <string name="txtDateBegin">Дата начала</string>
     <string name="txtTimeperiodText">Срок</string>
     <string name="txtDateEnd">Дата окончания</string>
-    <string name="btnCancel">Отмена</string>
-    <string name="btnCalc">Рассчитать</string>
-    <string name="btnAdd">Добавить</string>
     <string name="txtGrow">Прирост %</string>
     <string name="txtProfit">Прибыль число</string>
     <string name="txtFullSumm">Итого на вкладе</string>
@@ -53,11 +49,19 @@
     </string-array>
 
     <string-array name="capitals_array">
-        <item>в конце срока</item>
+        <item>нет</item>
         <item>ежедневно</item>
         <item>ежемесячно</item>
         <item>раз в квартал</item>
         <item>ежегодно</item>
+    </string-array>
+
+    <string-array name="currencies_array">
+        <item>BLR</item>
+        <item>RUR</item>
+        <item>EUR</item>
+        <item>USD</item>
+        <item>UAH</item>
     </string-array>
 
     <string-array name="tabs_array">
