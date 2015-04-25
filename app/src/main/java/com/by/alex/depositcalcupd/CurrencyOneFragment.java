@@ -126,6 +126,8 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             edtTimeperiod.setText(savedInstanceState.getString("edtTimeperiod"));
         }
 
+        setEndDate();
+
         calc_it();
 
         return rootView;
@@ -141,6 +143,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
         try {
             Date date = sdf.parse(edtBeginDate.getText().toString());
+            // Debug Toast.makeText(getActivity(), date.toString(), Toast.LENGTH_LONG).show();
             cal.setTime(date);
             int tpr;
             try {
@@ -212,14 +215,14 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     }
 
     void loadSavedSettings(){
-        edtDateEnd.setText(mSettings.getString(END_DATE, "01.02.2016"));
+        edtDateEnd.setText(mSettings.getString(END_DATE, "01-02-2016"));
         edtSummAvalue.setText(mSettings.getString(SUMM_A_VALUE, "1000000"));
         edtPercentA.setText(mSettings.getString(PERCENT_A, "50"));
         edtTimeperiod.setText(mSettings.getString(TIMEPERIOD, "365"));
         txtProfitAValue.setText(mSettings.getString(PROFIT, "0"));
         txtGrowValue.setText(mSettings.getString(GROW, "0"));
         txtFullSummValue.setText(mSettings.getString(FULL_SUMM_VALUE, "0"));
-        edtBeginDate.setText(mSettings.getString(BEGIN_DATE, "01.02.2015"));
+        edtBeginDate.setText(mSettings.getString(BEGIN_DATE, "01-02-2015"));
         spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL,0));
         spnTimeperiod.setSelection(mSettings.getInt(SPN_TIMELINE,0));
 
@@ -261,8 +264,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
     @Override
     public void afterTextChanged(Editable editable) {
-
-
 
     }
 }

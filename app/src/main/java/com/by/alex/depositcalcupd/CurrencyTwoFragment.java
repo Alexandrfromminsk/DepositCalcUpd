@@ -102,7 +102,7 @@ public class CurrencyTwoFragment extends Fragment {
     }
 
     void loadSavedSettings(){
-        edtDateEnd.setText(mSettings.getString(END_DATE_B, "01.02.2017"));
+        edtDateEnd.setText(mSettings.getString(END_DATE_B, "01-02-2017"));
         edtExcRateNow.setText(mSettings.getString(EXC_RATE_NOW_B, "15000"));
         edtSummAvalue.setText(mSettings.getString(SUMM_B_VALUE, "1000000"));
         edtPercentA.setText(mSettings.getString(PERCENT_B, "50"));
@@ -110,7 +110,7 @@ public class CurrencyTwoFragment extends Fragment {
         txtProfitAValue.setText(mSettings.getString(PROFIT_B, "0"));
         txtGrowValue.setText(mSettings.getString(GROW_B, "0"));
         txtFullSummValue.setText(mSettings.getString(GROW_B, "0"));
-        edtBeginDate.setText(mSettings.getString(BEGIN_DATE_B, "01.02.2016"));
+        edtBeginDate.setText(mSettings.getString(BEGIN_DATE_B, "01-02-2016"));
         spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL_B,0));
         spnTimeperiod.setSelection(mSettings.getInt(SPN_TIMELINE_B,0));
 
