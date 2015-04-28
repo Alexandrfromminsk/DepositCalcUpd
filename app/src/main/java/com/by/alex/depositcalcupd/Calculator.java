@@ -13,9 +13,9 @@ public  class Calculator {
         float profit, fullsumm, percent;
         Float[] result = new Float[3];
 
-        profit = (SummBegin*Percent*Days)/(365*100);
+        profit = (float) ((SummBegin*Percent*Days)/(365.0*100.0));
         fullsumm = SummBegin + profit;
-        percent = ((fullsumm - SummBegin)/SummBegin)*100;
+        percent = (float) (((fullsumm - SummBegin)/SummBegin)*100.0);
         result[PERCENT] = percent;
         result[PROFIT] = profit;
         result[FULLSUMM] = fullsumm;
@@ -33,7 +33,7 @@ public  class Calculator {
         if (Capitalization==1) {
             //Capitalization every day
 
-            fullsumm = (float) (SummBegin *Math.pow(1+Percent/(365*100.0),Days));
+            fullsumm = (float) (SummBegin *Math.pow(1+Percent/(365.0*100.0),Days));
             profit = fullsumm - SummBegin;
             percent = (profit/ SummBegin) * 100;
             result[PERCENT] = percent;
@@ -44,7 +44,7 @@ public  class Calculator {
         if (Capitalization==2) {
             //Capitalization every 30 day
 
-            fullsumm = (float) (SummBegin *Math.pow(1+Percent*30.0/(365*100),Days/30.0));
+            fullsumm = (float) (SummBegin *Math.pow(1+Percent*30.0/(365.0*100.0),Days/30.0));
             profit = fullsumm - SummBegin;
             percent = (profit/ SummBegin) * 100;
             result[PERCENT] = percent;
@@ -56,7 +56,7 @@ public  class Calculator {
 
             //Capitalization every 90 day (kvartal)
 
-            fullsumm = (float) (SummBegin *Math.pow(1+Percent*90.0/(365*100.0),Days/90.0));
+            fullsumm = (float) (SummBegin *Math.pow(1+Percent*90.0/(365.0*100.0),Days/90.0));
             profit = fullsumm - SummBegin;
             percent = (profit/ SummBegin) * 100;
             result[PERCENT] = percent;

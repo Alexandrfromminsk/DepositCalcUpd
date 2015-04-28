@@ -259,6 +259,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
         calc_it();
     }
 

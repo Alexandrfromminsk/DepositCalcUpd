@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +14,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class CurrencyTwoFragment extends Fragment {
 
-    EditText edtCurrencyA, edtExcRateNow, edtPercentA;
+public class CurrencyTwoFragment extends Fragment implements TextWatcher {
+
+    EditText edtCurrencyA, edtExcRateNow, edtPercentB;
     TextView edtDateEnd, txtProfitAValue, txtGrowValue, txtFullSummValue, edtSummAvalue,
             edtBeginDate, edtTimeperiod;
 
@@ -45,7 +48,7 @@ public class CurrencyTwoFragment extends Fragment {
 
         edtExcRateNow = (EditText) rootView.findViewById(R.id.edtExchangeRateB);
         edtSummAvalue = (TextView) rootView.findViewById(R.id.edtSummBvalue);
-        edtPercentA = (EditText) rootView.findViewById(R.id.edtPercentB);
+        edtPercentB = (EditText) rootView.findViewById(R.id.edtPercentB);
 
         edtBeginDate = (TextView) rootView.findViewById(R.id.edtBeginDateB);
         edtTimeperiod = (TextView) rootView.findViewById(R.id.edtTimeperiodB);
@@ -79,6 +82,9 @@ public class CurrencyTwoFragment extends Fragment {
         spnCurrency.setAdapter(adapter);
         spnTimeperiod.setEnabled(false);
 
+        edtPercentB.addTextChangedListener(this);
+        edtExcRateNow.addTextChangedListener(this);
+
 
         if(savedInstanceState == null){
             loadSavedSettings();
@@ -86,6 +92,8 @@ public class CurrencyTwoFragment extends Fragment {
         }else {
             edtTimeperiod.setText(savedInstanceState.getString("edtTimeperiod"));
         }
+
+        calc_it();
 
         return rootView;
     }
@@ -99,13 +107,14 @@ public class CurrencyTwoFragment extends Fragment {
         outState.putString("edtTimeperiodB", edtTimeperiod.getText().toString());
         outState.putString("edtBeginDateB", edtBeginDate.getText().toString());
         outState.putString("edtDateEndB", edtDateEnd.getText().toString());
+
     }
 
     void loadSavedSettings(){
         edtDateEnd.setText(mSettings.getString(END_DATE_B, "01-02-2017"));
         edtExcRateNow.setText(mSettings.getString(EXC_RATE_NOW_B, "15000"));
         edtSummAvalue.setText(mSettings.getString(SUMM_B_VALUE, "1000000"));
-        edtPercentA.setText(mSettings.getString(PERCENT_B, "50"));
+        edtPercentB.setText(mSettings.getString(PERCENT_B, "50"));
         edtTimeperiod.setText(mSettings.getString(TIMEPERIOD_B, "365"));
         txtProfitAValue.setText(mSettings.getString(PROFIT_B, "0"));
         txtGrowValue.setText(mSettings.getString(GROW_B, "0"));
@@ -123,7 +132,7 @@ public class CurrencyTwoFragment extends Fragment {
         ed.putString(END_DATE_B, edtDateEnd.getText().toString());
         ed.putString(EXC_RATE_NOW_B, edtExcRateNow.getText().toString());
         ed.putString(SUMM_B_VALUE, edtSummAvalue.getText().toString());
-        ed.putString(PERCENT_B, edtPercentA.getText().toString());;
+        ed.putString(PERCENT_B, edtPercentB.getText().toString());;
         ed.putString(PROFIT_B, txtProfitAValue.getText().toString());
         ed.putString(GROW_B, txtGrowValue.getText().toString());
         ed.putString(FULL_SUMM_VALUE_B, txtFullSummValue.getText().toString());
@@ -133,6 +142,27 @@ public class CurrencyTwoFragment extends Fragment {
         ed.commit();
 
     }
+    public boolean allFieldsWithData(){
+        return (edtPercentB.getText().length()>0)&(edtSummAvalue.getText().length()>0)&(edtTimeperiod.getText().length()>0);
+
+    }
+    public void calc_it(){
+        if (allFieldsWithData()) {
+            Float s = Float.parseFloat(edtSummAvalue.getText().toString());
+            Float pr = Float.parseFloat(edtPercentB.getText().toString());
+            Integer d = Integer.parseInt(edtTimeperiod.getText().toString());
+            int dmy = spnTimeperiod.getSelectedItemPosition();
+            if (dmy==1) d*=30;
+            if (dmy==2) d*=365;
+            int cap = spnCapital.getSelectedItemPosition();
+            Float[] profit = Calculator.calcProfit(s, pr, d,cap);
+
+            txtGrowValue.setText(profit[Calculator.PERCENT].toString());
+            txtProfitAValue.setText(profit[Calculator.PROFIT].toString());
+            txtFullSummValue.setText(profit[Calculator.FULLSUMM].toString());
+        }
+
+    }
 
     @Override
     public void onDestroy() {
@@ -140,4 +170,18 @@ public class CurrencyTwoFragment extends Fragment {
         saveSettings();
     }
 
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        calc_it();
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
+    }
 }

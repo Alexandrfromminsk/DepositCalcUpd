@@ -63,6 +63,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             @Override
             public void onPageSelected(int position) {
                 actionBar.setSelectedNavigationItem(position);
+                //Toast.makeText(getApplicationContext(), "охуенно".toString(), Toast.LENGTH_LONG).show();
             }
 
             @Override
