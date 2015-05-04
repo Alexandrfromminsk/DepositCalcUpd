@@ -186,6 +186,12 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
                 break;
         }
     }
+    public int getDaysNumber(){
+
+        //Calc enddate - begindate and sendto calc
+        int days=0;
+        return days;
+    }
 
     public void calc_it(){
         if (allFieldsWithData()) {
@@ -251,6 +257,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         saveSettings();
     }
 
+    // 3 TextWatcher's methods
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
@@ -261,6 +268,8 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
         calc_it();
+        setEndDate();
+
     }
 
     @Override

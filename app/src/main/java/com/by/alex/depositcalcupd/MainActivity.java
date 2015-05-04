@@ -24,6 +24,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     private String[] tabs = {"Валюта 1", "Валюта 2", "Сравнение"};
     //private String[] tabs = getString(R.array.tabs_array);
 
+    //Save data fromtabs for communication
+    String Currency, DataBegin, DataEnd;
+    int SummA, SummB, Days, Timeperiod;
+    float ProfitA, ProfitB;
+
     //private Toolbar mToolbar;
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -64,6 +69,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             public void onPageSelected(int position) {
                 actionBar.setSelectedNavigationItem(position);
                 //Toast.makeText(getApplicationContext(), "охуенно".toString(), Toast.LENGTH_LONG).show();
+
             }
 
             @Override
@@ -110,6 +116,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         mViewPager.setCurrentItem(tab.getPosition());
+
 
     }
 
