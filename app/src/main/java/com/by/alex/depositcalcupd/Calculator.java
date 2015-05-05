@@ -1,6 +1,13 @@
 package com.by.alex.depositcalcupd;
 
 
+import android.util.Log;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 public  class Calculator {
 
     static final int PERCENT = 0;
@@ -13,9 +20,9 @@ public  class Calculator {
         float profit, fullsumm, percent;
         Float[] result = new Float[3];
 
-        profit = (SummBegin*Percent*Days)/(365*100);
+        profit = (float) ((SummBegin*Percent*Days)/(365.0*100.0));
         fullsumm = SummBegin + profit;
-        percent = ((fullsumm - SummBegin)/SummBegin)*100;
+        percent = (float) (((fullsumm - SummBegin)/SummBegin)*100.0);
         result[PERCENT] = percent;
         result[PROFIT] = profit;
         result[FULLSUMM] = fullsumm;
@@ -76,6 +83,38 @@ public  class Calculator {
             result[FULLSUMM] = fullsumm;
         }
 
+        return result;
+    }
+
+    public static Float[] calcProfit(float SummBegin, float Percent, int Capitalization,
+                                     String BeginDate, String EndDate) {
+       // Float[] result = new Float[3];
+        long Days;
+        int d=0;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
+        try {
+            Date start = sdf.parse(BeginDate);
+            Date end = sdf.parse(EndDate);
+            long diff = end.getTime() - start.getTime();
+            Days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            Days=0;
+        }
+
+        try {
+            if (Days < Integer.MIN_VALUE || Days > Integer.MAX_VALUE) {
+                throw new IllegalArgumentException
+                        (Days + " cannot be cast to int without changing its value.");
+            } else d = (int) Days;
+        }
+        catch (IllegalArgumentException ex) {
+            Log.e("Calculator","Timeperiod so big");
+        }
+
+
+        Float[] result = calcProfit(SummBegin, Percent, d, Capitalization);
         return result;
     }
 

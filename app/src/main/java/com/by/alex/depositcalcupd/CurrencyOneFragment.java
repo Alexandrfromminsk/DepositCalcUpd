@@ -60,7 +60,23 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         edtBeginDate = (EditText) rootView.findViewById(R.id.edtBeginDate);
         edtBeginDate.addTextChangedListener(this);
         edtTimeperiod = (EditText) rootView.findViewById(R.id.edtTimeperiod);
-        edtTimeperiod.addTextChangedListener(this);
+        edtTimeperiod.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                setEndDate();
+                calc_it();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
 
         edtDateEnd = (TextView) rootView.findViewById(R.id.edtEndDate);
@@ -192,11 +208,15 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             Float s = Float.parseFloat(edtSummAvalue.getText().toString());
             Float pr = Float.parseFloat(edtPercentA.getText().toString());
             Integer d = Integer.parseInt(edtTimeperiod.getText().toString());
-            int dmy = spnTimeperiod.getSelectedItemPosition();
-            if (dmy==1) d*=30;
-            if (dmy==2) d*=365;
             int cap = spnCapital.getSelectedItemPosition();
-            Float[] profit = Calculator.calcProfit(s, pr, d,cap);
+            String BeginDate, EndDate;
+            BeginDate = edtBeginDate.getText().toString();
+            EndDate = edtDateEnd.getText().toString();
+
+            Float[] profit;
+            int dmy = spnTimeperiod.getSelectedItemPosition();
+            if (dmy==0) profit = Calculator.calcProfit(s, pr, d,cap);
+            else  profit = Calculator.calcProfit(s, pr, cap, BeginDate, EndDate);
 
             txtGrowValue.setText(profit[Calculator.PERCENT].toString());
             txtProfitAValue.setText(profit[Calculator.PROFIT].toString());
@@ -251,6 +271,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         saveSettings();
     }
 
+    // 3 TextWatcher's methods
     @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 

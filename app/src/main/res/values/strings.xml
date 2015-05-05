@@ -39,8 +39,8 @@
     <string name="txtTimeperiodText">Срок</string>
     <string name="txtDateEnd">Дата окончания</string>
     <string name="txtGrow">Прирост %</string>
-    <string name="txtProfit">Прибыль число</string>
-    <string name="txtFullSumm">Итого на вкладе</string>
+    <string name="txtProfit">Прибыль</string>
+    <string name="txtFullSumm">Итого</string>
 
     <string-array name="timeperiods_array">
         <item>день</item>
