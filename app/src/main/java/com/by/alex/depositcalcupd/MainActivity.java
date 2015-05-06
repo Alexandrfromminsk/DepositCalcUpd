@@ -3,6 +3,7 @@ package com.by.alex.depositcalcupd;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 
 import com.by.alex.depositcalcupd.adapter.TabsPagerAdapter;
 
+//import android.app.FragmentManager;
 
 
 public class MainActivity extends ActionBarActivity
@@ -21,6 +23,9 @@ public class MainActivity extends ActionBarActivity
     ViewPager mViewPager;
     ActionBar actionBar;
     TabsPagerAdapter mAdapter;
+    FragmentManager myManager;
+    CurrencyOneFragment firstTab;
+
     public static final String APP_PREFERENCES = "calcsettings";
 
     private String[] tabs = {"Валюта 1", "Валюта 2", "Сравнение"};
@@ -30,8 +35,8 @@ public class MainActivity extends ActionBarActivity
     private static final int TAB_COMPARE = 2;
 
     //Save data fromtabs for communication
-    String Currency, DataBegin, DataEnd;
-    int SummA, SummB, Days, Timeperiod;
+    String DataBegin, DataEnd, CurrencyA, CurrencyB;
+    int SummA, SummB, Days, Timeperiod, Spn_timeperiod;
     float ProfitA, ProfitB;
 
     //private Toolbar mToolbar;
@@ -84,6 +89,9 @@ public class MainActivity extends ActionBarActivity
             }
         });
 
+//        myManager = getSupportFragmentManager();
+//        firstTab = (CurrencyOneFragment) myManager.findFragmentByTag("first_tab");
+
     }
 
 
@@ -129,7 +137,10 @@ public class MainActivity extends ActionBarActivity
         Log.e("", tab.getPosition() + " tab unselected");
         switch (tab.getPosition()){
             case TAB_ONE:
-                saveFirstTabData(9999);
+                firstTab = (CurrencyOneFragment) mAdapter.ge;
+                //http://stackoverflow.com/questions/6976027/reusing-fragments-in-a-fragmentpageradapter
+                firstTab.saveData();
+
                 break;
             case TAB_TWO:
                 saveSecondTabData(9999);
@@ -147,8 +158,14 @@ public class MainActivity extends ActionBarActivity
 
 
     @Override
-    public void saveFirstTabData(int position) {
-        this.SummA = position;
+    public void saveFirstTabData(String spn_currency, int summ, int timeperiod, int spn_tpr, String dateBegin, String dateEnd, float profit) {
+        this.CurrencyA = spn_currency;
+        this.SummA = summ;
+        this.Timeperiod = timeperiod;
+        this.Spn_timeperiod = spn_tpr;
+        this.DataBegin = dateBegin;
+        this.DataEnd = dateEnd;
+        this.ProfitA = profit;
     }
 
     @Override

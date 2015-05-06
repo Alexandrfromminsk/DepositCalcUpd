@@ -8,6 +8,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,7 +28,7 @@ import java.util.GregorianCalendar;
 
 public class CurrencyOneFragment extends Fragment implements OnClickListener, TextWatcher {
 
-    EditText edtCurrencyA, edtSummAvalue, edtPercentA, edtBeginDate, edtTimeperiod;
+    EditText edtSummAvalue, edtPercentA, edtBeginDate, edtTimeperiod;
     TextView edtDateEnd, txtProfitAValue, txtGrowValue, txtFullSummValue;
     Spinner spnTimeperiod, spnCapital, spnCurrency;
 
@@ -135,6 +136,9 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
                                                  @Override
                                                  public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                                                      calc_it();
+//                                                     Log.e("getItemSelected", spnCapital.getSelectedItem()+"");
+//                                                     Log.e("getSelectedItemId", spnCapital.getSelectedItemId()+"");
+//                                                     Log.e("getSelectedItemPosition", spnCapital.getSelectedItemPosition()+"");
                                                  }
 
                                                  @Override
@@ -162,6 +166,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         setEndDate();
 
         calc_it();
+        saveData();
 
         return rootView;
     }
@@ -310,4 +315,14 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
     @Override
     public void afterTextChanged(Editable editable) {    }
+
+    public void saveData(){
+        int sum = Integer.valueOf(edtSummAvalue.getText().toString());
+        Log.e("sum", sum + "");
+        int tpr = Integer.valueOf(edtTimeperiod.getText().toString());
+        float profit = Float.valueOf(txtProfitAValue.getText().toString());
+        Log.e("befocallback", sum + "");
+        mCallback.saveFirstTabData(spnCurrency.getSelectedItem().toString(), sum, tpr, spnTimeperiod.getSelectedItemPosition(), edtBeginDate.getText().toString(), edtDateEnd.getText().toString(), profit);
+        Log.e("aftercallback", sum + "");
+    }
 }
