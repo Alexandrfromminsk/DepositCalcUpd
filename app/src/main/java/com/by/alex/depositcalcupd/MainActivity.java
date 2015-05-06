@@ -137,7 +137,7 @@ public class MainActivity extends ActionBarActivity
         Log.e("", tab.getPosition() + " tab unselected");
         switch (tab.getPosition()){
             case TAB_ONE:
-                firstTab = (CurrencyOneFragment) mAdapter.do_somthing;
+                firstTab = (CurrencyOneFragment) mAdapter.do_somthing_for_push;
                 //http://stackoverflow.com/questions/6976027/reusing-fragments-in-a-fragmentpageradapter
                 firstTab.saveData();
 
