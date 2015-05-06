@@ -1,5 +1,6 @@
 package com.by.alex.depositcalcupd;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -37,6 +38,25 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
     public static final String SPN_TIMELINE_B = "SPN_TIMELINE_B";
     public static final String SPN_CAPITAL_B = "SPN_CAPITAL_B";
     public static final String SPN_CURRENCY_B = "SPN_CURRENCY_B";
+
+    OnTabChangedListener mCallback;
+
+//    public interface OnTabChangedListener {
+//        public void saveSecondTabData(int position);
+//    }
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (OnTabChangedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnTabChangedListener");
+        }
+    }
+
 
 
     @Override

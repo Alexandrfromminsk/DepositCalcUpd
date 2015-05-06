@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -14,7 +15,8 @@ import com.by.alex.depositcalcupd.adapter.TabsPagerAdapter;
 
 
 
-public class MainActivity extends ActionBarActivity implements ActionBar.TabListener, CurrencyOneFragment.OnTabChangedListener {
+public class MainActivity extends ActionBarActivity
+        implements ActionBar.TabListener, OnTabChangedListener {
 
     ViewPager mViewPager;
     ActionBar actionBar;
@@ -23,6 +25,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     private String[] tabs = {"Валюта 1", "Валюта 2", "Сравнение"};
     //private String[] tabs = getString(R.array.tabs_array);
+    private static final int TAB_ONE = 0;
+    private static final int TAB_TWO = 1;
+    private static final int TAB_COMPARE = 2;
 
     //Save data fromtabs for communication
     String Currency, DataBegin, DataEnd;
@@ -46,6 +51,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mAdapter);
+
 
         //Add tabs
         for (String tab_name : tabs) {
@@ -76,11 +82,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 super.onPageScrollStateChanged(state);
                 //Toast.makeText(getApplicationContext(), "onPageScrollStateChanged".toString(), Toast.LENGTH_SHORT).show();
             }
-
-
         });
-
-
 
     }
 
@@ -111,14 +113,31 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         mViewPager.setCurrentItem(tab.getPosition());
-        //Toast.makeText(getApplicationContext(), "onTabSelected".toString(), Toast.LENGTH_SHORT).show();
-
+        Log.e("", tab.getPosition() + "");
+        switch (tab.getPosition()){
+            case TAB_TWO:
+                getDataForSecondTab(9999);
+                break;
+            case TAB_COMPARE:
+                getDataForCompareTab(9999);
+                break;
+        }
     }
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        //Toast.makeText(getApplicationContext(), "onTabUnselected".toString(), Toast.LENGTH_SHORT).show();
-        saveFirstTabData(5);
+        Log.e("", tab.getPosition() + " tab unselected");
+        switch (tab.getPosition()){
+            case TAB_ONE:
+                saveFirstTabData(9999);
+                break;
+            case TAB_TWO:
+                saveSecondTabData(9999);
+                break;
+            case TAB_COMPARE:
+                saveCompareFragmentTabData(9999);
+                break;
+        }
     }
 
     @Override
@@ -131,4 +150,25 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void saveFirstTabData(int position) {
         this.SummA = position;
     }
+
+    @Override
+    public void saveSecondTabData(int position) {
+
+    }
+
+    @Override
+    public void saveCompareFragmentTabData(int position) {
+
+    }
+
+    @Override
+    public void getDataForSecondTab(int position) {
+
+    }
+
+    @Override
+    public void getDataForCompareTab(int position) {
+
+    }
+
 }

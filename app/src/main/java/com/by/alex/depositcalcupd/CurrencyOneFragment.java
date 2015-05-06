@@ -8,7 +8,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,7 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -51,9 +49,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     // Container Activity must implement this interface
     OnTabChangedListener mCallback;
 
-    public interface OnTabChangedListener {
-        public void saveFirstTabData(int position);
-    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -286,18 +281,12 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         ed.commit();
 
     }
-    @Override
-    public void onPause() {
-        super.onPause();
-        saveSettings();
-        Log.e("mazafaka","OnPause");
-        mCallback.saveFirstTabData(5);
-    }
+
 
     @Override
     public void onStop() {
         super.onStop();
-        Toast.makeText(getActivity(), "onstop First tab".toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "onstop First tab".toString(), Toast.LENGTH_SHORT).show();
 
     }
 
@@ -305,23 +294,20 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     public void onDestroy() {
         super.onDestroy();
         saveSettings();
-        Toast.makeText(getActivity(), "ondestroy  First tab".toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "ondestroy  First tab".toString(), Toast.LENGTH_SHORT).show();
 
     }
 
     // 3 TextWatcher's methods
     @Override
-    public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
-    }
+    public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {    }
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
         calc_it();
     }
 
     @Override
-    public void afterTextChanged(Editable editable) {
-
-    }
+    public void afterTextChanged(Editable editable) {    }
 }
