@@ -14,7 +14,7 @@ import com.by.alex.depositcalcupd.adapter.TabsPagerAdapter;
 
 
 
-public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
+public class MainActivity extends ActionBarActivity implements ActionBar.TabListener, CurrencyOneFragment.OnTabChangedListener {
 
     ViewPager mViewPager;
     ActionBar actionBar;
@@ -37,23 +37,15 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(mToolbar);
-
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
         // Set up the action bar.
-
-
         actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setHomeButtonEnabled(true);
 
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mAdapter);
-
 
         //Add tabs
         for (String tab_name : tabs) {
@@ -69,17 +61,20 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             public void onPageSelected(int position) {
                 actionBar.setSelectedNavigationItem(position);
                 //Toast.makeText(getApplicationContext(), "охуенно".toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "setSelectedNavigationItem".toString(), Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                //Toast.makeText(getApplicationContext(), "onPageScrolled".toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
+                //Toast.makeText(getApplicationContext(), "onPageScrollStateChanged".toString(), Toast.LENGTH_SHORT).show();
             }
 
 
@@ -116,19 +111,24 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         mViewPager.setCurrentItem(tab.getPosition());
-
+        //Toast.makeText(getApplicationContext(), "onTabSelected".toString(), Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
+        //Toast.makeText(getApplicationContext(), "onTabUnselected".toString(), Toast.LENGTH_SHORT).show();
+        saveFirstTabData(5);
     }
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-
+        //Toast.makeText(getApplicationContext(), "onTabReselected".toString(), Toast.LENGTH_SHORT).show();
     }
 
 
+    @Override
+    public void saveFirstTabData(int position) {
+        this.SummA = position;
+    }
 }

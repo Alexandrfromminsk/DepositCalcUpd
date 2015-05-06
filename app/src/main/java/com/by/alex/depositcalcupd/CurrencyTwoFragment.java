@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class CurrencyTwoFragment extends Fragment implements TextWatcher {
@@ -22,7 +23,6 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
             edtBeginDate, edtTimeperiod;
 
     Spinner spnTimeperiod, spnCapital, spnCurrency;
-
 
     SharedPreferences mSettings;
     public static final String BEGIN_DATE_B = "BEGIN_DATE_B";
@@ -168,6 +168,13 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
     public void onDestroy() {
         super.onDestroy();
         saveSettings();
+        Toast.makeText(getActivity(), "ondestroy Second tab".toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Toast.makeText(getActivity(), "onpause Second tab".toString(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

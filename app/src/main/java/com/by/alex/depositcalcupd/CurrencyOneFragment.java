@@ -1,5 +1,6 @@
 package com.by.alex.depositcalcupd;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,11 +48,30 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     public static final String SPN_CAPITAL = "SPN_CAPITAL";
     public static final String SPN_CURRENCY_A = "SPN_CURRENCY_A";
 
+    // Container Activity must implement this interface
+    OnTabChangedListener mCallback;
+
+    public interface OnTabChangedListener {
+        public void saveFirstTabData(int position);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (OnTabChangedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnTabChangedListener");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.cur_one_fragment, container,false);
+        View rootView = inflater.inflate(R.layout.cur_one_fragment, container, false);
 
         mSettings = getActivity().getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -264,11 +286,27 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         ed.commit();
 
     }
+    @Override
+    public void onPause() {
+        super.onPause();
+        saveSettings();
+        Log.e("mazafaka","OnPause");
+        mCallback.saveFirstTabData(5);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Toast.makeText(getActivity(), "onstop First tab".toString(), Toast.LENGTH_SHORT).show();
+
+    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         saveSettings();
+        Toast.makeText(getActivity(), "ondestroy  First tab".toString(), Toast.LENGTH_SHORT).show();
+
     }
 
     // 3 TextWatcher's methods
@@ -276,7 +314,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
     }
-
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
