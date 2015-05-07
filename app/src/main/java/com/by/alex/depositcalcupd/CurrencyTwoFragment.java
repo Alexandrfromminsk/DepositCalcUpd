@@ -59,7 +59,6 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -148,7 +147,6 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
 
         return rootView;
     }
-
 
 
 
