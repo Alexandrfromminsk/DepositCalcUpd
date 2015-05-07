@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-public class CurrencyTwoFragment extends Fragment implements TextWatcher {
+public class CurrencyTwoFragment extends Fragment {
 
     EditText edtCurrencyA, edtExcRateNow, edtPercentB;
     TextView edtDateEnd, txtProfitAValue, txtGrowValue, txtFullSummValue, edtSummAvalue,
@@ -39,6 +39,8 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
     public static final String SPN_TIMELINE_B = "SPN_TIMELINE_B";
     public static final String SPN_CAPITAL_B = "SPN_CAPITAL_B";
     public static final String SPN_CURRENCY_B = "SPN_CURRENCY_B";
+
+    private Float summFromFirstTab = (float)1;
 
     OnTabChangedListener mCallback;
 
@@ -73,13 +75,27 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
 
         edtExcRateNow.addTextChangedListener(new TextWatcher() {
             @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {  }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                edtSummAvalue.setText(calc_summ().toString());
+                calc_it();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {  }
+        });
+
+        edtPercentB.addTextChangedListener(new TextWatcher() {
+            @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
+                calc_it();
             }
 
             @Override
@@ -131,9 +147,6 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
         spnCurrency.setAdapter(adapter);
 
         spnTimeperiod.setEnabled(false);
-
-        edtPercentB.addTextChangedListener(this);
-        edtExcRateNow.addTextChangedListener(this);
 
 
         if(savedInstanceState == null){
@@ -217,28 +230,23 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
     public void onDestroy() {
         super.onDestroy();
         saveSettings();
-        Toast.makeText(getActivity(), "ondestroy Second tab".toString(), Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        calc_it();
-    }
-
-    @Override
-    public void afterTextChanged(Editable editable) {
-
-    }
 
     private Float calc_summ(){
-        Float summ;
-        summ = Float.parseFloat(edtExcRateNow.getText().toString()) * Float.parseFloat(edtSummAvalue.getText().toString());
-        return summ;
+        Float conv;
+        try {
+            conv = Float.parseFloat(edtExcRateNow.getText().toString());
+            if (conv == 0) conv  = (float)1;
+            }
+        catch (NumberFormatException e)        {
+            e.printStackTrace();
+            Log.e("Calc", "Issue wuth edtExcRateNow field ");
+            conv=(float) 1;
+        }
+
+
+        return conv * this.summFromFirstTab;
     }
 
     public void saveData(){
@@ -259,7 +267,7 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
         // samething with currency string
         String cur  = spn_currency;
 
-        Float summB = summ * Float.valueOf(edtExcRateNow.getText().toString());
-        edtSummAvalue.setText(summB.toString());
+        this.summFromFirstTab = summ;
+        edtSummAvalue.setText(calc_summ().toString());
     }
 }
