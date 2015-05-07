@@ -211,4 +211,12 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
     public void afterTextChanged(Editable editable) {
 
     }
+
+    public void saveData(){
+        float conversion = Float.valueOf(edtExcRateNow.getText().toString());
+        float profit = Float.valueOf(txtProfitAValue.getText().toString());
+        //Log.e("befocallbackSecondTab", conversion + "");
+        mCallback.saveSecondTabData(spnCurrency.getSelectedItem().toString(), conversion, profit);
+        //Log.e("aftercallbackSecondTab", profit + "");
+    }
 }

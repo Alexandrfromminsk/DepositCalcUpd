@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,6 +24,8 @@ public class MainActivity extends ActionBarActivity
     TabsPagerAdapter mAdapter;
     FragmentManager myManager;
     CurrencyOneFragment firstTab;
+    CurrencyTwoFragment secondTab;
+    CompareFragment compareTab;
 
     public static final String APP_PREFERENCES = "calcsettings";
 
@@ -46,6 +47,8 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        myManager = getSupportFragmentManager();
 
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
         // Set up the action bar.
@@ -89,8 +92,7 @@ public class MainActivity extends ActionBarActivity
             }
         });
 
-//        myManager = getSupportFragmentManager();
-//        firstTab = (CurrencyOneFragment) myManager.findFragmentByTag("first_tab");
+
 
     }
 
@@ -121,7 +123,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         mViewPager.setCurrentItem(tab.getPosition());
-        Log.e("", tab.getPosition() + "");
+
         switch (tab.getPosition()){
             case TAB_TWO:
                 getDataForSecondTab(9999);
@@ -134,19 +136,20 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        Log.e("", tab.getPosition() + " tab unselected");
+        String tag = makeFragmentName(mViewPager.getId(), tab.getPosition());
+
         switch (tab.getPosition()){
             case TAB_ONE:
-                firstTab = (CurrencyOneFragment) mAdapter.do_somthing_for_push;
-                //http://stackoverflow.com/questions/6976027/reusing-fragments-in-a-fragmentpageradapter
+                firstTab = (CurrencyOneFragment) myManager.findFragmentByTag(tag);
                 firstTab.saveData();
-
                 break;
             case TAB_TWO:
-                saveSecondTabData(9999);
+                secondTab = (CurrencyTwoFragment) myManager.findFragmentByTag(tag);
+                secondTab.saveData();
                 break;
             case TAB_COMPARE:
-                saveCompareFragmentTabData(9999);
+                compareTab = (CompareFragment) myManager.findFragmentByTag(tag);
+                compareTab.saveData();
                 break;
         }
     }
@@ -169,12 +172,12 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override
-    public void saveSecondTabData(int position) {
+    public void saveSecondTabData(String currency, float conversion, float profit) {
 
     }
 
     @Override
-    public void saveCompareFragmentTabData(int position) {
+    public void saveCompareTabData(int position) {
 
     }
 
@@ -186,6 +189,11 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void getDataForCompareTab(int position) {
 
+    }
+
+    private String makeFragmentName(int viewId, int index)
+    {
+        return "android:switcher:" + viewId + ":" + mAdapter.getItemId(index) ;
     }
 
 }

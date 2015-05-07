@@ -8,7 +8,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -166,7 +165,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         setEndDate();
 
         calc_it();
-        saveData();
 
         return rootView;
     }
@@ -318,11 +316,10 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
     public void saveData(){
         int sum = Integer.valueOf(edtSummAvalue.getText().toString());
-        Log.e("sum", sum + "");
         int tpr = Integer.valueOf(edtTimeperiod.getText().toString());
         float profit = Float.valueOf(txtProfitAValue.getText().toString());
-        Log.e("befocallback", sum + "");
+        //Log.e("befocallbackFirstTab", sum + "");
         mCallback.saveFirstTabData(spnCurrency.getSelectedItem().toString(), sum, tpr, spnTimeperiod.getSelectedItemPosition(), edtBeginDate.getText().toString(), edtDateEnd.getText().toString(), profit);
-        Log.e("aftercallback", sum + "");
+        //Log.e("aftercallbackFirstTab", sum + "");
     }
 }
