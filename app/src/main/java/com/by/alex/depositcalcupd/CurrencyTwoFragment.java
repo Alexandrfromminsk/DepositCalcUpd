@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -70,6 +71,24 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
         edtSummAvalue = (TextView) rootView.findViewById(R.id.edtSummBvalue);
         edtPercentB = (EditText) rootView.findViewById(R.id.edtPercentB);
 
+
+        edtExcRateNow.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         edtBeginDate = (TextView) rootView.findViewById(R.id.edtBeginDateB);
         edtTimeperiod = (TextView) rootView.findViewById(R.id.edtTimeperiodB);
         edtDateEnd = (TextView) rootView.findViewById(R.id.edtEndDateB);
@@ -95,11 +114,23 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
                 R.array.capitals_array, android.R.layout.simple_spinner_item);
         // Apply the adapter to the spinner
         spnCapital.setAdapter(adapter);
+        spnCapital.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                calc_it();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.currencies_array, android.R.layout.simple_spinner_item);
         // Apply the adapter to the spinner
         spnCurrency.setAdapter(adapter);
+
         spnTimeperiod.setEnabled(false);
 
         edtPercentB.addTextChangedListener(this);
@@ -192,12 +223,6 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        Toast.makeText(getActivity(), "onpause Second tab".toString(), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
     }
@@ -210,6 +235,12 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
     @Override
     public void afterTextChanged(Editable editable) {
 
+    }
+
+    private Float calc_summ(){
+        Float summ;
+        summ = Float.parseFloat(edtExcRateNow.getText().toString()) * Float.parseFloat(edtSummAvalue.getText().toString());
+        return summ;
     }
 
     public void saveData(){
