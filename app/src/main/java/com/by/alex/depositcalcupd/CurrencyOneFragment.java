@@ -159,7 +159,8 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             loadSavedSettings();
 
         }else {
-            edtTimeperiod.setText(savedInstanceState.getString("edtTimeperiod"));
+            loadSavedInstanceState(savedInstanceState);
+            //edtTimeperiod.setText(savedInstanceState.getString("edtTimeperiod"));
         }
 
         setEndDate();
@@ -252,6 +253,29 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         outState.putString("edtTimeperiod", edtTimeperiod.getText().toString());
         outState.putString("edtBeginDate", edtBeginDate.getText().toString());
         outState.putString("edtDateEnd", edtDateEnd.getText().toString());
+        outState.putString("edtSummAvalue", edtSummAvalue.getText().toString());
+        outState.putString("edtPercentA", edtPercentA.getText().toString());
+        outState.putString("txtProfitAValue", txtProfitAValue.getText().toString());
+        outState.putString("txtGrowValue", txtGrowValue.getText().toString());
+        outState.putString("txtFullSummValue", txtFullSummValue.getText().toString());
+        //Spinners
+        outState.putInt("spnCapital",spnCapital.getSelectedItemPosition());
+        outState.putInt("spnCurrency",spnCurrency.getSelectedItemPosition());
+        outState.putInt("spnTimeperiod",spnTimeperiod.getSelectedItemPosition());
+    }
+
+    void loadSavedInstanceState(Bundle savedInstanceState) {
+        edtTimeperiod.setText(savedInstanceState.getString("edtTimeperiod"));
+        edtDateEnd.setText(savedInstanceState.getString("edtDateEnd"));
+        edtSummAvalue.setText(savedInstanceState.getString("edtSummAvalue"));
+        edtPercentA.setText(savedInstanceState.getString("edtPercentA"));
+        txtProfitAValue.setText(savedInstanceState.getString("txtProfitAValue"));
+        txtGrowValue.setText(savedInstanceState.getString("txtGrowValue"));
+        txtFullSummValue.setText(savedInstanceState.getString("txtFullSummValue"));
+        //Spinners
+        spnCapital.setSelection(savedInstanceState.getInt("spnCapital"));
+        spnCurrency.setSelection(savedInstanceState.getInt("spnCurrency"));
+        spnTimeperiod.setSelection(savedInstanceState.getInt("spnTimeperiod"));
     }
 
     void loadSavedSettings(){
@@ -315,7 +339,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     public void afterTextChanged(Editable editable) {    }
 
     public void saveData(){
-        int sum = Integer.valueOf(edtSummAvalue.getText().toString());
+        float  sum = Float.parseFloat(edtSummAvalue.getText().toString());
         int tpr = Integer.valueOf(edtTimeperiod.getText().toString());
         float profit = Float.valueOf(txtProfitAValue.getText().toString());
         //Log.e("befocallbackFirstTab", sum + "");
