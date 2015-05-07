@@ -89,9 +89,7 @@ public class CurrencyTwoFragment extends Fragment {
 
         edtPercentB.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
-            }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {  }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -99,9 +97,7 @@ public class CurrencyTwoFragment extends Fragment {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
+            public void afterTextChanged(Editable editable) {    }
         });
 
         edtBeginDate = (TextView) rootView.findViewById(R.id.edtBeginDateB);
