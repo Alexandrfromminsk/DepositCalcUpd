@@ -219,4 +219,18 @@ public class CurrencyTwoFragment extends Fragment implements TextWatcher {
         mCallback.saveSecondTabData(spnCurrency.getSelectedItem().toString(), conversion, profit);
         //Log.e("aftercallbackSecondTab", profit + "");
     }
+
+    public void setDataFromFirstTab(String spn_currency, float summ, int timeperiod, int spn_tpr, String dateBegin, String dateEnd){
+        edtBeginDate.setText(dateBegin);
+        edtDateEnd.setText(dateEnd);
+        spnTimeperiod.setSelection(spn_tpr);
+        edtTimeperiod.setText(Integer.toString(timeperiod));
+
+        //TO DO
+        // samething with currency string
+        String cur  = spn_currency;
+
+        Float summB = summ * Float.valueOf(edtExcRateNow.getText().toString());
+        edtSummAvalue.setText(summB.toString());
+    }
 }

@@ -124,9 +124,12 @@ public class MainActivity extends ActionBarActivity
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         mViewPager.setCurrentItem(tab.getPosition());
 
+        String tag = makeFragmentName(mViewPager.getId(), tab.getPosition());
+
         switch (tab.getPosition()){
             case TAB_TWO:
-                getDataForSecondTab(9999);
+                secondTab = (CurrencyTwoFragment) myManager.findFragmentByTag(tag);
+                secondTab.setDataFromFirstTab(CurrencyA, (float) SummA, Timeperiod, Spn_timeperiod, DataBegin, DataEnd);
                 break;
             case TAB_COMPARE:
                 getDataForCompareTab(9999);
