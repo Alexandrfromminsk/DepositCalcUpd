@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,7 +31,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     EditText edtSummAvalue, edtPercentA, edtBeginDate, edtTimeperiod;
     TextView edtDateEnd, txtProfitAValue, txtGrowValue, txtFullSummValue;
     Spinner spnTimeperiod, spnCapital, spnCurrency;
-
 
     SharedPreferences mSettings;
 
@@ -239,11 +239,16 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             if (dmy==0) profit = Calculator.calcProfit(s, pr, d,cap);
             else  profit = Calculator.calcProfit(s, pr, cap, BeginDate, EndDate);
 
-            txtGrowValue.setText(profit[Calculator.PERCENT].toString());
-            txtProfitAValue.setText(profit[Calculator.PROFIT].toString());
-            txtFullSummValue.setText(profit[Calculator.FULLSUMM].toString());
+            txtGrowValue.setText(formatTwoDecimals(profit[Calculator.PERCENT]).toString());
+            txtProfitAValue.setText(formatTwoDecimals(profit[Calculator.PROFIT]).toString());
+            txtFullSummValue.setText(formatTwoDecimals(profit[Calculator.FULLSUMM]).toString());
         }
 
+    }
+
+    private Float formatTwoDecimals (float f) {
+        DecimalFormat twoFForm = new DecimalFormat("#.##");
+        return Float.parseFloat(twoFForm.format(f));
     }
 
 
@@ -336,7 +341,8 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     }
 
     @Override
-    public void afterTextChanged(Editable editable) {    }
+    public void afterTextChanged(Editable editable) {
+    }
 
     public void saveData(){
         float  sum = Float.parseFloat(edtSummAvalue.getText().toString());

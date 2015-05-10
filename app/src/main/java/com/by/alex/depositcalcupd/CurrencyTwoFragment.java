@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 
 public class CurrencyTwoFragment extends Fragment {
 
@@ -79,7 +81,7 @@ public class CurrencyTwoFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                edtSummAvalue.setText(calc_summ().toString());
+                edtSummAvalue.setText(formatTwoDecimals(calc_summ()).toString());
                 calc_it();
             }
 
@@ -237,11 +239,16 @@ public class CurrencyTwoFragment extends Fragment {
             int cap = spnCapital.getSelectedItemPosition();
             Float[] profit = Calculator.calcProfit(s, pr, d,cap);
 
-            txtGrowValue.setText(profit[Calculator.PERCENT].toString());
-            txtProfitBValue.setText(profit[Calculator.PROFIT].toString());
-            txtFullSummValue.setText(profit[Calculator.FULLSUMM].toString());
+            txtGrowValue.setText(formatTwoDecimals(profit[Calculator.PERCENT]).toString());
+            txtProfitBValue.setText(formatTwoDecimals(profit[Calculator.PROFIT]).toString());
+            txtFullSummValue.setText(formatTwoDecimals(profit[Calculator.FULLSUMM]).toString());
         }
 
+    }
+
+    private Float formatTwoDecimals (float f) {
+        DecimalFormat twoFForm = new DecimalFormat("#.##");
+        return Float.parseFloat(twoFForm.format(f));
     }
 
     @Override
@@ -262,7 +269,6 @@ public class CurrencyTwoFragment extends Fragment {
             Log.e("Calc", "Issue wuth edtExcRateNow field ");
             conv=(float) 1;
         }
-
 
         return conv * this.summFromFirstTab;
     }
