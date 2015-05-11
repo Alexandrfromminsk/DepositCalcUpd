@@ -42,6 +42,15 @@
     <string name="txtProfit">Прибыль</string>
     <string name="txtFullSumm">Итого</string>
 
+    <string name="cmpr_txtFirstSection">Разница прибыли первого вклада по отношению к второму при текущем обменном курсе</string>
+    <string name="cmpr_txtExcRateCurrent">Обменный курс (текущий)</string>
+
+    <string name="cmpr_txtSecondSection">Равная прибыль при рассчитанном обменном курсе</string>
+    <string name="cmpr_txtExcRateCalc">Обменный курс (расчетный)</string>
+
+    <string name="cmpr_txtThirdSection">Разница прибыли</string>
+    <string name="cmpr_txtExcRateVar">Обменный курс (произвольный)</string>
+
     <string-array name="timeperiods_array">
         <item>день</item>
         <item>месяц</item>
