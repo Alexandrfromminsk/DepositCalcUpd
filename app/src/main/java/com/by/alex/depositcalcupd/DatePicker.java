@@ -51,7 +51,6 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
             tpr = 0;
         }
 
-
         Spinner spnTimeperiod = (Spinner) getActivity().findViewById(R.id.spnTimeperiod);
         int dmy = spnTimeperiod.getSelectedItemPosition();
 
@@ -65,8 +64,6 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         dateEnd.setText(sdf.format(cal.getTime()).toString());
 
-
     }
-
 
 }
