@@ -39,4 +39,9 @@ public class CompareFragment extends Fragment {
         //Log.e("aftercallbackCompareTab", "aftercallbackCompareTab");
 
     }
+
+    public void setDataFromTabs(String currencyA, String currencyB, float profitA, float profitB,
+                                float excRateNow) {
+
+    }
 }

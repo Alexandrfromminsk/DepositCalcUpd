@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
-                android:id="@+id/textView2"
+                android:id="@+id/txtPrecentProfitNow"
                 android:layout_column="1" />
         </TableRow>
 
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
-                android:id="@+id/textView3"
+                android:id="@+id/txtCurOneProfitNow"
                 android:layout_column="1" />
         </TableRow>
 
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
-                android:id="@+id/textView4"
+                android:id="@+id/txtCurTwoProfitNow"
                 android:layout_column="1" />
         </TableRow>
 

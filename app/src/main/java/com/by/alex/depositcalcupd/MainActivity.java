@@ -133,7 +133,8 @@ public class MainActivity extends ActionBarActivity
                 secondTab.setDataFromFirstTab(CurrencyA, (float) SummA, Timeperiod, Spn_timeperiod, DataBegin, DataEnd);
                 break;
             case TAB_COMPARE:
-                getDataForCompareTab(9999);
+                compareTab = (CompareFragment) myManager.findFragmentByTag(tag);
+                compareTab.setDataFromTabs(CurrencyA, CurrencyB, ProfitA, ProfitB, ExcRate);
                 break;
         }
     }
@@ -188,15 +189,6 @@ public class MainActivity extends ActionBarActivity
 
     }
 
-    @Override
-    public void getDataForSecondTab(int position) {
-
-    }
-
-    @Override
-    public void getDataForCompareTab(int position) {
-
-    }
 
     private String makeFragmentName(int viewId, int index)
     {
