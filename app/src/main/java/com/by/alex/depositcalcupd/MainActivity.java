@@ -37,8 +37,8 @@ public class MainActivity extends ActionBarActivity
 
     //Save data fromtabs for communication
     String DataBegin, DataEnd, CurrencyA, CurrencyB;
-    int SummB, Days, Timeperiod, Spn_timeperiod;
-    float SummA;
+    int   Timeperiod, Spn_timeperiod;
+    float SummA, ExcRate;
     float ProfitA, ProfitB;
 
     //private Toolbar mToolbar;
@@ -177,6 +177,9 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void saveSecondTabData(String currency, float conversion, float profit) {
+        this.ExcRate = conversion;
+        this.ProfitB = profit;
+        this.CurrencyB = currency;
 
     }
 
