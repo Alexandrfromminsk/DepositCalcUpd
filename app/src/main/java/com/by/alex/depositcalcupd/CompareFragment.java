@@ -6,8 +6,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class CompareFragment extends Fragment {
+
+    TextView txtPrecentProfitNow,txtCurOneProfitNow, txtCurTwoProfitNow, txtExcRateNow,
+            txtPrecentProfitCalc,txtCurOneProfitCalc, txtCurTwoProfitCalc, txtExcRateCalc,
+            txtPrecentProfitDinamic,txtCurOneProfitDinamic, txtCurTwoProfitDinamic;
+    EditText edtExcRateDinamic;
+
+    float ExcRateNow;
+    String CurrencyA, CurrencyB;
+    SeekBar mSeekBar;
 
     OnTabChangedListener mCallback;
 
@@ -29,6 +41,24 @@ public class CompareFragment extends Fragment {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.compare_fragment, container,false);
 
+        mSeekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
+
+        txtPrecentProfitNow = (TextView) rootView.findViewById(R.id.txtPrecentProfitNow);
+        txtCurOneProfitNow = (TextView) rootView.findViewById(R.id.txtCurOneProfitNow);
+        txtCurTwoProfitNow = (TextView) rootView.findViewById(R.id.txtCurTwoProfitNow);
+        txtExcRateNow = (TextView) rootView.findViewById(R.id.txtExcRateNow);
+
+        txtPrecentProfitCalc = (TextView) rootView.findViewById(R.id.txtPrecentProfitCalc);
+        txtCurOneProfitCalc = (TextView) rootView.findViewById(R.id.txtCurOneProfitCalc);
+        txtCurTwoProfitCalc = (TextView) rootView.findViewById(R.id.txtCurTwoProfitCalc);
+        txtExcRateCalc = (TextView) rootView.findViewById(R.id.txtExcRateCalc);
+
+        txtPrecentProfitDinamic = (TextView) rootView.findViewById(R.id.txtPrecentProfitDinamic);
+        txtCurOneProfitDinamic = (TextView) rootView.findViewById(R.id.txtCurOneProfitDinamic);
+        txtCurTwoProfitDinamic = (TextView) rootView.findViewById(R.id.txtCurTwoProfitDinamic);
+
+        edtExcRateDinamic = (EditText) rootView.findViewById(R.id.edtExcRateDinamic);
+
         return rootView;
     }
 
@@ -42,6 +72,39 @@ public class CompareFragment extends Fragment {
 
     public void setDataFromTabs(String currencyA, String currencyB, float profitA, float profitB,
                                 float excRateNow) {
+        float profitBConverted, diff;
+
+        ExcRateNow = excRateNow;
+        CurrencyA = currencyA;
+        CurrencyB = currencyB;
+
+        txtExcRateNow.setText(String.valueOf(excRateNow));
+
+        profitBConverted = profitB/excRateNow;
+        diff = profitA - profitBConverted;
+
+        txtPrecentProfitNow.setText(String.valueOf((diff/profitA)*100) + '%');
+        txtCurOneProfitNow.setText(String.valueOf(diff) + currencyA);
+        txtCurTwoProfitNow.setText(String.valueOf(diff*excRateNow) + currencyB);
+
+        //maybe another approach should be used
+        edtExcRateDinamic.setText(String.valueOf(excRateNow));
+        txtPrecentProfitDinamic.setText(String.valueOf((diff/profitA)*100) + '%');
+        txtCurOneProfitDinamic.setText(String.valueOf(diff) + currencyA);
+        txtCurTwoProfitDinamic.setText(String.valueOf(diff*excRateNow) + currencyB);
+
+        float excRateCalc = profitB/profitA;
+        txtExcRateCalc.setText(String.valueOf(excRateCalc));
+
+        profitBConverted = profitB/excRateCalc;
+        diff = profitA - profitBConverted;
+
+        txtCurOneProfitCalc.setText(String.valueOf(diff) + currencyA);
+        txtCurTwoProfitCalc.setText(String.valueOf(diff*excRateCalc) + currencyB);
+
+        //TO DO
+        //set seekbar with min and max values like here
+        //http://stackoverflow.com/questions/20762001/how-to-set-seekbar-min-and-max-value
 
     }
 }
