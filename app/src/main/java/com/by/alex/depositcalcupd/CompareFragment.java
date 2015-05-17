@@ -42,6 +42,7 @@ public class CompareFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.compare_fragment, container,false);
 
         mSeekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
+        mSeekBar.setMax(1000);
 
         txtPrecentProfitNow = (TextView) rootView.findViewById(R.id.txtPrecentProfitNow);
         txtCurOneProfitNow = (TextView) rootView.findViewById(R.id.txtCurOneProfitNow);
@@ -107,4 +108,5 @@ public class CompareFragment extends Fragment {
         //http://stackoverflow.com/questions/20762001/how-to-set-seekbar-min-and-max-value
 
     }
+
 }
