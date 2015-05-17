@@ -154,6 +154,11 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         edtBeginDate = (EditText) rootView.findViewById(R.id.edtBeginDate);
         edtBeginDate.setOnClickListener(this);
 
+        edtDateEnd.setEnabled(false);
+        txtFullSummValue.setEnabled(false);
+        txtGrowValue.setEnabled(false);
+        txtProfitAValue.setEnabled(false);
+
 
         if(savedInstanceState == null){
             loadSavedSettings();
@@ -247,8 +252,16 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     }
 
     private Float formatTwoDecimals (float f) {
+        float format_res;
         DecimalFormat twoFForm = new DecimalFormat("#.##");
-        return Float.parseFloat(twoFForm.format(f));
+        try {
+            format_res = Float.parseFloat(twoFForm.format(f));
+        }
+        catch (NumberFormatException e) {
+            e.printStackTrace();
+            format_res = 0;
+        }
+        return format_res;
     }
 
 

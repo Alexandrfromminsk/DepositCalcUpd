@@ -145,6 +145,7 @@ public class CurrencyTwoFragment extends Fragment {
         spnCurrency.setAdapter(adapter);
 
         spnTimeperiod.setEnabled(false);
+        edtTimeperiod.setEnabled(false);
 
 
         if(savedInstanceState == null){

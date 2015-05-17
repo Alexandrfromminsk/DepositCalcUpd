@@ -23,15 +23,12 @@ android:background="#FFFFFF"> //3F51B5
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewLeftColumn"
                 android:text="@string/txtCurrencyA"
                 android:id="@+id/textView16" />
 
             <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/MyViewRightColumn"
                 android:id="@+id/spnCurrencyA">
             </Spinner>
         </TableRow>
@@ -41,15 +38,12 @@ android:background="#FFFFFF"> //3F51B5
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewLeftColumn"
                 android:text="@string/txtSumm"
                 android:id="@+id/textView18" />
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/MyViewRightColumn"
                 android:inputType="number"
                 android:ems="10"
                 android:id="@+id/edtSummAvalue" />
@@ -60,15 +54,12 @@ android:background="#FFFFFF"> //3F51B5
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewLeftColumn"
                 android:text="@string/txtPercent"
                 android:id="@+id/textView19" />
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/MyViewRightColumn"
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:id="@+id/edtPercent" />
@@ -79,15 +70,12 @@ android:background="#FFFFFF"> //3F51B5
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewLeftColumn"
                 android:text="@string/txtCapital"
                 android:id="@+id/textView20" />
 
             <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/MyViewRightColumn"
                 android:id="@+id/spnCapital" />
         </TableRow>
 
@@ -97,9 +85,7 @@ android:background="#FFFFFF"> //3F51B5
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewLeftColumn"
                 android:text="@string/txtTimeperiodText"
                 android:id="@+id/textView23" />
 
@@ -132,15 +118,12 @@ android:background="#FFFFFF"> //3F51B5
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewLeftColumn"
                 android:text="@string/txtDateBegin"
                 android:id="@+id/textView22" />
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/MyViewRightColumn"
                 android:inputType="date"
                 android:ems="10"
                 android:id="@+id/edtBeginDate" />
@@ -152,16 +135,12 @@ android:background="#FFFFFF"> //3F51B5
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewLeftColumn"
                 android:text="@string/txtDateEnd"
                 android:id="@+id/textView24" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewRightColumn"
                 android:ems="10"
                 android:id="@+id/edtEndDate" />
         </TableRow>
@@ -171,16 +150,12 @@ android:background="#FFFFFF"> //3F51B5
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewLeftColumn"
                 android:text="@string/txtGrow"
                 android:id="@+id/textView25" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewRightColumn"
                 android:id="@+id/txtGrow" />
 
         </TableRow>
@@ -190,16 +165,12 @@ android:background="#FFFFFF"> //3F51B5
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewLeftColumn"
                 android:text="@string/txtProfit"
                 android:id="@+id/textView26" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewRightColumn"
                 android:id="@+id/txtProfit" />
 
         </TableRow>
@@ -209,16 +180,12 @@ android:background="#FFFFFF"> //3F51B5
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewLeftColumn"
                 android:text="@string/txtFullSumm"
                 android:id="@+id/textView27" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                style="@style/MyViewRightColumn"
                 android:id="@+id/txtFullSummValue" />
         </TableRow>
 

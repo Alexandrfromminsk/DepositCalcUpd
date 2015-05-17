@@ -22,7 +22,6 @@
     <string name="title_home">Home</string>
 
     <string name="choose_data">Выберите дату</string>
-    choose_data
 
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
@@ -30,7 +29,7 @@
 
 
     <string name="txtCurrencyA">Валюта 1</string>
-    <string name="txtCurrencyB">Валюта 2 </string>
+    <string name="txtCurrencyB">Валюта 2</string>
     <string name="txtExchangeRate">Конверсия</string>
     <string name="txtSumm">Сумма</string>
     <string name="txtPercent">Процент</string>
