@@ -42,7 +42,9 @@ public class CompareFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.compare_fragment, container,false);
 
         mSeekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
-        mSeekBar.setMax(1000);
+        mSeekBar.setMax(400);
+        mSeekBar.setProgress(200);
+
 
         txtPrecentProfitNow = (TextView) rootView.findViewById(R.id.txtPrecentProfitNow);
         txtCurOneProfitNow = (TextView) rootView.findViewById(R.id.txtCurOneProfitNow);
@@ -76,23 +78,23 @@ public class CompareFragment extends Fragment {
         float profitBConverted, diff;
 
         ExcRateNow = excRateNow;
-        CurrencyA = currencyA;
-        CurrencyB = currencyB;
+        CurrencyA = String.format(" %s", currencyA);
+        CurrencyB = String.format(" %s", currencyB);
 
         txtExcRateNow.setText(String.valueOf(excRateNow));
 
         profitBConverted = profitB/excRateNow;
         diff = profitA - profitBConverted;
 
-        txtPrecentProfitNow.setText(String.valueOf((diff/profitA)*100) + '%');
-        txtCurOneProfitNow.setText(String.valueOf(diff) + currencyA);
-        txtCurTwoProfitNow.setText(String.valueOf(diff*excRateNow) + currencyB);
+        txtPrecentProfitNow.setText(String.valueOf((diff/profitA)*100) + " %");
+        txtCurOneProfitNow.setText(String.valueOf(diff) + CurrencyA);
+        txtCurTwoProfitNow.setText(String.valueOf(diff*excRateNow) + CurrencyB);
 
         //maybe another approach should be used
         edtExcRateDinamic.setText(String.valueOf(excRateNow));
-        txtPrecentProfitDinamic.setText(String.valueOf((diff/profitA)*100) + '%');
-        txtCurOneProfitDinamic.setText(String.valueOf(diff) + currencyA);
-        txtCurTwoProfitDinamic.setText(String.valueOf(diff*excRateNow) + currencyB);
+        txtPrecentProfitDinamic.setText(String.valueOf((diff/profitA)*100) + " %");
+        txtCurOneProfitDinamic.setText(String.valueOf(diff) + CurrencyA);
+        txtCurTwoProfitDinamic.setText(String.valueOf(diff*excRateNow) + CurrencyB);
 
         float excRateCalc = profitB/profitA;
         txtExcRateCalc.setText(String.valueOf(excRateCalc));
@@ -100,8 +102,8 @@ public class CompareFragment extends Fragment {
         profitBConverted = profitB/excRateCalc;
         diff = profitA - profitBConverted;
 
-        txtCurOneProfitCalc.setText(String.valueOf(diff) + currencyA);
-        txtCurTwoProfitCalc.setText(String.valueOf(diff*excRateCalc) + currencyB);
+        txtCurOneProfitCalc.setText(String.valueOf(diff) + CurrencyA);
+        txtCurTwoProfitCalc.setText(String.valueOf(diff*excRateCalc) + CurrencyB);
 
         //TO DO
         //set seekbar with min and max values like here
