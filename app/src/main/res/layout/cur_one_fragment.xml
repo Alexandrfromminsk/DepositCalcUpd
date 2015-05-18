@@ -5,7 +5,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".MainActivity"
 android:id="@+id/first_tab"
-android:background="#FFFFFF"> //3F51B5
+android:background="#FFFFFF"> //3F51B5 or 52b7c8
 
 <ScrollView
     android:layout_width="match_parent"
