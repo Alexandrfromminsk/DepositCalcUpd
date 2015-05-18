@@ -3,6 +3,8 @@ package com.by.alex.depositcalcupd;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,11 +43,6 @@ public class CompareFragment extends Fragment {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.compare_fragment, container,false);
 
-        mSeekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
-        mSeekBar.setMax(400);
-        mSeekBar.setProgress(200);
-
-
         txtPrecentProfitNow = (TextView) rootView.findViewById(R.id.txtPrecentProfitNow);
         txtCurOneProfitNow = (TextView) rootView.findViewById(R.id.txtCurOneProfitNow);
         txtCurTwoProfitNow = (TextView) rootView.findViewById(R.id.txtCurTwoProfitNow);
@@ -61,6 +58,45 @@ public class CompareFragment extends Fragment {
         txtCurTwoProfitDinamic = (TextView) rootView.findViewById(R.id.txtCurTwoProfitDinamic);
 
         edtExcRateDinamic = (EditText) rootView.findViewById(R.id.edtExcRateDinamic);
+        edtExcRateDinamic.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        mSeekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
+        mSeekBar.setMax(400);
+        mSeekBar.setProgress(200);
+        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                double dynRate;
+                double step = (2*ExcRateNow)/200.0;
+                dynRate = dynRate = (progress - 200)*step + ExcRateNow;
+                edtExcRateDinamic.setText(String.valueOf(dynRate));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         return rootView;
     }
