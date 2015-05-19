@@ -259,8 +259,8 @@ public class CurrencyTwoFragment extends Fragment {
     }
 
 
-    private Float calc_summ(){
-        Float conv;
+    private float calc_summ(){
+        float conv;
         try {
             conv = Float.parseFloat(edtExcRateNow.getText().toString());
             if (conv == 0) conv  = (float)1;
@@ -293,6 +293,6 @@ public class CurrencyTwoFragment extends Fragment {
         String cur  = spn_currency;
 
         this.summFromFirstTab = summ;
-        edtSummAvalue.setText(calc_summ().toString());
+        edtSummAvalue.setText(String.valueOf(calc_summ()));
     }
 }
