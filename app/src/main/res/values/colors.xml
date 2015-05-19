@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#616161</color> //64B5F6
-    <color name="colorPrimaryDark">#424242</color> //2196F3
+    <color name="colorPrimary">#689f38</color> //64B5F6
+    <color name="colorPrimaryDark">#33691e</color> //2196F3
 
-    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="textColorPrimary">#689f38</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
-    <color name="colorAccent">#42A5F5</color> //212121
+    <color name="colorAccent">#F44336</color> //795548 or 8bc34a
 </resources>
