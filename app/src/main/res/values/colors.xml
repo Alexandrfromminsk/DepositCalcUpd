@@ -6,5 +6,5 @@
     <color name="textColorPrimary">#689f38</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
-    <color name="colorAccent">#F44336</color> //795548 or 8bc34a
+    <color name="colorAccent">#00838F</color> //795548, ,
 </resources>

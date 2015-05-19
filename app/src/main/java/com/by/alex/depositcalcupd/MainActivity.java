@@ -55,8 +55,8 @@ public class MainActivity extends ActionBarActivity
         // Set up the action bar.
         actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
-        actionBar.setIcon(R.drawable.ic_launcher);
+        // actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
+        // actionBar.setIcon(R.drawable.ic_launcher);
 
         //actionBar.setDisplayShowHomeEnabled(true);
         //actionBar.setDisplayShowTitleEnabled(true);

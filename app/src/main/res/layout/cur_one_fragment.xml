@@ -49,7 +49,6 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
                 android:inputType="number"
                 android:ems="10"
                 android:id="@+id/edtSummAvalue"
-                android:background="#52b7c8"
                 android:typeface="sans" />
         </TableRow>
 
