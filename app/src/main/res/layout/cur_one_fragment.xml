@@ -15,7 +15,7 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_margin="16dp"
+        android:layout_margin="4sp"
         android:shrinkColumns="1">
 
         <TableRow
@@ -41,13 +41,16 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
             <TextView
                 style="@style/MyViewLeftColumn"
                 android:text="@string/txtSumm"
-                android:id="@+id/textView18" />
+                android:id="@+id/textView18"
+                android:password="false" />
 
             <EditText
                 style="@style/MyViewRightColumn"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/edtSummAvalue" />
+                android:id="@+id/edtSummAvalue"
+                android:background="#52b7c8"
+                android:typeface="sans" />
         </TableRow>
 
         <TableRow
@@ -63,7 +66,8 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
                 style="@style/MyViewRightColumn"
                 android:inputType="numberDecimal"
                 android:ems="10"
-                android:id="@+id/edtPercent" />
+                android:id="@+id/edtPercent"
+                android:ellipsize="start" />
         </TableRow>
 
         <TableRow
@@ -128,7 +132,12 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
                 style="@style/MyViewRightColumn"
                 android:inputType="date"
                 android:ems="10"
-                android:id="@+id/edtBeginDate" />
+                android:id="@+id/edtBeginDate"
+                android:clickable="false"
+                android:backgroundTint="#000"
+                android:backgroundTintMode="multiply"
+                android:ellipsize="middle"
+                android:hint="click to edit date" />
         </TableRow>
 
 
