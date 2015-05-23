@@ -299,6 +299,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         edtBeginDate.setText(mSettings.getString(BEGIN_DATE, "01-02-2015"));
         spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL, 0));
         spnTimeperiod.setSelection(mSettings.getInt(SPN_TIMELINE, 0));
+        spnCurrency.setSelection(mSettings.getInt(SPN_CURRENCY_A, 0));
 
     }
 
@@ -314,6 +315,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         ed.putString(FULL_SUMM_VALUE, txtFullSummValue.getText().toString());
         ed.putInt(SPN_TIMELINE, spnTimeperiod.getSelectedItemPosition());
         ed.putInt(SPN_CAPITAL, spnCapital.getSelectedItemPosition());
+        ed.putInt(SPN_CURRENCY_A, spnCurrency.getSelectedItemPosition());
 
         ed.commit();
 

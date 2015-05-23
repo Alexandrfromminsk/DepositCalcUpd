@@ -219,8 +219,8 @@ public class CurrencyTwoFragment extends Fragment {
         ed.putString(PROFIT_B, txtProfitBValue.getText().toString());
         ed.putString(GROW_B, txtGrowValue.getText().toString());
         ed.putString(FULL_SUMM_VALUE_B, txtFullSummValue.getText().toString());
-        ed.putInt(SPN_TIMELINE_B, (int) spnTimeperiod.getSelectedItemPosition());
-        ed.putInt(SPN_CAPITAL_B, (int) spnCapital.getSelectedItemPosition());
+        ed.putInt(SPN_TIMELINE_B, spnTimeperiod.getSelectedItemPosition());
+        ed.putInt(SPN_CAPITAL_B, spnCapital.getSelectedItemPosition());
 
         ed.commit();
 
@@ -270,7 +270,6 @@ public class CurrencyTwoFragment extends Fragment {
             Log.e("Calc", "Issue wuth edtExcRateNow field ");
             conv=(float) 1;
         }
-
         return conv * this.summFromFirstTab;
     }
 
@@ -290,7 +289,7 @@ public class CurrencyTwoFragment extends Fragment {
 
         //TO DO
         // samething with currency string
-        String cur  = spn_currency;
+        //String cur  = spn_currency;
 
         this.summFromFirstTab = summ;
         edtSummAvalue.setText(String.valueOf(calc_summ()));
