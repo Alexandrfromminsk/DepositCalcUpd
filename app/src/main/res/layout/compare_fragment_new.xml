@@ -12,18 +12,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="4sp"
-            android:shrinkColumns="*">
+            android:shrinkColumns="*"
+            android:stretchColumns="*">
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <TextView
-                    style="@style/MyViewRightColumn"
-                    android:text="@string/cmpr_txtFirstSection_new"
-                    android:textStyle="bold"
-                    android:layout_span="2"
-                    android:id="@+id/textView2" />
             </TableRow>
 
             <TableRow

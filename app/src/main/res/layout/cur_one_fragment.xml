@@ -169,6 +169,7 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
 
             <TextView
                 style="@style/MyViewRightColumn"
+                android:textColor="@color/colorAccent"
                 android:id="@+id/txtGrow" />
 
         </TableRow>
@@ -184,6 +185,7 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
 
             <TextView
                 style="@style/MyViewRightColumn"
+                android:textColor="@color/colorAccent"
                 android:id="@+id/txtProfit" />
 
         </TableRow>
@@ -199,6 +201,7 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
 
             <TextView
                 style="@style/MyViewRightColumn"
+                android:textColor="@color/colorAccent"
                 android:id="@+id/txtFullSummValue" />
         </TableRow>
 

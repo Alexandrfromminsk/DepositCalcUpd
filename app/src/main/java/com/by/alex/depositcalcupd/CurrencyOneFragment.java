@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -31,6 +32,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     EditText edtSummAvalue, edtPercentA, edtBeginDate, edtTimeperiod;
     TextView edtDateEnd, txtProfitAValue, txtGrowValue, txtFullSummValue;
     Spinner spnTimeperiod, spnCapital, spnCurrency;
+    DecimalFormat myFormat = new DecimalFormat("#,###.00");
 
     SharedPreferences mSettings;
 
@@ -115,20 +117,21 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         // Apply the adapter to the spinner
         spnTimeperiod.setAdapter(adapter);
         spnTimeperiod.setOnItemSelectedListener(new OnItemSelectedListener() {
-                                                    @Override
-                                                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                                        setEndDate();
-                                                        calc_it();
-                                                    }
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setEndDate();
+                calc_it();
+            }
 
-                                                    @Override
-                                                    public void onNothingSelected(AdapterView<?> adapterView) {
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-                                                    }
-                                                });
+            }
+        });
 
         adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.capitals_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spnCapital.setAdapter(adapter);
         spnCapital.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -148,16 +151,12 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
         adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.currencies_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spnCurrency.setAdapter(adapter);
 
         edtBeginDate = (EditText) rootView.findViewById(R.id.edtBeginDate);
         edtBeginDate.setOnClickListener(this);
-
-        //edtDateEnd.setEnabled(false);
-        txtFullSummValue.setTextColor(getResources().getColor(R.color.colorAccent));
-        txtGrowValue.setTextColor(getResources().getColor(R.color.colorAccent));
-        txtProfitAValue.setTextColor(getResources().getColor(R.color.colorAccent));
 
 
         if(savedInstanceState == null){
@@ -169,7 +168,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         }
 
         setEndDate();
-
         calc_it();
 
         return rootView;
@@ -207,7 +205,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
                     break;
             }
 
-            edtDateEnd.setText(sdf.format(cal.getTime()).toString());
+            edtDateEnd.setText(sdf.format(cal.getTime()));
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -244,24 +242,18 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             if (dmy==0) profit = Calculator.calcProfit(s, pr, d,cap);
             else  profit = Calculator.calcProfit(s, pr, cap, BeginDate, EndDate);
 
-            txtGrowValue.setText(formatTwoDecimals(profit[Calculator.PERCENT]).toString());
-            txtProfitAValue.setText(formatTwoDecimals(profit[Calculator.PROFIT]).toString());
-            txtFullSummValue.setText(formatTwoDecimals(profit[Calculator.FULLSUMM]).toString());
+            txtGrowValue.setText(formatTwoDecimals(profit[Calculator.PERCENT]));
+            txtProfitAValue.setText(formatTwoDecimals(profit[Calculator.PROFIT]));
+            txtFullSummValue.setText(formatTwoDecimals(profit[Calculator.FULLSUMM]));
         }
 
     }
 
-    private Float formatTwoDecimals (float f) {
-        float format_res;
-        DecimalFormat twoFForm = new DecimalFormat("#.##");
-        try {
-            format_res = Float.parseFloat(twoFForm.format(f));
-        }
-        catch (NumberFormatException e) {
-            e.printStackTrace();
-            format_res = 0;
-        }
-        return format_res;
+    private String formatTwoDecimals (float f) {
+
+            DecimalFormatSymbols s = new DecimalFormatSymbols();
+            //s.setDecimalSeparator('.');
+            return myFormat.format(f);
     }
 
 
@@ -277,9 +269,9 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         outState.putString("txtGrowValue", txtGrowValue.getText().toString());
         outState.putString("txtFullSummValue", txtFullSummValue.getText().toString());
         //Spinners
-        outState.putInt("spnCapital",spnCapital.getSelectedItemPosition());
-        outState.putInt("spnCurrency",spnCurrency.getSelectedItemPosition());
-        outState.putInt("spnTimeperiod",spnTimeperiod.getSelectedItemPosition());
+        outState.putInt("spnCapital", spnCapital.getSelectedItemPosition());
+        outState.putInt("spnCurrency", spnCurrency.getSelectedItemPosition());
+        outState.putInt("spnTimeperiod", spnTimeperiod.getSelectedItemPosition());
     }
 
     void loadSavedInstanceState(Bundle savedInstanceState) {
@@ -305,8 +297,8 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         txtGrowValue.setText(mSettings.getString(GROW, "0"));
         txtFullSummValue.setText(mSettings.getString(FULL_SUMM_VALUE, "0"));
         edtBeginDate.setText(mSettings.getString(BEGIN_DATE, "01-02-2015"));
-        spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL,0));
-        spnTimeperiod.setSelection(mSettings.getInt(SPN_TIMELINE,0));
+        spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL, 0));
+        spnTimeperiod.setSelection(mSettings.getInt(SPN_TIMELINE, 0));
 
     }
 
@@ -320,18 +312,10 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         ed.putString(PROFIT, txtProfitAValue.getText().toString());
         ed.putString(GROW, txtGrowValue.getText().toString());
         ed.putString(FULL_SUMM_VALUE, txtFullSummValue.getText().toString());
-        ed.putInt(SPN_TIMELINE, (int) spnTimeperiod.getSelectedItemPosition());
+        ed.putInt(SPN_TIMELINE, spnTimeperiod.getSelectedItemPosition());
         ed.putInt(SPN_CAPITAL, spnCapital.getSelectedItemPosition());
 
         ed.commit();
-
-    }
-
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        //Toast.makeText(getActivity(), "onstop First tab".toString(), Toast.LENGTH_SHORT).show();
 
     }
 
@@ -340,7 +324,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         super.onDestroy();
         saveSettings();
         //Toast.makeText(getActivity(), "ondestroy  First tab".toString(), Toast.LENGTH_SHORT).show();
-
     }
 
     // 3 TextWatcher's methods
@@ -355,13 +338,20 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
     @Override
     public void afterTextChanged(Editable editable) {
+        //formatTwoDecimals();
     }
 
     public void saveData(){
         float  sum = Float.parseFloat(edtSummAvalue.getText().toString());
         int tpr = Integer.valueOf(edtTimeperiod.getText().toString());
-        float profit = Float.valueOf(txtProfitAValue.getText().toString());
-        //Log.e("befocallbackFirstTab", sum + "");
+        float profit;
+
+        try {
+            profit = myFormat.parse(txtProfitAValue.getText().toString()).floatValue();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            profit = 0;
+        }
         mCallback.saveFirstTabData(spnCurrency.getSelectedItem().toString(), sum, tpr, spnTimeperiod.getSelectedItemPosition(), edtBeginDate.getText().toString(), edtDateEnd.getText().toString(), profit);
         //Log.e("aftercallbackFirstTab", sum + "");
     }
