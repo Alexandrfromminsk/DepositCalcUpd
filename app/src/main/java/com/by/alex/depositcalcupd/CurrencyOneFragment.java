@@ -154,10 +154,10 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         edtBeginDate = (EditText) rootView.findViewById(R.id.edtBeginDate);
         edtBeginDate.setOnClickListener(this);
 
-        edtDateEnd.setEnabled(false);
-        txtFullSummValue.setEnabled(false);
-        txtGrowValue.setEnabled(false);
-        txtProfitAValue.setEnabled(false);
+        //edtDateEnd.setEnabled(false);
+        txtFullSummValue.setTextColor(getResources().getColor(R.color.colorAccent));
+        txtGrowValue.setTextColor(getResources().getColor(R.color.colorAccent));
+        txtProfitAValue.setTextColor(getResources().getColor(R.color.colorAccent));
 
 
         if(savedInstanceState == null){

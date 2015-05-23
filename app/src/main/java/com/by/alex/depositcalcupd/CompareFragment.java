@@ -43,7 +43,7 @@ public class CompareFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.compare_fragment, container,false);
+        View rootView = inflater.inflate(R.layout.compare_fragment_new, container,false);
 
         txtPrecentProfitNow = (TextView) rootView.findViewById(R.id.txtPrecentProfitNow);
         txtCurOneProfitNow = (TextView) rootView.findViewById(R.id.txtCurOneProfitNow);
@@ -62,11 +62,7 @@ public class CompareFragment extends Fragment {
         edtExcRateDinamic = (EditText) rootView.findViewById(R.id.edtExcRateDinamic);
         edtExcRateDinamic.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {  }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {     }
@@ -157,8 +153,8 @@ public class CompareFragment extends Fragment {
         profitBConverted = profitB/excRateCalc;
         diff = profitA - profitBConverted;
 
-        txtCurOneProfitCalc.setText(String.valueOf(diff) + CurrencyA);
-        txtCurTwoProfitCalc.setText(String.valueOf(diff*excRateCalc) + CurrencyB);
+        //txtCurOneProfitCalc.setText(String.valueOf(diff) + CurrencyA);
+        //txtCurTwoProfitCalc.setText(String.valueOf(diff*excRateCalc) + CurrencyB);
 
         //TO DO
         //set seekbar with min and max values like here
