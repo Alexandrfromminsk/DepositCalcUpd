@@ -276,9 +276,7 @@ public class CurrencyTwoFragment extends Fragment {
     public void saveData(){
         float conversion = Float.valueOf(edtExcRateNow.getText().toString());
         float profit = Float.valueOf(txtProfitBValue.getText().toString());
-        //Log.e("befocallbackSecondTab", conversion + "");
         mCallback.saveSecondTabData(spnCurrency.getSelectedItem().toString(), conversion, profit);
-        //Log.e("aftercallbackSecondTab", profit + "");
     }
 
     public void setDataFromFirstTab(String spn_currency, float summ, int timeperiod, int spn_tpr, String dateBegin, String dateEnd){
