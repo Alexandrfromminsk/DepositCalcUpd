@@ -164,7 +164,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
         }else {
             loadSavedInstanceState(savedInstanceState);
-            //edtTimeperiod.setText(savedInstanceState.getString("edtTimeperiod"));
         }
 
         setEndDate();
