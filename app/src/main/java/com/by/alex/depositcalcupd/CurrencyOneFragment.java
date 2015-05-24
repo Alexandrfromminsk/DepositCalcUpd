@@ -32,7 +32,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     EditText edtSummAvalue, edtPercentA, edtBeginDate, edtTimeperiod;
     TextView edtDateEnd, txtProfitAValue, txtGrowValue, txtFullSummValue;
     Spinner spnTimeperiod, spnCapital, spnCurrency;
-    DecimalFormat myFormat = new DecimalFormat("#,###.00");
+    DecimalFormat myFormat = new DecimalFormat("#,##0.00");
 
     SharedPreferences mSettings;
 
