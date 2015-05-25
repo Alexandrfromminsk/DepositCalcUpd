@@ -35,7 +35,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"  >
 
-                <TextView
+                <Spinner
                     style="@style/MyViewLeftColumn"
                     android:text="@string/txtExchangeRate"
                     android:id="@+id/textView17" />
@@ -43,7 +43,6 @@
                 <EditText
                     style="@style/MyViewRightColumn"
                     android:inputType="numberDecimal"
-                    android:ems="10"
                     android:id="@+id/edtExchangeRateB" />
             </TableRow>
 

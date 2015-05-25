@@ -126,6 +126,7 @@ public class CurrencyTwoFragment extends Fragment {
 
         adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.capitals_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spnCapital.setAdapter(adapter);
         spnCapital.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -142,6 +143,7 @@ public class CurrencyTwoFragment extends Fragment {
 
         adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.currencies_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spnCurrency.setAdapter(adapter);
 
