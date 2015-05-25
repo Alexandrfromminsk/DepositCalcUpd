@@ -43,6 +43,7 @@ public class CurrencyTwoFragment extends Fragment {
     public static final String SPN_CURRENCY_B = "SPN_CURRENCY_B";
 
     private Float summFromFirstTab = (float)1;
+    Formatter f = new Formatter();
 
     OnTabChangedListener mCallback;
 
@@ -81,7 +82,7 @@ public class CurrencyTwoFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                edtSummAvalue.setText(formatTwoDecimals(calc_summ()).toString());
+                edtSummAvalue.setText(f.format(calc_summ()));
                 calc_it();
             }
 
@@ -203,8 +204,9 @@ public class CurrencyTwoFragment extends Fragment {
         txtGrowValue.setText(mSettings.getString(GROW_B, "0"));
         txtFullSummValue.setText(mSettings.getString(GROW_B, "0"));
         edtBeginDate.setText(mSettings.getString(BEGIN_DATE_B, "01-02-2016"));
-        spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL_B,0));
+        spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL_B, 0));
         spnTimeperiod.setSelection(mSettings.getInt(SPN_TIMELINE_B,0));
+        spnCurrency.setSelection(mSettings.getInt(SPN_CURRENCY_B, 0));
 
     }
 
@@ -221,6 +223,7 @@ public class CurrencyTwoFragment extends Fragment {
         ed.putString(FULL_SUMM_VALUE_B, txtFullSummValue.getText().toString());
         ed.putInt(SPN_TIMELINE_B, spnTimeperiod.getSelectedItemPosition());
         ed.putInt(SPN_CAPITAL_B, spnCapital.getSelectedItemPosition());
+        ed.putInt(SPN_CURRENCY_B, spnCurrency.getSelectedItemPosition());
 
         ed.commit();
 
@@ -231,7 +234,7 @@ public class CurrencyTwoFragment extends Fragment {
     }
     public void calc_it(){
         if (allFieldsWithData()) {
-            Float s = Float.parseFloat(edtSummAvalue.getText().toString());
+            Float s = f.parseNumber(edtSummAvalue.getText().toString());
             Float pr = Float.parseFloat(edtPercentB.getText().toString());
             Integer d = Integer.parseInt(edtTimeperiod.getText().toString());
             int dmy = spnTimeperiod.getSelectedItemPosition();
@@ -240,9 +243,9 @@ public class CurrencyTwoFragment extends Fragment {
             int cap = spnCapital.getSelectedItemPosition();
             Float[] profit = Calculator.calcProfit(s, pr, d,cap);
 
-            txtGrowValue.setText(formatTwoDecimals(profit[Calculator.PERCENT]).toString());
-            txtProfitBValue.setText(formatTwoDecimals(profit[Calculator.PROFIT]).toString());
-            txtFullSummValue.setText(formatTwoDecimals(profit[Calculator.FULLSUMM]).toString());
+            txtGrowValue.setText(f.format(profit[Calculator.PERCENT]));
+            txtProfitBValue.setText(f.format(profit[Calculator.PROFIT]));
+            txtFullSummValue.setText(f.format(profit[Calculator.FULLSUMM]));
         }
 
     }
@@ -275,7 +278,7 @@ public class CurrencyTwoFragment extends Fragment {
 
     public void saveData(){
         float conversion = Float.valueOf(edtExcRateNow.getText().toString());
-        float profit = Float.valueOf(txtProfitBValue.getText().toString());
+        float profit = f.parseNumber(txtProfitBValue.getText().toString());
         mCallback.saveSecondTabData(spnCurrency.getSelectedItem().toString(), conversion, profit);
     }
 

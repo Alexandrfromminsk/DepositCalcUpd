@@ -19,8 +19,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,7 +30,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     EditText edtSummAvalue, edtPercentA, edtBeginDate, edtTimeperiod;
     TextView edtDateEnd, txtProfitAValue, txtGrowValue, txtFullSummValue;
     Spinner spnTimeperiod, spnCapital, spnCurrency;
-    DecimalFormat myFormat = new DecimalFormat("#,##0.00");
+    Formatter f = new Formatter();
 
     SharedPreferences mSettings;
 
@@ -241,20 +239,12 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             if (dmy==0) profit = Calculator.calcProfit(s, pr, d,cap);
             else  profit = Calculator.calcProfit(s, pr, cap, BeginDate, EndDate);
 
-            txtGrowValue.setText(formatTwoDecimals(profit[Calculator.PERCENT]));
-            txtProfitAValue.setText(formatTwoDecimals(profit[Calculator.PROFIT]));
-            txtFullSummValue.setText(formatTwoDecimals(profit[Calculator.FULLSUMM]));
+            txtGrowValue.setText(f.format(profit[Calculator.PERCENT]));
+            txtProfitAValue.setText(f.format(profit[Calculator.PROFIT]));
+            txtFullSummValue.setText(f.format(profit[Calculator.FULLSUMM]));
         }
 
     }
-
-    private String formatTwoDecimals (float f) {
-
-            DecimalFormatSymbols s = new DecimalFormatSymbols();
-            //s.setDecimalSeparator('.');
-            return myFormat.format(f);
-    }
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -345,14 +335,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     public void saveData(){
         float  sum = Float.parseFloat(edtSummAvalue.getText().toString());
         int tpr = Integer.valueOf(edtTimeperiod.getText().toString());
-        float profit;
-
-        try {
-            profit = myFormat.parse(txtProfitAValue.getText().toString()).floatValue();
-        } catch (ParseException e) {
-            e.printStackTrace();
-            profit = 0;
-        }
+        float profit = f.parseNumber(txtProfitAValue.getText().toString());
         mCallback.saveFirstTabData(spnCurrency.getSelectedItem().toString(), sum, tpr, spnTimeperiod.getSelectedItemPosition(), edtBeginDate.getText().toString(), edtDateEnd.getText().toString(), profit);
         //Log.e("aftercallbackFirstTab", sum + "");
     }

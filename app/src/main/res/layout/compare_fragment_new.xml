@@ -22,10 +22,24 @@
                 <TextView
                     style="@style/MyViewLeftColumn"
                     android:textStyle="bold"
-                    android:layout_span="2"
-                    android:text="@string/cmpr_txtFirstSection_new"
-                    android:id="@+id/textView1" />
+                    android:text="@string/cmpr_txtNoDiffInProfit"
+                    android:id="@+id/textView21" />
 
+                <TextView
+                    style="@style/MyViewRightColumn"
+                    android:textColor="@color/colorAccent"
+                    android:id="@+id/txtExcRateCalc" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreyLine">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5sp"
+                    android:id="@+id/greyline" />
             </TableRow>
 
             <TableRow
@@ -35,14 +49,10 @@
                 <TextView
                     style="@style/MyViewLeftColumn"
                     android:textStyle="bold"
-                    android:text="@string/cmpr_txtExcRateCurrent_new"
-                    android:id="@+id/textView3" />
+                    android:layout_span="2"
+                    android:text="@string/cmpr_txtFirstSection_new"
+                    android:id="@+id/textView1" />
 
-                <TextView
-                    style="@style/MyViewRightColumn"
-                    android:id="@+id/txtExcRateNow"
-                    android:textColor="@color/colorAccent"
-                    android:layout_column="1"/>
             </TableRow>
 
             <TableRow
@@ -90,48 +100,32 @@
 
             <TableRow
                 android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/MyViewLeftColumn"
+                    android:textStyle="bold"
+                    android:text="@string/cmpr_txtExcRateCurrent_new"
+                    android:id="@+id/textView3" />
+
+                <TextView
+                    style="@style/MyViewRightColumn"
+                    android:id="@+id/txtExcRateNow"
+                    android:textColor="@color/colorAccent"
+                    android:layout_column="1"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorGreyLine">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0.5sp"
-                    android:id="@+id/greyline" />
+                    android:id="@+id/greyline2" />
             </TableRow>
 
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/MyViewLeftColumn"
-                    android:textStyle="bold"
-                    android:text="@string/cmpr_txtChooseCur"
-                    android:id="@+id/textView13" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1">
-
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorAccent"
-                        android:inputType="numberDecimal"
-                        android:ems="10"
-                        android:id="@+id/edtExcRateDinamic" />
-
-                    <SeekBar
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/seekBar" />
-                </LinearLayout>
-
-
-            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -178,30 +172,35 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorGreyLine">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:id="@+id/greyline2" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
                     style="@style/MyViewLeftColumn"
                     android:textStyle="bold"
-                    android:text="@string/cmpr_txtNoDiffInProfit"
-                    android:id="@+id/textView21" />
+                    android:text="@string/cmpr_txtChooseCur"
+                    android:id="@+id/textView13" />
 
-                <TextView
-                    style="@style/MyViewRightColumn"
-                    android:textColor="@color/colorAccent"
-                    android:id="@+id/txtExcRateCalc" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1">
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:id="@+id/edtExcRateDinamic" />
+
+                    <SeekBar
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/seekBar" />
+                </LinearLayout>
             </TableRow>
+
 
             <TableRow
                 android:layout_width="match_parent"

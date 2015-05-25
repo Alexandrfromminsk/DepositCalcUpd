@@ -166,6 +166,7 @@
 
                 <TextView
                     style="@style/MyViewRightColumn"
+                    android:textColor="@color/colorAccent"
                     android:id="@+id/txtGrowB" />
 
             </TableRow>
@@ -181,6 +182,7 @@
 
                 <TextView
                     style="@style/MyViewRightColumn"
+                    android:textColor="@color/colorAccent"
                     android:id="@+id/txtProfitB" />
 
             </TableRow>
@@ -196,6 +198,7 @@
 
                 <TextView
                     style="@style/MyViewRightColumn"
+                    android:textColor="@color/colorAccent"
                     android:id="@+id/txtFullSummValueB" />
             </TableRow>
 

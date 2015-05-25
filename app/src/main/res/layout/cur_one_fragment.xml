@@ -154,7 +154,6 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
 
             <TextView
                 style="@style/MyViewRightColumn"
-                android:ems="10"
                 android:id="@+id/edtEndDate" />
         </TableRow>
 
