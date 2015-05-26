@@ -118,7 +118,7 @@ public class CompareFragment extends Fragment {
         CurrencyA = String.format(" %s", currencyA);
         CurrencyB = String.format(" %s", currencyB);
 
-        txtExcRateNow.setText(String.valueOf(excRateNow));
+        txtExcRateNow.setText(f.format(excRateNow));
 
         profitBConverted = profitB/excRateNow;
 
