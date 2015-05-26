@@ -33,13 +33,8 @@ public class Formatter {
     }
 
     public int parseSumm(String str) {
-        int number;
-        try {
-            number = summFormat.parse(str.replace(" ", ",")).intValue();
-        } catch (ParseException e) {
-            e.printStackTrace();
-            number = Integer.parseInt(str.replace(",", "").replace(" ",""));
-        }
+        int number = Integer.parseInt(str.replace(",", "").replace(" ",""));
+
         return number;
     }
 }

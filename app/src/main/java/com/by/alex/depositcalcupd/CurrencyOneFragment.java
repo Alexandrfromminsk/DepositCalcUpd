@@ -84,23 +84,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         edtBeginDate = (EditText) rootView.findViewById(R.id.edtBeginDate);
         edtBeginDate.addTextChangedListener(this);
         edtTimeperiod = (EditText) rootView.findViewById(R.id.edtTimeperiod);
-        edtTimeperiod.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                setEndDate();
-                calc_it();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
 
 
         edtDateEnd = (TextView) rootView.findViewById(R.id.edtEndDate);
@@ -121,16 +105,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
         // Apply the adapter to the spinner
         spnTimeperiod.setAdapter(adapter);
-        spnTimeperiod.setOnItemSelectedListener(new OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                setEndDate();
-                calc_it();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {   }
-        });
 
         adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.capitals_array, android.R.layout.simple_spinner_item);
@@ -166,6 +140,35 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
         setEndDate();
         calc_it();
+
+        edtTimeperiod.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                setEndDate();
+                calc_it();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        spnTimeperiod.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setEndDate();
+                calc_it();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
 
         return rootView;
     }
