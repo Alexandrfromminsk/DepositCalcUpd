@@ -72,6 +72,13 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
         edtSummAvalue = (EditText) rootView.findViewById(R.id.edtSummAvalue);
         edtSummAvalue.addTextChangedListener(this);
+        edtSummAvalue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                int sum = f.parseSumm(edtSummAvalue.getText().toString());
+                edtSummAvalue.setText(f.formatSumm(sum));
+            }
+        });
         edtPercentA = (EditText) rootView.findViewById(R.id.edtPercent);
         edtPercentA.addTextChangedListener(this);
         edtBeginDate = (EditText) rootView.findViewById(R.id.edtBeginDate);
@@ -218,9 +225,9 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
     public void calc_it(){
         if (allFieldsWithData()) {
-            Float s = Float.parseFloat(edtSummAvalue.getText().toString());
-            Float pr = Float.parseFloat(edtPercentA.getText().toString());
-            Integer d = Integer.parseInt(edtTimeperiod.getText().toString());
+            float s = f.parseSumm(edtSummAvalue.getText().toString());
+            float pr = Float.parseFloat(edtPercentA.getText().toString());
+            int d = Integer.parseInt(edtTimeperiod.getText().toString());
             int cap = spnCapital.getSelectedItemPosition();
             String BeginDate, EndDate;
             BeginDate = edtBeginDate.getText().toString();
@@ -324,7 +331,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     }
 
     public void saveData(){
-        float  sum = Float.parseFloat(edtSummAvalue.getText().toString());
+        float  sum = f.parseSumm(edtSummAvalue.getText().toString());
         int tpr = Integer.valueOf(edtTimeperiod.getText().toString());
         float profit = f.parseNumber(txtProfitAValue.getText().toString());
         mCallback.saveFirstTabData(spnCurrency.getSelectedItem().toString(), sum, tpr, spnTimeperiod.getSelectedItemPosition(), edtBeginDate.getText().toString(), edtDateEnd.getText().toString(), profit);
