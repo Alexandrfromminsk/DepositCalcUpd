@@ -21,7 +21,7 @@ public class Formatter {
     }
 
     public float parseNumber (String str) {
-        str.replace(" ", ",");
+        str=str.replace(" ", ",");
         float number;
         try {
             number = myFormat.parse(str).floatValue();
@@ -33,13 +33,12 @@ public class Formatter {
     }
 
     public int parseSumm(String str) {
-        str.replace(" ", ",");
         int number;
         try {
-            number = myFormat.parse(str).intValue();
+            number = summFormat.parse(str.replace(" ", ",")).intValue();
         } catch (ParseException e) {
             e.printStackTrace();
-            number = Integer.parseInt(str);
+            number = Integer.parseInt(str.replace(",", "").replace(" ",""));
         }
         return number;
     }
