@@ -11,17 +11,17 @@ public class Formatter {
 
     public String format (float f) {
         DecimalFormatSymbols s = new DecimalFormatSymbols();
-        //s.setDecimalSeparator('.');
-        return myFormat.format(f);
+        return myFormat.format(f).replace(","," ");
     }
 
     public String formatSumm (int f) {
         DecimalFormatSymbols s = new DecimalFormatSymbols();
         //s.setDecimalSeparator('.');
-        return summFormat.format(f);
+        return summFormat.format(f).replace(",", " ");
     }
 
     public float parseNumber (String str) {
+        str.replace(" ", ",");
         float number;
         try {
             number = myFormat.parse(str).floatValue();
@@ -33,6 +33,7 @@ public class Formatter {
     }
 
     public int parseSumm(String str) {
+        str.replace(" ", ",");
         int number;
         try {
             number = myFormat.parse(str).intValue();
