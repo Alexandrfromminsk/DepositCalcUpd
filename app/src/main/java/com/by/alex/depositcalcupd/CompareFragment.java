@@ -12,14 +12,13 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
-
 public class CompareFragment extends Fragment {
 
     TextView txtPrecentProfitNow,txtCurOneProfitNow, txtCurTwoProfitNow, txtExcRateNow,
             txtPrecentProfitCalc,txtCurOneProfitCalc, txtCurTwoProfitCalc, txtExcRateCalc,
             txtPrecentProfitDinamic,txtCurOneProfitDinamic, txtCurTwoProfitDinamic;
     EditText edtExcRateDinamic;
+    Formatter f = new Formatter();
 
     float ExcRateNow, ProfitA,ProfitB;
     String CurrencyA, CurrencyB;
@@ -84,10 +83,10 @@ public class CompareFragment extends Fragment {
 
                 float diff = (float) (ProfitA - ProfitB/dynRate);
 
-
-                txtPrecentProfitDinamic.setText(String.valueOf(formatTwoDecimals((diff/ProfitA)*100)) + " %");
-                txtCurOneProfitDinamic.setText(String.valueOf(formatTwoDecimals(diff)) + CurrencyA);
-                txtCurTwoProfitDinamic.setText(String.valueOf(formatTwoDecimals((float) (diff*dynRate))) + CurrencyB);
+                txtPrecentProfitDinamic.setText(f.format((diff / ProfitA) * 100)+"%");
+                //txtPrecentProfitDinamic.setText(String.valueOf(formatTwoDecimals((diff/ProfitA)*100)) + " %");
+                txtCurOneProfitDinamic.setText(f.format(diff) + CurrencyA);
+                txtCurTwoProfitDinamic.setText(f.format((float) (diff*dynRate)) + CurrencyB);
             }
 
             @Override
@@ -108,18 +107,6 @@ public class CompareFragment extends Fragment {
 
     }
 
-    private Float formatTwoDecimals (float f) {
-        float format_res;
-        DecimalFormat twoFForm = new DecimalFormat("#.##");
-        try {
-            format_res = Float.parseFloat(twoFForm.format(f));
-        }
-        catch (NumberFormatException e) {
-            e.printStackTrace();
-            format_res = 0;
-        }
-        return format_res;
-    }
 
     public void setDataFromTabs(String currencyA, String currencyB, float profitA, float profitB,
                                 float excRateNow) {
@@ -137,18 +124,18 @@ public class CompareFragment extends Fragment {
 
         diff = profitA - profitBConverted;
 
-        txtPrecentProfitNow.setText(String.valueOf((diff/profitA)*100) + " %");
-        txtCurOneProfitNow.setText(String.valueOf(diff) + CurrencyA);
-        txtCurTwoProfitNow.setText(String.valueOf(diff*excRateNow) + CurrencyB);
+        txtPrecentProfitNow.setText(f.format((diff / profitA) * 100) + " %");
+        txtCurOneProfitNow.setText(f.format(diff) + CurrencyA);
+        txtCurTwoProfitNow.setText(f.format(diff*excRateNow) + CurrencyB);
 
         //maybe another approach should be used
-        edtExcRateDinamic.setText(String.valueOf(excRateNow));
-        txtPrecentProfitDinamic.setText(String.valueOf((diff/profitA)*100) + " %");
-        txtCurOneProfitDinamic.setText(String.valueOf(diff) + CurrencyA);
-        txtCurTwoProfitDinamic.setText(String.valueOf(diff*excRateNow) + CurrencyB);
+        edtExcRateDinamic.setText(f.format(excRateNow));
+        txtPrecentProfitDinamic.setText(f.format((diff / profitA) * 100) + " %");
+        txtCurOneProfitDinamic.setText(f.format(diff) + CurrencyA);
+        txtCurTwoProfitDinamic.setText(f.format(diff* excRateNow) + CurrencyB);
 
         float excRateCalc = profitB/profitA;
-        txtExcRateCalc.setText(String.valueOf(excRateCalc));
+        txtExcRateCalc.setText(f.format(excRateCalc));
 
         profitBConverted = profitB/excRateCalc;
         diff = profitA - profitBConverted;

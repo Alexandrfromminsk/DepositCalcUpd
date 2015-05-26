@@ -13,7 +13,8 @@
             android:layout_height="match_parent"
             android:layout_margin="4sp"
             android:shrinkColumns="*"
-            android:stretchColumns="*">
+            android:stretchColumns="*"
+            >
 
             <TableRow
                 android:layout_width="match_parent"

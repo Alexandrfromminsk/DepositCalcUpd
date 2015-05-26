@@ -65,6 +65,11 @@
         <item>год</item>
     </string-array>
 
+    <string-array name="conversion_array">
+        <item>Валюта 1 * </item>
+        <item>Валюта 1 / </item>
+    </string-array>
+
     <string-array name="capitals_array">
         <item>нет</item>
         <item>ежедневно</item>

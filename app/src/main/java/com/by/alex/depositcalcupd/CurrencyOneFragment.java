@@ -122,9 +122,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) {   }
         });
 
         adapter = ArrayAdapter.createFromResource(getActivity(),
@@ -136,15 +134,10 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
                                                  @Override
                                                  public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                                                      calc_it();
-//                                                     Log.e("getItemSelected", spnCapital.getSelectedItem()+"");
-//                                                     Log.e("getSelectedItemId", spnCapital.getSelectedItemId()+"");
-//                                                     Log.e("getSelectedItemPosition", spnCapital.getSelectedItemPosition()+"");
                                                  }
 
                                                  @Override
-                                                 public void onNothingSelected(AdapterView<?> adapterView) {
-
-                                                 }
+                                                 public void onNothingSelected(AdapterView<?> adapterView) { }
                                              });
 
         adapter = ArrayAdapter.createFromResource(getActivity(),
@@ -211,7 +204,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
     @Override
     public void onClick(View view) {
-
         switch (view.getId()) {
             case R.id.edtBeginDate:
                 DialogFragment dateDial = new DatePicker();
@@ -323,7 +315,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
         calc_it();
     }
 

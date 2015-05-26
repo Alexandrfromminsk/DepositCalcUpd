@@ -38,7 +38,7 @@
                 <Spinner
                     style="@style/MyViewLeftColumn"
                     android:text="@string/txtExchangeRate"
-                    android:id="@+id/textView17" />
+                    android:id="@+id/spnConversion" />
 
                 <EditText
                     style="@style/MyViewRightColumn"

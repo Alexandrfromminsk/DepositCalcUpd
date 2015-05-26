@@ -26,7 +26,7 @@ public class CurrencyTwoFragment extends Fragment {
     TextView edtDateEnd, txtProfitBValue, txtGrowValue, txtFullSummValue, edtSummAvalue,
             edtBeginDate, edtTimeperiod;
 
-    Spinner spnTimeperiod, spnCapital, spnCurrency;
+    Spinner spnTimeperiod, spnCapital, spnCurrency, spnConversion;
 
     SharedPreferences mSettings;
     public static final String BEGIN_DATE_B = "BEGIN_DATE_B";
@@ -112,6 +112,7 @@ public class CurrencyTwoFragment extends Fragment {
 
 
         //Spinners
+        spnConversion = (Spinner) rootView.findViewById(R.id.spnConversion);
         spnCurrency = (Spinner) rootView.findViewById(R.id.spnCurrencyB);
         spnTimeperiod = (Spinner) rootView.findViewById(R.id.spnTimeperiodB);
         spnCapital = (Spinner) rootView.findViewById(R.id.spnCapitalB);
@@ -146,6 +147,12 @@ public class CurrencyTwoFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spnCurrency.setAdapter(adapter);
+
+        adapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.conversion_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spnConversion.setAdapter(adapter);
 
         spnTimeperiod.setEnabled(false);
         edtTimeperiod.setEnabled(false);
@@ -208,7 +215,7 @@ public class CurrencyTwoFragment extends Fragment {
         edtBeginDate.setText(mSettings.getString(BEGIN_DATE_B, "01-02-2016"));
         spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL_B, 0));
         spnTimeperiod.setSelection(mSettings.getInt(SPN_TIMELINE_B,0));
-        spnCurrency.setSelection(mSettings.getInt(SPN_CURRENCY_B, 0));
+        spnCurrency.setSelection(mSettings.getInt(SPN_CURRENCY_B, 1));
 
     }
 
