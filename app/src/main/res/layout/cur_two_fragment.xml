@@ -102,28 +102,9 @@
                     android:text="@string/txtTimeperiodText"
                     android:id="@+id/textView23" />
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        style="@style/MyViewRightColumn"
-                        android:ems="10"
-                        android:id="@+id/edtTimeperiodB"
-                        android:layout_weight="2"
-                        android:nestedScrollingEnabled="true" />
-
-                    <Spinner
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spnTimeperiodB"
-                        android:layout_weight="5"
-                        android:spinnerMode="dialog"
-                        />
-                </LinearLayout>
-
+                <TextView
+                    style="@style/MyViewRightColumn"
+                    android:id="@+id/txtTimeperiod"/>
             </TableRow>
 
             <TableRow
@@ -137,7 +118,6 @@
 
                 <TextView
                     style="@style/MyViewRightColumn"
-                    android:ems="10"
                     android:id="@+id/edtBeginDateB" />
             </TableRow>
 
@@ -152,7 +132,6 @@
 
                 <TextView
                     style="@style/MyViewRightColumn"
-                    android:ems="10"
                     android:id="@+id/edtEndDateB" />
             </TableRow>
 
