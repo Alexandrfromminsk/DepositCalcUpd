@@ -8,6 +8,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -75,7 +76,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         edtSummAvalue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                int sum = f.parseSumm(edtSummAvalue.getText().toString());
+                long sum = f.parseSumm(edtSummAvalue.getText().toString());
                 edtSummAvalue.setText(f.formatSumm(sum));
             }
         });
@@ -85,13 +86,10 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         edtBeginDate.addTextChangedListener(this);
         edtTimeperiod = (EditText) rootView.findViewById(R.id.edtTimeperiod);
 
-
-
         edtDateEnd = (TextView) rootView.findViewById(R.id.edtEndDate);
         txtProfitAValue = (TextView) rootView.findViewById(R.id.txtProfit);
         txtGrowValue = (TextView)rootView.findViewById(R.id.txtGrow);
         txtFullSummValue =(TextView)rootView.findViewById(R.id.txtFullSummValue);
-
 
         //Spinners
         spnCurrency = (Spinner) rootView.findViewById(R.id.spnCurrencyA);
@@ -192,6 +190,8 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             catch (NumberFormatException e) {
                 e.printStackTrace();
                 tpr = 0;
+                Log.d("Custom Exception", "First tab. SetEndDate failed during " +
+                        "take date from Timeperiod spinner");
             }
             switch (spnTimeperiod.getSelectedItemPosition()){
                 case 0:
@@ -209,6 +209,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
         } catch (ParseException e) {
             e.printStackTrace();
+            Log.d("Custom Exception", "First tab. SetEndDate failed during parsing begin date");
         }
     }
 

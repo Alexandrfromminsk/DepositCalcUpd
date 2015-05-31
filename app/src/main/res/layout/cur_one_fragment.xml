@@ -159,6 +159,17 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
         </TableRow>
 
         <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGreyLine">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:id="@+id/greyline" />
+        </TableRow>
+
+        <TableRow
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 

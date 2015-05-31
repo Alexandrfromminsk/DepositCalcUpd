@@ -27,6 +27,7 @@
 
                 <Spinner
                     style="@style/MyViewRightColumn"
+                    android:spinnerMode="dialog"
                     android:id="@+id/spnCurrencyB">
                 </Spinner>
             </TableRow>
@@ -88,6 +89,7 @@
 
                 <Spinner
                     style="@style/MyViewRightColumn"
+                    android:spinnerMode="dialog"
                     android:id="@+id/spnCapitalB" />
             </TableRow>
 
@@ -118,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/spnTimeperiodB"
                         android:layout_weight="5"
-                        android:spinnerMode="dropdown"
+                        android:spinnerMode="dialog"
                         />
                 </LinearLayout>
 
@@ -152,6 +154,17 @@
                     style="@style/MyViewRightColumn"
                     android:ems="10"
                     android:id="@+id/edtEndDateB" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreyLine">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5sp"
+                    android:id="@+id/greyline" />
             </TableRow>
 
             <TableRow

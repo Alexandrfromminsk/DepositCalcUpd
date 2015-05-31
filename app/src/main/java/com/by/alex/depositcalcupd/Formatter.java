@@ -14,7 +14,7 @@ public class Formatter {
         return myFormat.format(f).replace(","," ");
     }
 
-    public String formatSumm (int f) {
+    public String formatSumm (long f) {
         DecimalFormatSymbols s = new DecimalFormatSymbols();
         //s.setDecimalSeparator('.');
         return summFormat.format(f).replace(",", " ");
@@ -32,8 +32,8 @@ public class Formatter {
         return number;
     }
 
-    public int parseSumm(String str) {
-        int number = Integer.parseInt(str.replace(",", "").replace(" ",""));
+    public long parseSumm(String str) {
+        long number = Long.parseLong(str.replace(",", "").replace(" ",""));
 
         return number;
     }

@@ -17,8 +17,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
-
 
 public class CurrencyTwoFragment extends Fragment {
 
@@ -259,11 +257,6 @@ public class CurrencyTwoFragment extends Fragment {
 
     }
 
-    private Float formatTwoDecimals (float f) {
-        DecimalFormat twoFForm = new DecimalFormat("#.##");
-        return Float.parseFloat(twoFForm.format(f));
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -302,6 +295,6 @@ public class CurrencyTwoFragment extends Fragment {
         //String cur  = spn_currency;
 
         this.summFromFirstTab = summ;
-        edtSummAvalue.setText(String.valueOf(calc_summ()));
+        edtSummAvalue.setText(String.valueOf(f.format(calc_summ())));
     }
 }

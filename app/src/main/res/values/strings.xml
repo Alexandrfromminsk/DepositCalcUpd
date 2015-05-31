@@ -31,8 +31,8 @@
     <string name="txtCurrencyA">Валюта 1</string>
     <string name="txtCurrencyB">Валюта 2</string>
     <string name="txtExchangeRate">Конверсия</string>
-    <string name="txtSumm">Сумма</string>
-    <string name="txtPercent">Процент</string>
+    <string name="txtSumm">Сумма вклада</string>
+    <string name="txtPercent">Годовая % ставка</string>
     <string name="txtCapital">Капитализация</string>
     <string name="txtDateBegin">Дата начала</string>
     <string name="txtTimeperiodText">Срок</string>
