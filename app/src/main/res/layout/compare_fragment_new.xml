@@ -62,21 +62,6 @@
 
                 <TextView
                     style="@style/MyViewLeftColumn"
-                    android:text="@string/cmpr_txtInPercent"
-                    android:id="@+id/textView7" />
-
-                <TextView
-                    style="@style/MyViewRightColumn"
-                    android:id="@+id/txtPrecentProfitNow" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    style="@style/MyViewLeftColumn"
                     android:text="@string/cmpr_txtInCurOne"
                     android:id="@+id/textView9" />
 
@@ -97,6 +82,20 @@
                 <TextView
                     style="@style/MyViewRightColumn"
                     android:id="@+id/txtCurTwoProfitNow" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/MyViewLeftColumn"
+                    android:text="@string/cmpr_txtInPercent"
+                    android:id="@+id/textView7" />
+
+                <TextView
+                    style="@style/MyViewRightColumn"
+                    android:id="@+id/txtPrecentProfitNow" />
             </TableRow>
 
             <TableRow
@@ -127,22 +126,6 @@
                     android:id="@+id/greyline2" />
             </TableRow>
 
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    style="@style/MyViewLeftColumn"
-                    android:text="@string/cmpr_txtInPercent"
-                    android:id="@+id/textView15" />
-
-                <TextView
-                    style="@style/MyViewRightColumn"
-                    android:id="@+id/txtPrecentProfitDinamic" />
-
-            </TableRow>
-
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -169,6 +152,20 @@
                 <TextView
                     style="@style/MyViewRightColumn"
                     android:id="@+id/txtCurTwoProfitDinamic" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/MyViewLeftColumn"
+                    android:text="@string/cmpr_txtInPercent"
+                    android:id="@+id/textView15" />
+
+                <TextView
+                    style="@style/MyViewRightColumn"
+                    android:id="@+id/txtPrecentProfitDinamic" />
             </TableRow>
 
             <TableRow

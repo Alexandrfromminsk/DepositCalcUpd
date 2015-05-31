@@ -38,7 +38,7 @@ public class MainActivity extends ActionBarActivity
     //Save data fromtabs for communication
     String DataBegin, DataEnd, CurrencyA, CurrencyB;
     int   Timeperiod, Spn_timeperiod;
-    float SummA, ExcRate;
+    float SummA, ExcRate, PercentGrowA, PercentGrowB;
     float ProfitA, ProfitB;
 
     //private Toolbar mToolbar;
@@ -167,7 +167,7 @@ public class MainActivity extends ActionBarActivity
 
 
     @Override
-    public void saveFirstTabData(String spn_currency, float summ, int timeperiod, int spn_tpr, String dateBegin, String dateEnd, float profit) {
+    public void saveFirstTabData(String spn_currency, float summ, int timeperiod, int spn_tpr, String dateBegin, String dateEnd, float profit, float percent_grow) {
         this.CurrencyA = spn_currency;
         this.SummA = summ;
         this.Timeperiod = timeperiod;
@@ -175,13 +175,15 @@ public class MainActivity extends ActionBarActivity
         this.DataBegin = dateBegin;
         this.DataEnd = dateEnd;
         this.ProfitA = profit;
+        this.PercentGrowA = percent_grow;
     }
 
     @Override
-    public void saveSecondTabData(String currency, float conversion, float profit) {
+    public void saveSecondTabData(String currency, float conversion, float profit, float percent_grow) {
         this.ExcRate = conversion;
         this.ProfitB = profit;
         this.CurrencyB = currency;
+        this.PercentGrowB = percent_grow;
 
     }
 

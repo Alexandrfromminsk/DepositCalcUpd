@@ -182,9 +182,9 @@ public class CurrencyTwoFragment extends Fragment {
         outState.putString("txtGrowValue", txtGrowValue.getText().toString());
         outState.putString("txtFullSummValue", txtFullSummValue.getText().toString());
         //Spinners
-        outState.putInt("spnCapital",spnCapital.getSelectedItemPosition());
-        outState.putInt("spnCurrency",spnCurrency.getSelectedItemPosition());
-        outState.putInt("spnTimeperiod",spnTimeperiod.getSelectedItemPosition());
+        outState.putInt("spnCapital", spnCapital.getSelectedItemPosition());
+        outState.putInt("spnCurrency", spnCurrency.getSelectedItemPosition());
+        outState.putInt("spnTimeperiod", spnTimeperiod.getSelectedItemPosition());
     }
 
     void loadSavedInstanceState(Bundle savedInstanceState) {
@@ -212,7 +212,7 @@ public class CurrencyTwoFragment extends Fragment {
         txtFullSummValue.setText(mSettings.getString(GROW_B, "0"));
         edtBeginDate.setText(mSettings.getString(BEGIN_DATE_B, "01-02-2016"));
         spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL_B, 0));
-        spnTimeperiod.setSelection(mSettings.getInt(SPN_TIMELINE_B,0));
+        spnTimeperiod.setSelection(mSettings.getInt(SPN_TIMELINE_B, 0));
         spnCurrency.setSelection(mSettings.getInt(SPN_CURRENCY_B, 1));
 
     }
@@ -281,7 +281,8 @@ public class CurrencyTwoFragment extends Fragment {
     public void saveData(){
         float conversion = Float.valueOf(edtExcRateNow.getText().toString());
         float profit = f.parseNumber(txtProfitBValue.getText().toString());
-        mCallback.saveSecondTabData(spnCurrency.getSelectedItem().toString(), conversion, profit);
+        float percent_grow = f.parseNumber(txtGrowValue.getText().toString());
+        mCallback.saveSecondTabData(spnCurrency.getSelectedItem().toString(), conversion, profit, percent_grow);
     }
 
     public void setDataFromFirstTab(String spn_currency, float summ, int timeperiod, int spn_tpr, String dateBegin, String dateEnd){

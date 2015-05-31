@@ -338,7 +338,10 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         float  sum = f.parseSumm(edtSummAvalue.getText().toString());
         int tpr = Integer.valueOf(edtTimeperiod.getText().toString());
         float profit = f.parseNumber(txtProfitAValue.getText().toString());
-        mCallback.saveFirstTabData(spnCurrency.getSelectedItem().toString(), sum, tpr, spnTimeperiod.getSelectedItemPosition(), edtBeginDate.getText().toString(), edtDateEnd.getText().toString(), profit);
+        float percent_grow = f.parseNumber(txtGrowValue.getText().toString());
+        mCallback.saveFirstTabData(spnCurrency.getSelectedItem().toString(), sum, tpr,
+                spnTimeperiod.getSelectedItemPosition(), edtBeginDate.getText().toString(),
+                edtDateEnd.getText().toString(), profit, percent_grow);
         //Log.e("aftercallbackFirstTab", sum + "");
     }
 }
