@@ -36,10 +36,10 @@ public class MainActivity extends ActionBarActivity
     private static final int TAB_COMPARE = 2;
 
     //Save data fromtabs for communication
-    String DataBegin, DataEnd, CurrencyA, CurrencyB;
-    int   Timeperiod, Spn_timeperiod;
-    float SummA, ExcRate, PercentGrowA, PercentGrowB;
-    float ProfitA, ProfitB;
+    private String DataBegin, DataEnd, CurrencyA, CurrencyB;
+    private int   Timeperiod, Spn_timeperiod;
+    private float SummA, ExcRate, PercentGrowA, PercentGrowB;
+    private float ProfitA, ProfitB;
 
     //private Toolbar mToolbar;
 
@@ -78,21 +78,16 @@ public class MainActivity extends ActionBarActivity
             @Override
             public void onPageSelected(int position) {
                 actionBar.setSelectedNavigationItem(position);
-                //Toast.makeText(getApplicationContext(), "охуенно".toString(), Toast.LENGTH_LONG).show();
-                //Toast.makeText(getApplicationContext(), "setSelectedNavigationItem".toString(), Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-                //Toast.makeText(getApplicationContext(), "onPageScrolled".toString(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
-                //Toast.makeText(getApplicationContext(), "onPageScrollStateChanged".toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -131,11 +126,11 @@ public class MainActivity extends ActionBarActivity
         switch (tab.getPosition()){
             case TAB_TWO:
                 secondTab = (CurrencyTwoFragment) myManager.findFragmentByTag(tag);
-                secondTab.setDataFromFirstTab(CurrencyA, (float) SummA, Timeperiod, Spn_timeperiod, DataBegin, DataEnd);
+                secondTab.setDataFromFirstTab(CurrencyA, SummA, Timeperiod, Spn_timeperiod, DataBegin, DataEnd);
                 break;
             case TAB_COMPARE:
                 compareTab = (CompareFragment) myManager.findFragmentByTag(tag);
-                compareTab.setDataFromTabs(CurrencyA, CurrencyB, ProfitA, ProfitB, ExcRate);
+                compareTab.setDataFromTabs(CurrencyA, CurrencyB, ProfitA, ProfitB, ExcRate, PercentGrowA, PercentGrowB);
                 break;
         }
     }

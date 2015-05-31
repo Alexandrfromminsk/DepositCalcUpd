@@ -20,9 +20,9 @@ public class CompareFragment extends Fragment {
     EditText edtExcRateDinamic;
     Formatter f = new Formatter();
 
-    float ExcRateNow, ProfitA,ProfitB;
-    String CurrencyA, CurrencyB;
-    SeekBar mSeekBar;
+    private float ExcRateNow, ProfitA,ProfitB;
+    private String CurrencyA, CurrencyB;
+    private SeekBar mSeekBar;
 
     OnTabChangedListener mCallback;
 
@@ -84,7 +84,6 @@ public class CompareFragment extends Fragment {
                 float diff = (float) (ProfitA - ProfitB/dynRate);
 
                 txtPrecentProfitDinamic.setText(f.format((diff / ProfitA) * 100)+"%");
-                //txtPrecentProfitDinamic.setText(String.valueOf(formatTwoDecimals((diff/ProfitA)*100)) + " %");
                 txtCurOneProfitDinamic.setText(f.format(diff) + CurrencyA);
                 txtCurTwoProfitDinamic.setText(f.format((float) (diff*dynRate)) + CurrencyB);
             }
@@ -109,7 +108,7 @@ public class CompareFragment extends Fragment {
 
 
     public void setDataFromTabs(String currencyA, String currencyB, float profitA, float profitB,
-                                float excRateNow) {
+                                float excRateNow, float PercentGrowA, float PercentGrowB) {
         float profitBConverted, diff;
 
         ExcRateNow = excRateNow;
@@ -124,7 +123,7 @@ public class CompareFragment extends Fragment {
 
         diff = profitA - profitBConverted;
 
-        txtPrecentProfitNow.setText(f.format((diff / profitA) * 100) + " %");
+        txtPrecentProfitNow.setText(f.format(PercentGrowA - PercentGrowB) + " %");
         txtCurOneProfitNow.setText(f.format(diff) + CurrencyA);
         txtCurTwoProfitNow.setText(f.format(diff*excRateNow) + CurrencyB);
 

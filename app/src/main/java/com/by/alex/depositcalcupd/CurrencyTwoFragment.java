@@ -41,6 +41,8 @@ public class CurrencyTwoFragment extends Fragment {
     public static final String SPN_CURRENCY_B = "SPN_CURRENCY_B";
 
     private Float summFromFirstTab = (float)1;
+    private int spnTimeperiodNumber;
+    private String  spnPeriod;
     Formatter f = new Formatter();
 
     OnTabChangedListener mCallback;
