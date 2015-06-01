@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class CurrencyTwoFragment extends Fragment {
 
@@ -24,7 +26,7 @@ public class CurrencyTwoFragment extends Fragment {
     TextView edtDateEnd, txtProfitBValue, txtGrowValue, txtFullSummValue, edtSummAvalue,
             edtBeginDate, txtTimeperiod;
 
-    Spinner spnCapital, spnCurrency, spnConversion;
+    Spinner spnCapital, spnCurrency, spnConversion, spnTypeConversion;
 
     SharedPreferences mSettings;
     public static final String BEGIN_DATE_B = "BEGIN_DATE_B";
@@ -32,17 +34,17 @@ public class CurrencyTwoFragment extends Fragment {
     public static final String EXC_RATE_NOW_B = "EXC_RATE_NOW_B";
     public static final String SUMM_B_VALUE = "SUMM_B_VALUE";
     public static final String PERCENT_B = "PERCENT_B";
-    public static final String TIMEPERIOD_B = "TIMEPERIOD_B";
     public static final String PROFIT_B = "PROFIT_B";
     public static final String GROW_B = "GROW_B";
     public static final String FULL_SUMM_VALUE_B = "FULL_SUMM_VALUE_B";
-    public static final String SPN_TIMELINE_B = "SPN_TIMELINE_B";
     public static final String SPN_CAPITAL_B = "SPN_CAPITAL_B";
     public static final String SPN_CURRENCY_B = "SPN_CURRENCY_B";
+    public static final String SPN_TYPE_CONVERSION = "SPN_TYPE_CONVERSION";
+    public static final String CURRENCY_A = "CURRENCY_A";
 
     private Float summFromFirstTab = (float)1;
     private int spnTimeperiodNumber, spnTimelineChoice;
-    private String  spnPeriod;
+    private String  spnPeriod, CurrencyA;
     Formatter f = new Formatter();
 
     OnTabChangedListener mCallback;
@@ -112,7 +114,7 @@ public class CurrencyTwoFragment extends Fragment {
 
 
         //Spinners
-        spnConversion = (Spinner) rootView.findViewById(R.id.spnConversion);
+        spnTypeConversion = (Spinner) rootView.findViewById(R.id.spnTypeConversion);
         spnCurrency = (Spinner) rootView.findViewById(R.id.spnCurrencyB);
         spnCapital = (Spinner) rootView.findViewById(R.id.spnCapitalB);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -139,12 +141,16 @@ public class CurrencyTwoFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spnCurrency.setAdapter(adapter);
+        spnCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spnTypeConversion.setAdapter(getCurrencyPairs(CurrencyA, spnCurrency.getSelectedItem().toString()));
+            }
 
-        adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.conversion_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spnConversion.setAdapter(adapter);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
+        });
+
 
         if(savedInstanceState == null){
             loadSavedSettings();
@@ -156,9 +162,21 @@ public class CurrencyTwoFragment extends Fragment {
         if (txtTimeperiod.getText().toString().length()==0)
             txtTimeperiod.setText(this.spnTimeperiodNumber + " " + this.spnPeriod);
 
+        spnTypeConversion.setAdapter(getCurrencyPairs(this.CurrencyA, spnCurrency.getSelectedItem().toString()));
+
         calc_it();
 
         return rootView;
+    }
+
+    private ArrayAdapter<String> getCurrencyPairs (String curA, String curB) {
+        ArrayList<String> conversions = new ArrayList<String>();
+        conversions.add(String.format("%s / %s", curA, curB));
+        conversions.add(String.format("%s / %s", curB, curA));
+
+        ArrayAdapter<String> convAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, conversions);
+        convAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        return  convAdapter;
     }
 
 
@@ -173,10 +191,12 @@ public class CurrencyTwoFragment extends Fragment {
         outState.putString("txtProfitBValue", txtProfitBValue.getText().toString());
         outState.putString("txtGrowValue", txtGrowValue.getText().toString());
         outState.putString("txtFullSummValue", txtFullSummValue.getText().toString());
+        outState.putString("CurrencyA", this.CurrencyA);
         //!!!AddtxtTimeperiod
         //Spinners
         outState.putInt("spnCapital", spnCapital.getSelectedItemPosition());
         outState.putInt("spnCurrency", spnCurrency.getSelectedItemPosition());
+        outState.putInt("spnTypeConversion", spnTypeConversion.getSelectedItemPosition());
     }
 
     void loadSavedInstanceState(Bundle savedInstanceState) {
@@ -186,9 +206,11 @@ public class CurrencyTwoFragment extends Fragment {
         txtProfitBValue.setText(savedInstanceState.getString("txtProfitBValue"));
         txtGrowValue.setText(savedInstanceState.getString("txtGrowValue"));
         txtFullSummValue.setText(savedInstanceState.getString("txtFullSummValue"));
+        this.CurrencyA = savedInstanceState.getString("CurrencyA");
         //Spinners
         spnCapital.setSelection(savedInstanceState.getInt("spnCapital"));
         spnCurrency.setSelection(savedInstanceState.getInt("spnCurrency"));
+        spnTypeConversion.setSelection(savedInstanceState.getInt("spnTypeConversion"));
     }
 
     void loadSavedSettings(){
@@ -200,8 +222,10 @@ public class CurrencyTwoFragment extends Fragment {
         txtGrowValue.setText(mSettings.getString(GROW_B, "0"));
         txtFullSummValue.setText(mSettings.getString(GROW_B, "0"));
         edtBeginDate.setText(mSettings.getString(BEGIN_DATE_B, "01-02-2016"));
+        this.CurrencyA = mSettings.getString(CURRENCY_A, "BLR");
         spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL_B, 0));
         spnCurrency.setSelection(mSettings.getInt(SPN_CURRENCY_B, 1));
+        spnTypeConversion.setSelection(mSettings.getInt(SPN_TYPE_CONVERSION, 0));
 
     }
 
@@ -213,10 +237,12 @@ public class CurrencyTwoFragment extends Fragment {
         ed.putString(SUMM_B_VALUE, edtSummAvalue.getText().toString());
         ed.putString(PERCENT_B, edtPercentB.getText().toString());
         ed.putString(PROFIT_B, txtProfitBValue.getText().toString());
+        ed.putString(CURRENCY_A,this.CurrencyA);
         ed.putString(GROW_B, txtGrowValue.getText().toString());
         ed.putString(FULL_SUMM_VALUE_B, txtFullSummValue.getText().toString());
         ed.putInt(SPN_CAPITAL_B, spnCapital.getSelectedItemPosition());
         ed.putInt(SPN_CURRENCY_B, spnCurrency.getSelectedItemPosition());
+        ed.putInt(SPN_TYPE_CONVERSION, spnTypeConversion.getSelectedItemPosition());
 
         ed.commit();
 
@@ -279,9 +305,8 @@ public class CurrencyTwoFragment extends Fragment {
         this.spnTimelineChoice = spn_tpr;
         txtTimeperiod.setText(spnTimeperiodNumber + " " + spnPeriod);
 
-        //TO DO
-        // samething with currency string
-        //String cur  = spn_currency;
+        this.CurrencyA = spn_currency;
+        spnTypeConversion.setAdapter(getCurrencyPairs(this.CurrencyA, spnCurrency.getSelectedItem().toString()));
 
         this.summFromFirstTab = summ;
         edtSummAvalue.setText(String.valueOf(f.format(calc_summ())));

@@ -41,6 +41,9 @@
     <string name="txtProfit">Прибыль</string>
     <string name="txtFullSumm">Итого</string>
 
+    <string name="txtTypeConversion">Конверсия</string>
+    <string name="txtCross">Кросс-курс</string>
+
     <string name="cmpr_txtFirstSection">Разница прибыли первого вклада по отношению к второму при текущем обменном курсе</string>
     <string name="cmpr_txtFirstSection_new">Разница прибыли между первым и вторым вкладами</string>
 

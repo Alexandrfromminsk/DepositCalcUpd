@@ -34,12 +34,27 @@
 
             <TableRow
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"  >
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/MyViewLeftColumn"
+                    android:text="@string/txtTypeConversion"
+                    android:id="@+id/textView2055" />
 
                 <Spinner
+                    style="@style/MyViewRightColumn"
+                    android:spinnerMode="dialog"
+                    android:id="@+id/spnTypeConversion" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"  >
+
+                <TextView
                     style="@style/MyViewLeftColumn"
-                    android:text="@string/txtExchangeRate"
-                    android:id="@+id/spnConversion" />
+                    android:text="@string/txtCross"
+                    android:id="@+id/textView1899" />
 
                 <EditText
                     style="@style/MyViewRightColumn"
