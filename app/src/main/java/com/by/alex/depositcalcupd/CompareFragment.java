@@ -111,7 +111,7 @@ public class CompareFragment extends Fragment {
     public void setDataFromTabs(String currencyA, String currencyB, float profitA, float profitB,
                                 float excRateNow, float PercentGrowA, float PercentGrowB,
                                 boolean inverted_conversion) {
-        float profitBConverted, diffProfit, diffPercent;
+        float profitBConverted, diffProfit, diffPercent, diffInCurrB;
 
         this.Inverted_conversion = inverted_conversion;
 
@@ -123,35 +123,29 @@ public class CompareFragment extends Fragment {
 
         txtExcRateNow.setText(f.format(excRateNow));
 
-        profitBConverted = profitB/excRateNow;
+        if (Inverted_conversion) profitBConverted = profitB/excRateNow;
+        else profitBConverted = profitB*excRateNow;
+
+        diffProfit = profitA - profitBConverted;
 
         diffPercent = PercentGrowA - PercentGrowB;
 
-        diffProfit = profitA - profitBConverted;
-
         txtPrecentProfitNow.setText(f.format(diffPercent) + " %");
         txtCurOneProfitNow.setText(f.format(diffProfit) + CurrencyA);
-        if (Inverted_conversion)  txtCurTwoProfitNow.setText(f.format(diffProfit/excRateNow) + CurrencyB);
-        else txtCurTwoProfitNow.setText(f.format(diffProfit*excRateNow) + CurrencyB);
+        if (Inverted_conversion) diffInCurrB = diffProfit/excRateNow;
+        else diffInCurrB = diffProfit*excRateNow;
+
+        txtCurTwoProfitNow.setText(f.format(diffInCurrB) + CurrencyB);
+
 
         //maybe another approach should be used
         edtExcRateDinamic.setText(f.format(excRateNow));
-        txtPrecentProfitDinamic.setText(f.format((diffProfit / profitA) * 100) + " %");
+        txtPrecentProfitDinamic.setText(f.format(diffPercent) + " %");
         txtCurOneProfitDinamic.setText(f.format(diffProfit) + CurrencyA);
-        txtCurTwoProfitDinamic.setText(f.format(diffProfit* excRateNow) + CurrencyB);
+        txtCurTwoProfitDinamic.setText(f.format(diffInCurrB) + CurrencyB);
 
-        float excRateCalc = profitB/profitA;
+        float excRateCalc = (100+diffPercent)* excRateNow/100;
         txtExcRateCalc.setText(f.format(excRateCalc));
-
-        profitBConverted = profitB/excRateCalc;
-        diffProfit = profitA - profitBConverted;
-
-        //txtCurOneProfitCalc.setText(String.valueOf(diff) + CurrencyA);
-        //txtCurTwoProfitCalc.setText(String.valueOf(diff*excRateCalc) + CurrencyB);
-
-        //TO DO
-        //set seekbar with min and max values like here
-        //http://stackoverflow.com/questions/20762001/how-to-set-seekbar-min-and-max-value
 
     }
 
