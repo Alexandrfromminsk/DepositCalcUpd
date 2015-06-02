@@ -20,8 +20,9 @@ public class CompareFragment extends Fragment {
     EditText edtExcRateDinamic;
     Formatter f = new Formatter();
 
-    private float ExcRateNow, ProfitA,ProfitB;
+    private float ExcRateNow, ProfitA, ProfitB;
     private String CurrencyA, CurrencyB;
+    private boolean Inverted_conversion;
     private SeekBar mSeekBar;
 
     OnTabChangedListener mCallback;
@@ -108,36 +109,42 @@ public class CompareFragment extends Fragment {
 
 
     public void setDataFromTabs(String currencyA, String currencyB, float profitA, float profitB,
-                                float excRateNow, float PercentGrowA, float PercentGrowB) {
-        float profitBConverted, diff;
+                                float excRateNow, float PercentGrowA, float PercentGrowB,
+                                boolean inverted_conversion) {
+        float profitBConverted, diffProfit, diffPercent;
 
-        ExcRateNow = excRateNow;
-        ProfitA = profitA;
-        ProfitB = profitB;
-        CurrencyA = String.format(" %s", currencyA);
-        CurrencyB = String.format(" %s", currencyB);
+        this.Inverted_conversion = inverted_conversion;
+
+        this.ExcRateNow = excRateNow;
+        this.ProfitA = profitA;
+        this.ProfitB = profitB;
+        this.CurrencyA = String.format(" %s", currencyA);
+        this.CurrencyB = String.format(" %s", currencyB);
 
         txtExcRateNow.setText(f.format(excRateNow));
 
         profitBConverted = profitB/excRateNow;
 
-        diff = profitA - profitBConverted;
+        diffPercent = PercentGrowA - PercentGrowB;
 
-        txtPrecentProfitNow.setText(f.format(PercentGrowA - PercentGrowB) + " %");
-        txtCurOneProfitNow.setText(f.format(diff) + CurrencyA);
-        txtCurTwoProfitNow.setText(f.format(diff*excRateNow) + CurrencyB);
+        diffProfit = profitA - profitBConverted;
+
+        txtPrecentProfitNow.setText(f.format(diffPercent) + " %");
+        txtCurOneProfitNow.setText(f.format(diffProfit) + CurrencyA);
+        if (Inverted_conversion)  txtCurTwoProfitNow.setText(f.format(diffProfit/excRateNow) + CurrencyB);
+        else txtCurTwoProfitNow.setText(f.format(diffProfit*excRateNow) + CurrencyB);
 
         //maybe another approach should be used
         edtExcRateDinamic.setText(f.format(excRateNow));
-        txtPrecentProfitDinamic.setText(f.format((diff / profitA) * 100) + " %");
-        txtCurOneProfitDinamic.setText(f.format(diff) + CurrencyA);
-        txtCurTwoProfitDinamic.setText(f.format(diff* excRateNow) + CurrencyB);
+        txtPrecentProfitDinamic.setText(f.format((diffProfit / profitA) * 100) + " %");
+        txtCurOneProfitDinamic.setText(f.format(diffProfit) + CurrencyA);
+        txtCurTwoProfitDinamic.setText(f.format(diffProfit* excRateNow) + CurrencyB);
 
         float excRateCalc = profitB/profitA;
         txtExcRateCalc.setText(f.format(excRateCalc));
 
         profitBConverted = profitB/excRateCalc;
-        diff = profitA - profitBConverted;
+        diffProfit = profitA - profitBConverted;
 
         //txtCurOneProfitCalc.setText(String.valueOf(diff) + CurrencyA);
         //txtCurTwoProfitCalc.setText(String.valueOf(diff*excRateCalc) + CurrencyB);

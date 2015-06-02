@@ -305,7 +305,10 @@ public class CurrencyTwoFragment extends Fragment {
         float conversion = Float.valueOf(edtExcRateNow.getText().toString());
         float profit = f.parseNumber(txtProfitBValue.getText().toString());
         float percent_grow = f.parseNumber(txtGrowValue.getText().toString());
-        mCallback.saveSecondTabData(spnCurrency.getSelectedItem().toString(), conversion, profit, percent_grow);
+        //inverted_conversion = true mean that conversion is inverted and must be used / instaed of *
+        boolean inverted_conversion = (spnTypeConversion.getSelectedItemPosition()>0);
+        mCallback.saveSecondTabData(spnCurrency.getSelectedItem().toString(), conversion, profit,
+                percent_grow, inverted_conversion);
     }
 
     public void setDataFromFirstTab(String spn_currency, float summ, int timeperiod, int spn_tpr, String dateBegin, String dateEnd){

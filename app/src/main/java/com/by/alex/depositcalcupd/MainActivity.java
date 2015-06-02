@@ -40,6 +40,7 @@ public class MainActivity extends ActionBarActivity
     private int   Timeperiod, Spn_timeperiod;
     private float SummA, ExcRate, PercentGrowA, PercentGrowB;
     private float ProfitA, ProfitB;
+    private boolean Inverted_conversion;
 
     //private Toolbar mToolbar;
 
@@ -130,7 +131,8 @@ public class MainActivity extends ActionBarActivity
                 break;
             case TAB_COMPARE:
                 compareTab = (CompareFragment) myManager.findFragmentByTag(tag);
-                compareTab.setDataFromTabs(CurrencyA, CurrencyB, ProfitA, ProfitB, ExcRate, PercentGrowA, PercentGrowB);
+                compareTab.setDataFromTabs(CurrencyA, CurrencyB, ProfitA, ProfitB, ExcRate,
+                        PercentGrowA, PercentGrowB, Inverted_conversion);
                 break;
         }
     }
@@ -174,11 +176,13 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override
-    public void saveSecondTabData(String currency, float conversion, float profit, float percent_grow) {
+    public void saveSecondTabData(String currency, float conversion, float profit,
+                                  float percent_grow, boolean inverted_conversion) {
         this.ExcRate = conversion;
         this.ProfitB = profit;
         this.CurrencyB = currency;
         this.PercentGrowB = percent_grow;
+        this.Inverted_conversion = inverted_conversion;
 
     }
 
