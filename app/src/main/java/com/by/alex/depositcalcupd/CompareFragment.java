@@ -77,16 +77,21 @@ public class CompareFragment extends Fragment {
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                double dynRate;
-                double step = (2*ExcRateNow)/200.0;
+                float dynRate, profitBConverted, diffProfit, diffInCurrB;
+                float step = ExcRateNow/100;
                 dynRate = (progress - 200)*step + ExcRateNow;
-                edtExcRateDinamic.setText(String.valueOf(dynRate));
+                edtExcRateDinamic.setText(f.format(dynRate));
 
-                float diff = (float) (ProfitA - ProfitB/dynRate);
+                if (Inverted_conversion) profitBConverted = ProfitB/dynRate;
+                else profitBConverted = ProfitB*dynRate;
 
-                txtPrecentProfitDinamic.setText(f.format((diff / ProfitA) * 100)+"%");
-                txtCurOneProfitDinamic.setText(f.format(diff) + CurrencyA);
-                txtCurTwoProfitDinamic.setText(f.format((float) (diff*dynRate)) + CurrencyB);
+                diffProfit = ProfitA - profitBConverted;
+
+                txtPrecentProfitDinamic.setText(f.format(777777)+"%");
+                txtCurOneProfitDinamic.setText(f.format(diffProfit) + CurrencyA);
+                if (Inverted_conversion) diffInCurrB = diffProfit/dynRate;
+                else diffInCurrB = diffProfit*dynRate;
+                txtCurTwoProfitDinamic.setText(f.format(diffInCurrB) + CurrencyB);
             }
 
             @Override
