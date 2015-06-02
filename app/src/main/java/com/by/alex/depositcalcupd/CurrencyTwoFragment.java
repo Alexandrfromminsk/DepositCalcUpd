@@ -317,8 +317,10 @@ public class CurrencyTwoFragment extends Fragment {
         this.spnTimelineChoice = spn_tpr;
         txtTimeperiod.setText(spnTimeperiodNumber + " " + spnPeriod);
 
-        this.CurrencyA = spn_currency;
-        spnTypeConversion.setAdapter(getCurrencyPairs());
+        if (this.CurrencyA != spn_currency) {
+            this.CurrencyA = spn_currency;
+            spnTypeConversion.setAdapter(getCurrencyPairs());
+            }
 
         this.summFromFirstTab = summ;
         edtSummAvalue.setText(String.valueOf(f.format(calc_summ())));
