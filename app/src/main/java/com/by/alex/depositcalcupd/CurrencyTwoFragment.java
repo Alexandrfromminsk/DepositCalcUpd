@@ -167,11 +167,13 @@ public class CurrencyTwoFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 edtSummAvalue.setText(String.valueOf(f.format(calc_summ())));
+                calc_it();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
         });
+        spnTypeConversion.setSelection(mSettings.getInt(SPN_TYPE_CONVERSION, 0));
 
         calc_it();
 
