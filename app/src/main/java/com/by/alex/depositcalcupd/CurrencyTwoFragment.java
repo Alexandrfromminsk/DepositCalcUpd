@@ -171,7 +171,8 @@ public class CurrencyTwoFragment extends Fragment {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
         });
         spnTypeConversion.setSelection(mSettings.getInt(SPN_TYPE_CONVERSION, 0));
 
@@ -218,6 +219,7 @@ public class CurrencyTwoFragment extends Fragment {
         txtGrowValue.setText(savedInstanceState.getString("txtGrowValue"));
         txtFullSummValue.setText(savedInstanceState.getString("txtFullSummValue"));
         this.CurrencyA = savedInstanceState.getString("CurrencyA");
+        //!!!AddtxtTimeperiod to do
         //Spinners
         spnCapital.setSelection(savedInstanceState.getInt("spnCapital"));
         spnCurrency.setSelection(savedInstanceState.getInt("spnCurrency"));
