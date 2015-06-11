@@ -167,6 +167,7 @@ public class CurrencyTwoFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 edtSummAvalue.setText(String.valueOf(f.format(calc_summ())));
+                calc_it();
             }
 
             @Override
