@@ -128,8 +128,8 @@ public class CompareFragment extends Fragment {
 
         txtExcRateNow.setText(f.format(excRateNow));
 
-        if (Inverted_conversion) profitBConverted = profitB/excRateNow;
-        else profitBConverted = profitB*excRateNow;
+        if (Inverted_conversion) profitBConverted = profitB*excRateNow;
+        else profitBConverted = profitB/excRateNow;
 
         diffProfit = profitA - profitBConverted;
 
