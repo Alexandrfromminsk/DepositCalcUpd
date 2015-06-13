@@ -1,6 +1,7 @@
 package com.by.alex.depositcalcupd;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 
 public class Formatter {
@@ -9,7 +10,7 @@ public class Formatter {
     DecimalFormat summFormat = new DecimalFormat("#,###");
 
     public String format (float f) {
-        //DecimalFormatSymbols s = new DecimalFormatSymbols();
+        DecimalFormatSymbols s = new DecimalFormatSymbols();
         return myFormat.format(f).replace(","," ");
     }
 
@@ -26,7 +27,12 @@ public class Formatter {
             number = myFormat.parse(str).floatValue();
         } catch (ParseException e) {
             e.printStackTrace();
-            number = Float.parseFloat(str);
+            try {
+                number = Float.parseFloat(str);
+            } catch (NumberFormatException ee) {
+                ee.printStackTrace();
+                number = 1;
+            }
         }
         return number;
     }

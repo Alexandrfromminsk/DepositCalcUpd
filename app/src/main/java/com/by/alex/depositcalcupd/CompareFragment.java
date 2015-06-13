@@ -20,7 +20,7 @@ public class CompareFragment extends Fragment {
     EditText edtExcRateDinamic;
     Formatter f = new Formatter();
 
-    private float ExcRateNow, ProfitA, ProfitB;
+    private float ExcRateNow, ProfitA, ProfitB, PercentGrowA, PercentGrowB;
     private String CurrencyA, CurrencyB;
     private boolean Inverted_conversion;
     private SeekBar mSeekBar;
@@ -43,7 +43,7 @@ public class CompareFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.compare_fragment_new, container,false);
+        final View rootView = inflater.inflate(R.layout.compare_fragment_new, container,false);
 
         txtPrecentProfitNow = (TextView) rootView.findViewById(R.id.txtPrecentProfitNow);
         txtCurOneProfitNow = (TextView) rootView.findViewById(R.id.txtCurOneProfitNow);
@@ -65,33 +65,51 @@ public class CompareFragment extends Fragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {  }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {     }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                float dynRate, profitBConverted, diffProfit, diffInCurrB;
+                dynRate = f.parseNumber(edtExcRateDinamic.getText().toString()); //may be returned 1 if wrong format
+                if (Inverted_conversion) profitBConverted = ProfitB*dynRate;
+                else profitBConverted = ProfitB/dynRate;
+
+                diffProfit = ProfitA - profitBConverted;
+
+                txtPrecentProfitDinamic.setText(f.format(777777)+"%");
+
+                if (Inverted_conversion) diffInCurrB = diffProfit/dynRate;
+                else diffInCurrB = diffProfit*dynRate;
+                txtCurTwoProfitDinamic.setText(f.format(diffInCurrB) + CurrencyB);
+                txtCurOneProfitDinamic.setText(f.format(diffProfit) + CurrencyA);
+                setDinamicPercent(dynRate);
+            }
 
             @Override
             public void afterTextChanged(Editable s) {      }
         });
 
         mSeekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
-        mSeekBar.setMax(400);
-        mSeekBar.setProgress(200);
+        mSeekBar.setMax(100);
+        mSeekBar.setProgress(50);
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 float dynRate, profitBConverted, diffProfit, diffInCurrB;
                 float step = ExcRateNow/100;
-                dynRate = (progress - 200)*step + ExcRateNow;
+                dynRate = (progress - 50)*step + ExcRateNow;
                 edtExcRateDinamic.setText(f.format(dynRate));
 
+                /* At text watcher above
                 if (Inverted_conversion) profitBConverted = ProfitB/dynRate;
                 else profitBConverted = ProfitB*dynRate;
 
                 diffProfit = ProfitA - profitBConverted;
 
                 txtPrecentProfitDinamic.setText(f.format(777777)+"%");
-                txtCurOneProfitDinamic.setText(f.format(diffProfit) + CurrencyA);
+
                 if (Inverted_conversion) diffInCurrB = diffProfit/dynRate;
                 else diffInCurrB = diffProfit*dynRate;
                 txtCurTwoProfitDinamic.setText(f.format(diffInCurrB) + CurrencyB);
+                txtCurOneProfitDinamic.setText(f.format(diffProfit) + CurrencyA);
+                */
             }
 
             @Override
@@ -112,6 +130,12 @@ public class CompareFragment extends Fragment {
 
     }
 
+    private void setDinamicPercent(float excRate) {
+        float percentDiffRate = (ExcRateNow - excRate)/ExcRateNow;
+        float currTwoUpdatedPercent = this.PercentGrowB + this.PercentGrowB*percentDiffRate;
+        txtPrecentProfitDinamic.setText(f.format(this.PercentGrowA - currTwoUpdatedPercent)+"%");
+    }
+
 
     public void setDataFromTabs(String currencyA, String currencyB, float profitA, float profitB,
                                 float excRateNow, float PercentGrowA, float PercentGrowB,
@@ -121,6 +145,8 @@ public class CompareFragment extends Fragment {
         this.Inverted_conversion = inverted_conversion;
 
         this.ExcRateNow = excRateNow;
+        this.PercentGrowA = PercentGrowA;
+        this.PercentGrowB = PercentGrowB;
         this.ProfitA = profitA;
         this.ProfitB = profitB;
         this.CurrencyA = String.format(" %s", currencyA);
