@@ -152,7 +152,7 @@ public class CompareFragment extends Fragment {
         this.CurrencyA = String.format(" %s", currencyA);
         this.CurrencyB = String.format(" %s", currencyB);
 
-        txtExcRateNow.setText(f.format(excRateNow));
+        txtExcRateNow.setText(f.formatExcRate(excRateNow));
 
         if (Inverted_conversion) profitBConverted = profitB*excRateNow;
         else profitBConverted = profitB/excRateNow;
@@ -176,7 +176,7 @@ public class CompareFragment extends Fragment {
         txtCurTwoProfitDinamic.setText(f.format(diffInCurrB) + CurrencyB);
 
         float excRateCalc = (100+diffPercent)* excRateNow/100;
-        txtExcRateCalc.setText(f.format(excRateCalc));
+        txtExcRateCalc.setText(f.formatExcRate(excRateCalc));
 
     }
 

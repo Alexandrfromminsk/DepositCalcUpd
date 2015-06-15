@@ -3,11 +3,13 @@ package com.by.alex.depositcalcupd;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 
+
 public class Formatter {
 
     DecimalFormat summFormat = new DecimalFormat("#,###");
     DecimalFormat myFormat = new DecimalFormat("#,##0.00");
     DecimalFormat ExcRateFormat = myFormat;
+
 
     public String format (float f) {
         return myFormat.format(f).replace(","," ");
@@ -20,16 +22,22 @@ public class Formatter {
     }
 
     public String formatExcRate (float l) {
-        if (l<0.01)
-            ExcRateFormat = new DecimalFormat("#,##0.0000");
-        if (l<0.001)
-            ExcRateFormat = new DecimalFormat("#,##0.00000");
-        if (l<0.0001)
-            ExcRateFormat = new DecimalFormat("#,##0.000000");
-        if (l<0.00001)
-            ExcRateFormat = new DecimalFormat("#,##0.0000000");
-        if (l<0.000001)
-            ExcRateFormat = new DecimalFormat("#,##0.00000000");
+        StringBuilder format = new StringBuilder();
+        format.append("#,##0.00");
+        if (l<1) {
+            if (l < 0.1)
+                format.append("00");
+            else if (l < 0.01)
+                format.append("0000");
+            else if (l < 0.001)
+                format.append("00000");
+            else if (l < 0.0001)
+                format.append("000000");
+            else if (l < 0.00001)
+                format.append("0000000");
+        }
+
+        ExcRateFormat = new DecimalFormat(format.toString());
 
         return ExcRateFormat.format(l).replace(",", " ");
     }
@@ -59,7 +67,6 @@ public class Formatter {
             e.printStackTrace();
             number = 1;
         }
-
         return number;
     }
 
