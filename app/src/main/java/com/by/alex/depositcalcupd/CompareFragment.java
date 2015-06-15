@@ -68,7 +68,7 @@ public class CompareFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 float dynRate, profitBConverted, diffProfit, diffInCurrB;
-                dynRate = f.parseNumber(edtExcRateDinamic.getText().toString()); //may be returned 1 if wrong format
+                dynRate = f.parseExcRate(edtExcRateDinamic.getText().toString()); //may be returned 1 if wrong format
                 Log.e("MAZAFAKA", dynRate+"");
                 if (Inverted_conversion) profitBConverted = ProfitB*dynRate;
                 else profitBConverted = ProfitB/dynRate;
@@ -95,7 +95,7 @@ public class CompareFragment extends Fragment {
                 float dynRate;
                 float step = ExcRateNow/100;
                 dynRate = (progress - 50)*step + ExcRateNow;
-                edtExcRateDinamic.setText(f.format(dynRate));
+                edtExcRateDinamic.setText(f.formatExcRate(dynRate));
 
                 /* At text watcher above
                 if (Inverted_conversion) profitBConverted = ProfitB/dynRate;
@@ -170,7 +170,7 @@ public class CompareFragment extends Fragment {
 
 
         //maybe another approach should be used
-        edtExcRateDinamic.setText(f.format(excRateNow));
+        edtExcRateDinamic.setText(f.formatExcRate(excRateNow));
         txtPrecentProfitDinamic.setText(f.format(diffPercent) + " %");
         txtCurOneProfitDinamic.setText(f.format(diffProfit) + CurrencyA);
         txtCurTwoProfitDinamic.setText(f.format(diffInCurrB) + CurrencyB);
