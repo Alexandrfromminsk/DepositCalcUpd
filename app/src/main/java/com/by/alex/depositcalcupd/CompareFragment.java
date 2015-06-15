@@ -73,8 +73,6 @@ public class CompareFragment extends Fragment {
 
                 diffProfit = ProfitA - profitBConverted;
 
-                txtPrecentProfitDinamic.setText(f.format(777777)+"%");
-
                 if (Inverted_conversion) diffInCurrB = diffProfit/dynRate;
                 else diffInCurrB = diffProfit*dynRate;
                 txtCurTwoProfitDinamic.setText(f.format(diffInCurrB) + CurrencyB);
@@ -92,7 +90,7 @@ public class CompareFragment extends Fragment {
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float dynRate, profitBConverted, diffProfit, diffInCurrB;
+                float dynRate;
                 float step = ExcRateNow/100;
                 dynRate = (progress - 50)*step + ExcRateNow;
                 edtExcRateDinamic.setText(f.format(dynRate));
@@ -131,9 +129,9 @@ public class CompareFragment extends Fragment {
     }
 
     private void setDinamicPercent(float excRate) {
-        float percentDiffRate = (ExcRateNow - excRate)/ExcRateNow;
-        float currTwoUpdatedPercent = this.PercentGrowB + this.PercentGrowB*percentDiffRate;
-        txtPrecentProfitDinamic.setText(f.format(this.PercentGrowA - currTwoUpdatedPercent)+"%");
+        float percentDiffRate = (ExcRateNow - excRate)*100/ExcRateNow;
+        //float currTwoUpdatedPercent = this.PercentGrowB + this.PercentGrowB*percentDiffRate;
+        txtPrecentProfitDinamic.setText(f.format(this.PercentGrowA - percentDiffRate)+"%");
     }
 
 
