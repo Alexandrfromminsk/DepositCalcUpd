@@ -25,16 +25,18 @@ public class Formatter {
         StringBuilder format = new StringBuilder();
         format.append("#,##0.00");
         if (l<1) {
-            if (l < 0.1)
-                format.append("00");
-            else if (l < 0.01)
-                format.append("0000");
-            else if (l < 0.001)
-                format.append("00000");
+            if (l < 0.00001)
+                format.append("0000000");
             else if (l < 0.0001)
                 format.append("000000");
-            else if (l < 0.00001)
-                format.append("0000000");
+            else if (l < 0.0001)
+                format.append("000000");
+            else if (l < 0.001)
+                format.append("00000");
+            else if (l < 0.01)
+                format.append("0000");
+            else if (l < 0.1)
+                format.append("00");
         }
 
         ExcRateFormat = new DecimalFormat(format.toString());
