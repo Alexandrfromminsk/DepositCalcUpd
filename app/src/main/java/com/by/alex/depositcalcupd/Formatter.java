@@ -21,15 +21,15 @@ public class Formatter {
 
     public String formatExcRate (float l) {
         if (l<0.01)
-            ExcRateFormat = new DecimalFormat("#,##0.000");
-        if (l<0.001)
             ExcRateFormat = new DecimalFormat("#,##0.0000");
-        if (l<0.0001)
+        if (l<0.001)
             ExcRateFormat = new DecimalFormat("#,##0.00000");
-        if (l<0.00001)
+        if (l<0.0001)
             ExcRateFormat = new DecimalFormat("#,##0.000000");
-        if (l<0.000001)
+        if (l<0.00001)
             ExcRateFormat = new DecimalFormat("#,##0.0000000");
+        if (l<0.000001)
+            ExcRateFormat = new DecimalFormat("#,##0.00000000");
 
         return ExcRateFormat.format(l).replace(",", " ");
     }
