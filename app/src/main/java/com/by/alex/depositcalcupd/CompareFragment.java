@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +68,6 @@ public class CompareFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 float dynRate, profitBConverted, diffProfit, diffInCurrB;
                 dynRate = f.parseExcRate(edtExcRateDinamic.getText().toString()); //may be returned 1 if wrong format
-                Log.e("MAZAFAKA", dynRate+"");
                 if (Inverted_conversion) profitBConverted = ProfitB*dynRate;
                 else profitBConverted = ProfitB/dynRate;
 
