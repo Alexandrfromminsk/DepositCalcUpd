@@ -15,7 +15,8 @@ public class Formatter {
 
 
     public String format (float f) {
-        return myFormat.format(f).replace(","," ");
+
+        return myFormat.format(f);
     }
 
     public String formatSumm (long l) {
@@ -40,9 +41,12 @@ public class Formatter {
                 format.append("00");
         }
 
-        ExcRateFormat = new DecimalFormat(format.toString());
+        String superFormat = "#,###.########";
 
-        return ExcRateFormat.format(l).replace(",", " ");
+        //ExcRateFormat = new DecimalFormat(format.toString());
+        ExcRateFormat.applyPattern(superFormat);
+
+        return ExcRateFormat.format(l);
     }
 
     public float parseNumber (String str) {
@@ -70,7 +74,7 @@ public class Formatter {
         } catch (ParseException e) {
             e.printStackTrace();
             try {
-                str=str.replace(" ", "");
+                //str=str.replace(" ", "");
                 number = Long.parseLong(str);
             } catch (NumberFormatException ee) {
                 ee.printStackTrace();
