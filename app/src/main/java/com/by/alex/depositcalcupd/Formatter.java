@@ -1,17 +1,15 @@
 package com.by.alex.depositcalcupd;
 
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
-import java.util.Locale;
 
 
 public class Formatter {
 
-    DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.UK);
+    //DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.UK);
 
     DecimalFormat summFormat = new DecimalFormat("#,###");
-    DecimalFormat myFormat = new DecimalFormat("#,##0.00", otherSymbols);
+    DecimalFormat myFormat = new DecimalFormat("#,##0.00");
     DecimalFormat ExcRateFormat =  new DecimalFormat();
 
 
@@ -19,9 +17,8 @@ public class Formatter {
         return myFormat.format(f).replace(","," ");
     }
 
-    public String formatSumm (long l) {
-
-        return summFormat.format(l).replace(",", " ");
+    public String formatSumm (long l) {;
+        return summFormat.format(l);
     }
 
     public String formatExcRate (float l) {
@@ -66,11 +63,13 @@ public class Formatter {
 
     public long parseSumm(String str){
         long number;
+        str=str.replaceAll("\\s+", "");
         try {
-            number = (long) summFormat.parse(str.replace(",", "").replace(" ", ""));
+            number = summFormat.parse(str.replace(" ", "")).longValue();
         } catch (ParseException e) {
             e.printStackTrace();
             try {
+                str=str.replace(" ", "");
                 number = Long.parseLong(str);
             } catch (NumberFormatException ee) {
                 ee.printStackTrace();
