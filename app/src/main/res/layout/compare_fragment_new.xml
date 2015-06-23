@@ -48,7 +48,8 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    style="@style/MyViewLeftColumn"
+                    style="@style/MyView"
+                    android:gravity="center_horizontal"
                     android:textStyle="bold"
                     android:layout_span="2"
                     android:text="@string/cmpr_txtFirstSection_new"
