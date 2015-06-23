@@ -11,7 +11,7 @@ public class Formatter {
 
     DecimalFormat summFormat = new DecimalFormat("#,###");
     DecimalFormat myFormat = new DecimalFormat("#,##0.00");
-    DecimalFormat ExcRateFormat =  new DecimalFormat();
+    DecimalFormat ExcRateFormat =  new DecimalFormat("#,###.########");
 
 
     public String format (float f) {
@@ -24,33 +24,12 @@ public class Formatter {
     }
 
     public String formatExcRate (float l) {
-        StringBuilder format = new StringBuilder();
-        format.append("#,##0.00");
-        if (l<1) {
-            if (l < 0.00001)
-                format.append("0000000");
-            else if (l < 0.0001)
-                format.append("000000");
-            else if (l < 0.0001)
-                format.append("000000");
-            else if (l < 0.001)
-                format.append("00000");
-            else if (l < 0.01)
-                format.append("0000");
-            else if (l < 0.1)
-                format.append("00");
-        }
-
-        String superFormat = "#,###.########";
-
-        //ExcRateFormat = new DecimalFormat(format.toString());
-        ExcRateFormat.applyPattern(superFormat);
 
         return ExcRateFormat.format(l);
     }
 
     public float parseNumber (String str) {
-        str=str.replace(" ", ",");
+        //str=str.replace(" ", ",");
         float number;
         try {
             number = myFormat.parse(str).floatValue();
@@ -68,7 +47,7 @@ public class Formatter {
 
     public long parseSumm(String str){
         long number;
-        str=str.replaceAll("\\s+", "");
+        //str=str.replaceAll("\\s+", "");
         try {
             number = summFormat.parse(str.replace(" ", "")).longValue();
         } catch (ParseException e) {
@@ -86,7 +65,7 @@ public class Formatter {
     }
 
     public float parseExcRate(String str) {
-        str=str.replace(" ", ",");
+        //str=str.replace(" ", ",");
         float number;
         try {
             number = ExcRateFormat.parse(str).floatValue();
