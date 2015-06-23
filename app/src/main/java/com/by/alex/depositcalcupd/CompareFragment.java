@@ -43,7 +43,7 @@ public class CompareFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.compare_fragment_new, container,false);
+        final View rootView = inflater.inflate(R.layout.compare_fragment, container,false);
 
         txtPrecentProfitNow = (TextView) rootView.findViewById(R.id.txtPrecentProfitNow);
         txtCurOneProfitNow = (TextView) rootView.findViewById(R.id.txtCurOneProfitNow);
