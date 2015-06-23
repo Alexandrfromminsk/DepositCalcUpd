@@ -1,6 +1,7 @@
 package com.by.alex.depositcalcupd;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 
 
@@ -47,7 +48,9 @@ public class Formatter {
 
     public long parseSumm(String str){
         long number;
-        //str=str.replaceAll("\\s+", "");
+        DecimalFormatSymbols symbols = summFormat.getDecimalFormatSymbols();
+        String separator = String.valueOf(symbols.getGroupingSeparator());
+        str=str.replace(separator, "");
         try {
             number = summFormat.parse(str.replace(" ", "")).longValue();
         } catch (ParseException e) {
