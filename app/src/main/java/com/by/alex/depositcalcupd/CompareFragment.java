@@ -50,9 +50,6 @@ public class CompareFragment extends Fragment {
         txtCurTwoProfitNow = (TextView) rootView.findViewById(R.id.txtCurTwoProfitNow);
         txtExcRateNow = (TextView) rootView.findViewById(R.id.txtExcRateNow);
 
-        txtPrecentProfitCalc = (TextView) rootView.findViewById(R.id.txtPrecentProfitCalc);
-        txtCurOneProfitCalc = (TextView) rootView.findViewById(R.id.txtCurOneProfitCalc);
-        txtCurTwoProfitCalc = (TextView) rootView.findViewById(R.id.txtCurTwoProfitCalc);
         txtExcRateCalc = (TextView) rootView.findViewById(R.id.txtExcRateCalc);
 
         txtPrecentProfitDinamic = (TextView) rootView.findViewById(R.id.txtPrecentProfitDinamic);
