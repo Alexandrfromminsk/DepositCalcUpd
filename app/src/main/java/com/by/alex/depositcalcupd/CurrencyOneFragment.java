@@ -75,7 +75,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         edtSummAvalue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-
             }
 
             @Override
@@ -148,7 +147,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
         edtBeginDate = (EditText) rootView.findViewById(R.id.edtBeginDate);
         edtBeginDate.setOnClickListener(this);
-
 
         if(savedInstanceState == null){
             loadSavedSettings();
