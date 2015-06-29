@@ -72,14 +72,35 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         mSettings = getActivity().getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
         edtSummAvalue = (EditText) rootView.findViewById(R.id.edtSummAvalue);
-        edtSummAvalue.addTextChangedListener(this);
-        edtSummAvalue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        edtSummAvalue.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                calc_it();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                edtSummAvalue.removeTextChangedListener(this);
+                edtSummAvalue.setText(f.formatSumm(f.parseSumm(edtSummAvalue.getText().toString())));
+                edtSummAvalue.addTextChangedListener(this);
+
+                int pos = edtSummAvalue.getText().length();
+                edtSummAvalue.setSelection(pos);
+            }
+        });
+
+        /*edtSummAvalue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 long sum = f.parseSumm(edtSummAvalue.getText().toString());
                 edtSummAvalue.setText(f.formatSumm(sum));
             }
-        });
+        });*/
         edtPercentA = (EditText) rootView.findViewById(R.id.edtPercent);
         edtPercentA.addTextChangedListener(this);
         edtBeginDate = (EditText) rootView.findViewById(R.id.edtBeginDate);
