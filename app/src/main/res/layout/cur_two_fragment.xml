@@ -69,7 +69,7 @@
                 <TextView
                     style="@style/MyViewLeftColumn"
                     android:text="@string/txtSumm"
-                    android:id="@+id/textView18" />
+                    android:id="@+id/txtSummWithCurrency" />
 
                 <TextView
                     style="@style/MyViewRightColumn"

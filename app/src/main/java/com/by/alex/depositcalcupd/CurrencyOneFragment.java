@@ -29,7 +29,7 @@ import java.util.GregorianCalendar;
 public class CurrencyOneFragment extends Fragment implements OnClickListener, TextWatcher {
 
     EditText edtSummAvalue, edtPercentA, edtBeginDate, edtTimeperiod;
-    TextView edtDateEnd, txtProfitAValue, txtGrowValue, txtFullSummValue;
+    TextView edtDateEnd, txtProfitAValue, txtGrowValue, txtFullSummValue, txtSummWithCurrency;
     Spinner spnTimeperiod, spnCapital, spnCurrency;
     Formatter f = new Formatter();
 
@@ -110,6 +110,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         txtProfitAValue = (TextView) rootView.findViewById(R.id.txtProfit);
         txtGrowValue = (TextView)rootView.findViewById(R.id.txtGrow);
         txtFullSummValue =(TextView)rootView.findViewById(R.id.txtFullSummValue);
+        txtSummWithCurrency = (TextView)rootView.findViewById(R.id.txtSummWithCurrency);
 
         //Spinners
         spnCurrency = (Spinner) rootView.findViewById(R.id.spnCurrencyA);
@@ -329,6 +330,10 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         ed.putInt(SPN_CURRENCY_A, spnCurrency.getSelectedItemPosition());
 
         ed.commit();
+
+    }
+
+    private void setTxtSummWithCurrency(String currency){
 
     }
 
