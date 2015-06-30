@@ -59,43 +59,46 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:weightSum="2">
 
                 <TextView
-                    style="@style/MyViewLeftColumn"
+                    style="@style/MyViewLeftColumnCentered"
                     android:text="@string/cmpr_txtInCurOne"
                     android:id="@+id/textView9" />
 
                 <TextView
-                    style="@style/MyViewRightColumn"
+                    style="@style/MyViewRightColumnCentered"
                     android:id="@+id/txtCurOneProfitNow" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:weightSum="2">
 
                 <TextView
-                    style="@style/MyViewLeftColumn"
+                    style="@style/MyViewLeftColumnCentered"
                     android:text="@string/cmpr_txtInCurTwo"
                     android:id="@+id/textView11" />
 
                 <TextView
-                    style="@style/MyViewRightColumn"
+                    style="@style/MyViewRightColumnCentered"
                     android:id="@+id/txtCurTwoProfitNow" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:weightSum="2">
 
                 <TextView
-                    style="@style/MyViewLeftColumn"
+                    style="@style/MyViewLeftColumnCentered"
                     android:text="@string/cmpr_txtInPercent"
                     android:id="@+id/textView7" />
 
                 <TextView
-                    style="@style/MyViewRightColumn"
+                    style="@style/MyViewRightColumnCentered"
                     android:id="@+id/txtPrecentProfitNow" />
             </TableRow>
 
