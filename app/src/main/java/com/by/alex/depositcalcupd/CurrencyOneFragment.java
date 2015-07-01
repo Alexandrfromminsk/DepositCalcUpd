@@ -90,8 +90,10 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
                 edtSummAvalue.removeTextChangedListener(this);
                 edtSummAvalue.setText(f.formatSumm(f.parseSumm(edtSummAvalue.getText().toString())));
                 edtSummAvalue.addTextChangedListener(this);
+                int len = edtSummAvalue.getText().length();
 
-                //int pos = edtSummAvalue.getText().length();
+                if (pos >= len)
+                    pos = len;
                 edtSummAvalue.setSelection(pos);
             }
         });
