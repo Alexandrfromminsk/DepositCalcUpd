@@ -206,7 +206,6 @@
                     android:layout_margin="16sp"
                     android:text="@string/cmpr_txtFirstSection_new"
                     android:id="@+id/seekBar" />
-
             </TableRow>
 
 

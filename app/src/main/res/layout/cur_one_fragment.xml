@@ -41,8 +41,7 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
             <TextView
                 style="@style/MyViewLeftColumn"
                 android:text="@string/txtSumm"
-                android:id="@+id/textView18"
-                android:password="false" />
+                android:id="@+id/txtSummWithCurrency" />
 
             <EditText
                 style="@style/MyViewRightColumn"
@@ -109,8 +108,7 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
                     android:inputType="number"
                     android:maxLength="4"
                     android:id="@+id/edtTimeperiod"
-                    android:layout_weight="2"
-                    android:nestedScrollingEnabled="true" />
+                    android:layout_weight="2"/>
 
                 <Spinner
                     android:layout_width="0dp"
@@ -134,13 +132,7 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
             <EditText
                 style="@style/MyViewRightColumn"
                 android:inputType="date"
-                android:ems="10"
-                android:id="@+id/edtBeginDate"
-                android:clickable="false"
-                android:backgroundTint="#000"
-                android:backgroundTintMode="multiply"
-                android:ellipsize="middle"
-                android:hint="click to edit date" />
+                android:id="@+id/edtBeginDate" />
         </TableRow>
 
 

@@ -245,7 +245,7 @@ public class CurrencyTwoFragment extends Fragment {
 
     }
 
-    void saveSettings(){
+    void saveSettings() {
         SharedPreferences.Editor ed = mSettings.edit();
         ed.putString(BEGIN_DATE_B, edtBeginDate.getText().toString());
         ed.putString(END_DATE_B, edtDateEnd.getText().toString());
@@ -274,7 +274,7 @@ public class CurrencyTwoFragment extends Fragment {
             if (this.spnTimelineChoice ==1) d*=30;
             if (this.spnTimelineChoice ==2) d*=365;
             int cap = spnCapital.getSelectedItemPosition();
-            Float[] profit = Calculator.calcProfit(s, pr, d,cap);
+            Float[] profit = Calculator.calcProfit(s, pr, d, cap);
 
             txtGrowValue.setText(f.format(profit[Calculator.PERCENT]));
             txtProfitBValue.setText(f.format(profit[Calculator.PROFIT]));

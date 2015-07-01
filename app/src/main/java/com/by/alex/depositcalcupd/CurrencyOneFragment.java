@@ -32,6 +32,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     TextView edtDateEnd, txtProfitAValue, txtGrowValue, txtFullSummValue, txtSummWithCurrency;
     Spinner spnTimeperiod, spnCapital, spnCurrency;
     Formatter f = new Formatter();
+    String textSumm;
 
     SharedPreferences mSettings;
 
@@ -68,6 +69,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cur_one_fragment, container, false);
+        textSumm = getResources().getString(R.string.txtSumm);
 
         mSettings = getActivity().getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -110,7 +112,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         txtProfitAValue = (TextView) rootView.findViewById(R.id.txtProfit);
         txtGrowValue = (TextView)rootView.findViewById(R.id.txtGrow);
         txtFullSummValue =(TextView)rootView.findViewById(R.id.txtFullSummValue);
-        txtSummWithCurrency = (TextView)rootView.findViewById(R.id.txtSummWithCurrency);
+        txtSummWithCurrency = (TextView) rootView.findViewById(R.id.txtSummWithCurrency);
 
         //Spinners
         spnCurrency = (Spinner) rootView.findViewById(R.id.spnCurrencyA);
@@ -145,6 +147,17 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spnCurrency.setAdapter(adapter);
+        spnCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setTxtSummWithCurrency(spnCurrency.getSelectedItem().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        setTxtSummWithCurrency(spnCurrency.getSelectedItem().toString());
 
         edtBeginDate = (EditText) rootView.findViewById(R.id.edtBeginDate);
         edtBeginDate.setOnClickListener(this);
@@ -247,6 +260,10 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         }
     }
 
+    private void setTxtSummWithCurrency(String currency){
+        txtSummWithCurrency.setText(this.textSumm + ", " + currency);
+    }
+
     public void calc_it(){
         if (allFieldsWithData()) {
             float s = f.parseSumm(edtSummAvalue.getText().toString());
@@ -333,9 +350,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
     }
 
-    private void setTxtSummWithCurrency(String currency){
-
-    }
 
     @Override
     public void onDestroy() {
