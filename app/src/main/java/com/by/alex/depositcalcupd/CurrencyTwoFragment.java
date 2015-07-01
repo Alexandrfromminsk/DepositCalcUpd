@@ -280,7 +280,6 @@ public class CurrencyTwoFragment extends Fragment {
             txtProfitBValue.setText(f.format(profit[Calculator.PROFIT]));
             txtFullSummValue.setText(f.format(profit[Calculator.FULLSUMM]));
         }
-
     }
 
     @Override
