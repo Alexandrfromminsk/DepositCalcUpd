@@ -86,11 +86,12 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
             @Override
             public void afterTextChanged(Editable editable) {
+                int pos = edtSummAvalue.getSelectionStart();
                 edtSummAvalue.removeTextChangedListener(this);
                 edtSummAvalue.setText(f.formatSumm(f.parseSumm(edtSummAvalue.getText().toString())));
                 edtSummAvalue.addTextChangedListener(this);
 
-                int pos = edtSummAvalue.getText().length();
+                //int pos = edtSummAvalue.getText().length();
                 edtSummAvalue.setSelection(pos);
             }
         });
@@ -317,7 +318,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         spnTimeperiod.setSelection(savedInstanceState.getInt("spnTimeperiod"));
     }
 
-    void loadSavedSettings(){
+    void loadSavedSettings() {
         edtDateEnd.setText(mSettings.getString(END_DATE, "01-02-2016"));
         edtSummAvalue.setText(mSettings.getString(SUMM_A_VALUE, "1000000"));
         edtPercentA.setText(mSettings.getString(PERCENT_A, "50"));
