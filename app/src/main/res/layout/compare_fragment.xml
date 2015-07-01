@@ -188,26 +188,25 @@
                     android:text="@string/cmpr_txtChooseCur"
                     android:id="@+id/textView13" />
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1">
 
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorAccent"
-                        android:inputType="numberDecimal"
-                        android:ems="10"
-                        android:id="@+id/edtExcRateDinamic" />
+                <EditText
+                    style="@style/MyViewRightColumnCentered"
+                    android:textColor="@color/colorAccent"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/edtExcRateDinamic" />
+            </TableRow>
 
-                    <SeekBar
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/seekBar" />
-                </LinearLayout>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <SeekBar
+                    android:gravity="center_horizontal"
+                    android:layout_span="2"
+                    android:layout_margin="16sp"
+                    android:text="@string/cmpr_txtFirstSection_new"
+                    android:id="@+id/seekBar" />
+
             </TableRow>
 
 
