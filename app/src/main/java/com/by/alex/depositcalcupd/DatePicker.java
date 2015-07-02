@@ -61,7 +61,7 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
 
         TextView dateEnd = (TextView) getActivity().findViewById(R.id.edtEndDate);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("d-M-yyyy");
         dateEnd.setText(sdf.format(cal.getTime()).toString());
 
     }

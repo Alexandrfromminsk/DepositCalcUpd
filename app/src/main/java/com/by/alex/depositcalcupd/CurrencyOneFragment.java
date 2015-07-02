@@ -188,7 +188,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
         });
 
@@ -213,7 +212,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     }
 
     public  void setEndDate(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("d-M-yyyy");
         GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
         try {
             Date date = sdf.parse(edtBeginDate.getText().toString());
@@ -367,12 +366,13 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+
         calc_it();
     }
 
     @Override
     public void afterTextChanged(Editable editable) {
-        //formatTwoDecimals();
+
     }
 
     public void saveData(){
