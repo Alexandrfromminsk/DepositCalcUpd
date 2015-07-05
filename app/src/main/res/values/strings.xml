@@ -14,7 +14,6 @@
 
     <string name="choose_data">Выберите дату</string>
 
-
     <string name="txtCurrencyA">Валюта 1</string>
     <string name="txtCurrencyB">Валюта 2</string>
     <string name="txtExchangeRate">Конверсия</string>
