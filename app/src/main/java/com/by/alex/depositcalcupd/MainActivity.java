@@ -21,7 +21,7 @@ public class MainActivity extends ActionBarActivity
 
     ViewPager mViewPager;
     ActionBar actionBar;
-    TabsPagerAdapter mAdapter;
+    TabsPagerAdapter mAdapter;вфыв
     FragmentManager myManager;
     CurrencyOneFragment firstTab;
     CurrencyTwoFragment secondTab;
