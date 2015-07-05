@@ -38,7 +38,6 @@ public class Formatter {
     }
 
     public float parseNumber (String str) {
-        //str=str.replace(" ", ",");
         float number;
         try {
             number = myFormat.parse(str).floatValue();
@@ -64,7 +63,6 @@ public class Formatter {
         } catch (ParseException e) {
             e.printStackTrace();
             try {
-                //str=str.replace(" ", "");
                 number = Long.parseLong(str);
             } catch (NumberFormatException ee) {
                 ee.printStackTrace();
@@ -76,7 +74,6 @@ public class Formatter {
     }
 
     public float parseExcRate(String str) {
-        //str=str.replace(" ", ",");
         float number;
         try {
             number = ExcRateFormat.parse(str).floatValue();

@@ -54,8 +54,7 @@
     <string name="cmpr_txtExcRateCurrent_new">При текущем обменном курсе</string>
 
     <string name="cmpr_txtInPercent">В процентах</string>
-    <string name="cmpr_txtInCurOne">В валюте 1</string>
-    <string name="cmpr_txtInCurTwo">В валюте 2</string>
+    <string name="cmpr_txtInCur">В валюте</string>
     <string name="cmpr_txtChooseCur">Выбрать обменный курс</string>
     <string name="cmpr_txtNoDiffInProfit">Отсутствует разница в прибыли при курсе</string>
 

@@ -78,8 +78,7 @@
 
                 <TextView
                     style="@style/MyViewLeftColumnCentered"
-                    android:text="@string/cmpr_txtInCurOne"
-                    android:id="@+id/textView9" />
+                    android:id="@+id/txtInCurOne1" />
 
                 <TextView
                     style="@style/MyViewRightColumnCentered"
@@ -93,8 +92,7 @@
 
                 <TextView
                     style="@style/MyViewLeftColumnCentered"
-                    android:text="@string/cmpr_txtInCurTwo"
-                    android:id="@+id/textView11" />
+                    android:id="@+id/txtInCurTwo2" />
 
                 <TextView
                     style="@style/MyViewRightColumnCentered"
@@ -166,8 +164,7 @@
 
                 <TextView
                     style="@style/MyViewLeftColumnCentered"
-                    android:text="@string/cmpr_txtInCurOne"
-                    android:id="@+id/textView17" />
+                    android:id="@+id/txtInCurOne2" />
 
                 <TextView
                     style="@style/MyViewRightColumnCentered"
@@ -181,8 +178,7 @@
 
                 <TextView
                     style="@style/MyViewLeftColumnCentered"
-                    android:text="@string/cmpr_txtInCurTwo"
-                    android:id="@+id/textView19" />
+                    android:id="@+id/txtInCurTwo1" />
 
                 <TextView
                     style="@style/MyViewRightColumnCentered"

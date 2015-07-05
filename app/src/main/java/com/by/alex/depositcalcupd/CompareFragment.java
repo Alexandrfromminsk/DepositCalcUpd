@@ -15,13 +15,13 @@ import android.widget.TextView;
 public class CompareFragment extends Fragment {
 
     TextView txtPrecentProfitNow,txtCurOneProfitNow, txtCurTwoProfitNow, txtExcRateNow,
-            txtPrecentProfitCalc,txtCurOneProfitCalc, txtCurTwoProfitCalc, txtExcRateCalc,
+            txtInCurTwo1, txtInCurTwo2, txtInCurOne1,txtInCurOne2, txtExcRateCalc,
             txtPrecentProfitDinamic,txtCurOneProfitDinamic, txtCurTwoProfitDinamic;
     EditText edtExcRateDinamic;
     Formatter f = new Formatter();
 
     private float ExcRateNow, ProfitA, ProfitB, PercentGrowA, PercentGrowB;
-    private String CurrencyA, CurrencyB;
+    private String  textInCur;
     private boolean Inverted_conversion;
     private SeekBar mSeekBar;
 
@@ -44,6 +44,12 @@ public class CompareFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.compare_fragment, container,false);
+
+        textInCur = getResources().getString(R.string.cmpr_txtInCur);
+        txtInCurOne1 = (TextView) rootView.findViewById(R.id.txtInCurOne1);
+        txtInCurOne2 = (TextView) rootView.findViewById(R.id.txtInCurOne2);
+        txtInCurTwo1 = (TextView) rootView.findViewById(R.id.txtInCurTwo1);
+        txtInCurTwo2 = (TextView) rootView.findViewById(R.id.txtInCurTwo2);
 
         txtPrecentProfitNow = (TextView) rootView.findViewById(R.id.txtPrecentProfitNow);
         txtCurOneProfitNow = (TextView) rootView.findViewById(R.id.txtCurOneProfitNow);
@@ -72,8 +78,8 @@ public class CompareFragment extends Fragment {
 
                 if (Inverted_conversion) diffInCurrB = diffProfit/dynRate;
                 else diffInCurrB = diffProfit*dynRate;
-                txtCurTwoProfitDinamic.setText(f.format(diffInCurrB) + CurrencyB);
-                txtCurOneProfitDinamic.setText(f.format(diffProfit) + CurrencyA);
+                txtCurTwoProfitDinamic.setText(f.format(diffInCurrB));
+                txtCurOneProfitDinamic.setText(f.format(diffProfit));
                 setDinamicPercent(dynRate);
             }
 
@@ -144,8 +150,11 @@ public class CompareFragment extends Fragment {
         this.PercentGrowB = PercentGrowB;
         this.ProfitA = profitA;
         this.ProfitB = profitB;
-        this.CurrencyA = String.format(" %s", currencyA);
-        this.CurrencyB = String.format(" %s", currencyB);
+
+        txtInCurOne1.setText(String.format("%s 1, %s", textInCur, currencyA));
+        txtInCurOne2.setText(String.format("%s 1, %s", textInCur, currencyA));
+        txtInCurTwo1.setText(String.format("%s 2, %s", textInCur, currencyB));
+        txtInCurTwo2.setText(String.format("%s 2, %s", textInCur, currencyB));
 
         txtExcRateNow.setText(f.formatExcRate(excRateNow));
 
@@ -157,18 +166,18 @@ public class CompareFragment extends Fragment {
         diffPercent = PercentGrowA - PercentGrowB;
 
         txtPrecentProfitNow.setText(f.format(diffPercent) + " %");
-        txtCurOneProfitNow.setText(f.format(diffProfit) + CurrencyA);
+        txtCurOneProfitNow.setText(f.format(diffProfit));
         if (Inverted_conversion) diffInCurrB = diffProfit/excRateNow;
         else diffInCurrB = diffProfit*excRateNow;
 
-        txtCurTwoProfitNow.setText(f.format(diffInCurrB) + CurrencyB);
+        txtCurTwoProfitNow.setText(f.format(diffInCurrB));
 
 
         //maybe another approach should be used
         edtExcRateDinamic.setText(f.formatExcRate(excRateNow));
         txtPrecentProfitDinamic.setText(f.format(diffPercent) + " %");
-        txtCurOneProfitDinamic.setText(f.format(diffProfit) + CurrencyA);
-        txtCurTwoProfitDinamic.setText(f.format(diffInCurrB) + CurrencyB);
+        txtCurOneProfitDinamic.setText(f.format(diffProfit));
+        txtCurTwoProfitDinamic.setText(f.format(diffInCurrB));
 
         float excRateCalc = (100+diffPercent)* excRateNow/100;
         txtExcRateCalc.setText(f.formatExcRate(excRateCalc));
