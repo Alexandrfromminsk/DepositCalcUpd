@@ -119,7 +119,6 @@ public class CompareFragment extends Fragment {
 
     private void setDinamicPercent(float excRate) {
         float percentDiffRate = (excRate/ExcRateNow - 1)*100;
-        //float currTwoUpdatedPercent = this.PercentGrowB + this.PercentGrowB*percentDiffRate;
         txtPrecentProfitDinamic.setText(f.format(this.PercentGrowA - this.PercentGrowB - percentDiffRate)+"%");
     }
 
