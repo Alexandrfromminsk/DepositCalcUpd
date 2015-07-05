@@ -12,7 +12,7 @@ public class Formatter {
 
     DecimalFormat summFormat = new DecimalFormat("#,###");
     DecimalFormat myFormat = new DecimalFormat("#,##0.00");
-    DecimalFormat ExcRateFormat =  new DecimalFormat("#,###.########");
+    DecimalFormat ExcRateFormat =  new DecimalFormat("#,###.##");
 
 
     public String format (float f) {
@@ -21,10 +21,18 @@ public class Formatter {
     }
 
     public String formatSumm (long l) {
+
         return summFormat.format(l);
     }
 
     public String formatExcRate (float l) {
+
+        if (l<1) {
+            ExcRateFormat.applyPattern("#,###.########");
+        }
+        else {
+            ExcRateFormat.applyLocalizedPattern("#,###.##");
+        }
 
         return ExcRateFormat.format(l);
     }

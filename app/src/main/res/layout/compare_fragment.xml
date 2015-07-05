@@ -13,8 +13,21 @@
             android:layout_height="match_parent"
             android:layout_margin="4sp"
             android:shrinkColumns="*"
-            android:stretchColumns="*"
-            >
+            android:stretchColumns="*" >
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/MyView"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:layout_span="2"
+                    android:text="@string/cmpr_txtNoDiffInProfit"
+                    android:id="@+id/textView77" />
+
+            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
@@ -23,8 +36,7 @@
 
                 <TextView
                     style="@style/MyViewLeftColumnCentered"
-                    android:textStyle="bold"
-                    android:text="@string/cmpr_txtNoDiffInProfit"
+                    android:text="@string/cmpr_txtСurrency"
                     android:id="@+id/textView21" />
 
                 <TextView
@@ -132,6 +144,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5sp"
                     android:id="@+id/greyline2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/MyView"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:layout_span="2"
+                    android:text="@string/cmpr_txtThirdSection"
+                    android:id="@+id/textView66" />
             </TableRow>
 
             <TableRow
