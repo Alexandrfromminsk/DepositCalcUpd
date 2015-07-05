@@ -21,7 +21,7 @@ public class MainActivity extends ActionBarActivity
 
     ViewPager mViewPager;
     ActionBar actionBar;
-    TabsPagerAdapter mAdapter;вфыв
+    TabsPagerAdapter mAdapter;
     FragmentManager myManager;
     CurrencyOneFragment firstTab;
     CurrencyTwoFragment secondTab;
@@ -29,8 +29,7 @@ public class MainActivity extends ActionBarActivity
 
     public static final String APP_PREFERENCES = "calcsettings";
 
-    private String[] tabs = {"Валюта 1", "Валюта 2", "Сравнение"};
-    //private String[] tabs = getString(R.array.tabs_array);
+    private String[] tabs;
     private static final int TAB_ONE = 0;
     private static final int TAB_TWO = 1;
     private static final int TAB_COMPARE = 2;
@@ -49,7 +48,7 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        tabs = getResources().getStringArray(R.array.tabs_array);
         myManager = getSupportFragmentManager();
 
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());

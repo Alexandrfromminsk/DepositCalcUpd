@@ -14,9 +14,9 @@
 
     <!--&lt;!&ndash; navigation drawer item labels  &ndash;&gt;-->
     <!--<string-array name="nav_drawer_labels">-->
-        <!--<item>@string/nav_item_home</item>-->
-        <!--<item>@string/nav_item_friends</item>-->
-        <!--<item>@string/nav_item_notifications</item>-->
+    <!--<item>@string/nav_item_home</item>-->
+    <!--<item>@string/nav_item_friends</item>-->
+    <!--<item>@string/nav_item_notifications</item>-->
     <!--</string-array>-->
 
     <string name="title_messages">Messages</string>
@@ -92,8 +92,8 @@
     </string-array>
 
     <string-array name="tabs_array">
-        <item>Валюта 1</item>
-        <item>Валюта 2</item>
+        <item>Вклад 1</item>
+        <item>Вклад 2</item>
         <item>Сравнение</item>
     </string-array>
 
