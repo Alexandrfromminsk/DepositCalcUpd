@@ -98,19 +98,6 @@ public class CompareFragment extends Fragment {
                 dynRate = (progress - 50)*step + ExcRateNow;
                 edtExcRateDinamic.setText(f.formatExcRate(dynRate));
 
-                /* At text watcher above
-                if (Inverted_conversion) profitBConverted = ProfitB/dynRate;
-                else profitBConverted = ProfitB*dynRate;
-
-                diffProfit = ProfitA - profitBConverted;
-
-                txtPrecentProfitDinamic.setText(f.format(777777)+"%");
-
-                if (Inverted_conversion) diffInCurrB = diffProfit/dynRate;
-                else diffInCurrB = diffProfit*dynRate;
-                txtCurTwoProfitDinamic.setText(f.format(diffInCurrB) + CurrencyB);
-                txtCurOneProfitDinamic.setText(f.format(diffProfit) + CurrencyA);
-                */
             }
 
             @Override
