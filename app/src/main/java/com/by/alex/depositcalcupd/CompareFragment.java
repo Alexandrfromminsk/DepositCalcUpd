@@ -114,7 +114,6 @@ public class CompareFragment extends Fragment {
         //Send data which will be saved at MainActivity
         //Log.e("befocallbackCompareTab", "befocallbackCompareTab");
         mCallback.saveCompareTabData(777);
-        //Log.e("aftercallbackCompareTab", "aftercallbackCompareTab");
 
     }
 
