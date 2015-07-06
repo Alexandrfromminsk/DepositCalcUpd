@@ -132,6 +132,8 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
             <EditText
                 style="@style/MyViewRightColumn"
                 android:inputType="date"
+                android:clickable="true"
+                android:focusable="false"
                 android:id="@+id/edtBeginDate" />
         </TableRow>
 
