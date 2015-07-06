@@ -51,36 +51,53 @@ public  class Calculator {
         if (Capitalization==2) {
             //Capitalization every 30 day
 
-            fullsumm = (float) (SummBegin *Math.pow(1+Percent*30.0/(365.0*100.0),Days/30.0));
-            profit = fullsumm - SummBegin;
-            percent = (profit/ SummBegin) * 100;
-            result[PERCENT] = percent;
-            result[PROFIT] = profit;
-            result[FULLSUMM] = fullsumm;
+            int num_capitalizations = Days/30;
+
+            if (num_capitalizations>0) {
+
+                fullsumm = (float) (SummBegin * Math.pow(1 + Percent * 30.0 / (365.0 * 100.0), num_capitalizations));
+                profit = fullsumm - SummBegin;
+                percent = (profit / SummBegin) * 100;
+                result[PERCENT] = percent;
+                result[PROFIT] = profit;
+                result[FULLSUMM] = fullsumm;
+            }
+            else result=calcProfit(SummBegin, Percent, Days);
         }
 
         if (Capitalization==3) {
 
             //Capitalization every 90 day (kvartal)
 
-            fullsumm = (float) (SummBegin *Math.pow(1+Percent*90.0/(365.0*100.0),Days/90.0));
-            profit = fullsumm - SummBegin;
-            percent = (profit/ SummBegin) * 100;
-            result[PERCENT] = percent;
-            result[PROFIT] = profit;
-            result[FULLSUMM] = fullsumm;
+            int num_capitalizations = Days/90;
+
+            if (num_capitalizations>0) {
+
+                fullsumm = (float) (SummBegin * Math.pow(1 + Percent * 90.0 / (365.0 * 100.0), num_capitalizations));
+                profit = fullsumm - SummBegin;
+                percent = (profit / SummBegin) * 100;
+                result[PERCENT] = percent;
+                result[PROFIT] = profit;
+                result[FULLSUMM] = fullsumm;
+            }
+            else result=calcProfit(SummBegin, Percent, Days);
         }
 
         if (Capitalization==4) {
 
             //Capitalization every 365 day
+            int num_capitalizations = Days/365;
 
-            fullsumm = (float) (SummBegin *Math.pow(1+Percent/100.0,Days/365.0));
-            profit = fullsumm - SummBegin;
-            percent = (profit/ SummBegin) * 100;
-            result[PERCENT] = percent;
-            result[PROFIT] = profit;
-            result[FULLSUMM] = fullsumm;
+            if (num_capitalizations>0) {
+
+                fullsumm = (float) (SummBegin * Math.pow(1 + Percent / 100.0, num_capitalizations));
+                profit = fullsumm - SummBegin;
+                percent = (profit / SummBegin) * 100;
+                result[PERCENT] = percent;
+                result[PROFIT] = profit;
+                result[FULLSUMM] = fullsumm;
+            }
+            else result=calcProfit(SummBegin, Percent, Days);
         }
 
         return result;
