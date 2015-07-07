@@ -1,8 +1,10 @@
 package com.by.alex.depositcalcupd;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -17,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -35,6 +38,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     String textSumm;
 
     SharedPreferences mSettings;
+    boolean showOverlay;
 
     public static final String BEGIN_DATE = "BEGIN_DATE";
     public static final String END_DATE = "END_DATE";
@@ -203,8 +207,36 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             }
         });
 
+        showOverlay = mSettings.getBoolean("overlaypref", true);
+        if (showOverlay == true) {
+            showActivityOverlay();
+        }
+
         return rootView;
     }
+
+    private void showActivityOverlay() {
+        final Dialog dialog = new Dialog(getActivity(),
+                android.R.style.Theme_Translucent_NoTitleBar);
+
+        dialog.setContentView(R.layout.overlay_activity);
+
+        LinearLayout layout = (LinearLayout) dialog
+                .findViewById(R.id.Overlay_activity);
+        layout.setBackgroundColor(Color.TRANSPARENT);
+        layout.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                dialog.dismiss();
+                SharedPreferences.Editor editor = mSettings.edit();
+                editor.putBoolean("overlaypref", false);
+                editor.commit();
+            }
+        });
+        dialog.show();
+    }
+
 
     public boolean allFieldsWithData(){
         return (edtPercentA.getText().length()>0)&(edtSummAvalue.getText().length()>0)&(edtTimeperiod.getText().length()>0);
