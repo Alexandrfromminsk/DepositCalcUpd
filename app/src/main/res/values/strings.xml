@@ -81,4 +81,24 @@
         <item>Сравнение</item>
     </string-array>
 
+
+    <string name="title_activity_settings">Settings</string>
+    <string name="pref_header_general">Общие настройки</string>
+    <string name="pref_header_other_general">Другие настройки</string>
+    <string name="check_news">Проверять обновления</string>
+    <string name="check_news_description">Проверка будет проходить в фоновом режиме</string>
+    <string name="pref_title_login">Логин пользователя</string>
+    <string name="pref_default_login">yourlogin</string>
+    <string name="pref_title_notifications">Частота уведомлений</string>
+    <string-array name="pref_list_titles">
+        <item>Всегда</item>
+        <item>По событию</item>
+        <item>Никогда</item>
+    </string-array>
+    <string-array name="pref_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
 </resources>

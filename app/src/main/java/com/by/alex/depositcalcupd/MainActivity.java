@@ -1,6 +1,7 @@
 package com.by.alex.depositcalcupd;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -110,9 +111,10 @@ public class MainActivity extends ActionBarActivity
         switch (item.getItemId())
         {
             case R.id.action_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.feedback:
-                //showHelp();
+                //show gmail
                 return true;
             case R.id.help:
                 //showHelp();
