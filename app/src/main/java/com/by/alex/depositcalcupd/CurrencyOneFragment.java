@@ -208,7 +208,8 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         });
 
         showOverlay = mSettings.getBoolean("overlaypref", true);
-        if (showOverlay == true) {
+        if (showOverlay == false) //REPLACE to true
+        {
             showActivityOverlay();
         }
 
