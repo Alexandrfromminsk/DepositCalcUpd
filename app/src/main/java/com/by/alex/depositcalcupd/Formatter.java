@@ -7,9 +7,6 @@ import java.text.ParseException;
 
 public class Formatter {
 
-    //DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.UK);
-    //final String decimalSeparator = ",";
-
     DecimalFormat summFormat = new DecimalFormat("#,###");
     DecimalFormat myFormat = new DecimalFormat("#,##0.00");
     DecimalFormat ExcRateFormat =  new DecimalFormat("#,###.##");
@@ -21,7 +18,6 @@ public class Formatter {
     }
 
     public String formatSumm (long l) {
-
         return summFormat.format(l);
     }
 
@@ -31,7 +27,7 @@ public class Formatter {
             ExcRateFormat.applyPattern("#,###.########");
         }
         else {
-            ExcRateFormat.applyLocalizedPattern("#,###.##");
+            ExcRateFormat.applyPattern("#,###.##");
         }
 
         return ExcRateFormat.format(l);
