@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -15,7 +16,7 @@ import android.widget.TextView;
 public class CompareFragment extends Fragment {
 
     TextView txtPrecentProfitNow,txtCurOneProfitNow, txtCurTwoProfitNow, txtExcRateNow,
-            txtInCurTwo1, txtInCurTwo2, txtInCurOne1,txtInCurOne2, txtExcRateCalc,
+            txtInCurTwo1, txtInCurTwo2, txtInCurOne1,txtInCurOne2, txtExcRateCalc, vievForFocus,
             txtPrecentProfitDinamic,txtCurOneProfitDinamic, txtCurTwoProfitDinamic;
     EditText edtExcRateDinamic;
     Formatter f = new Formatter();
@@ -51,6 +52,7 @@ public class CompareFragment extends Fragment {
         txtInCurTwo1 = (TextView) rootView.findViewById(R.id.txtInCurTwo1);
         txtInCurTwo2 = (TextView) rootView.findViewById(R.id.txtInCurTwo2);
 
+        vievForFocus = (TextView) rootView.findViewById(R.id.txtNoDiffInProfit);
         txtPrecentProfitNow = (TextView) rootView.findViewById(R.id.txtPrecentProfitNow);
         txtCurOneProfitNow = (TextView) rootView.findViewById(R.id.txtCurOneProfitNow);
         txtCurTwoProfitNow = (TextView) rootView.findViewById(R.id.txtCurTwoProfitNow);
@@ -63,6 +65,15 @@ public class CompareFragment extends Fragment {
         txtCurTwoProfitDinamic = (TextView) rootView.findViewById(R.id.txtCurTwoProfitDinamic);
 
         edtExcRateDinamic = (EditText) rootView.findViewById(R.id.edtExcRateDinamic);
+
+        edtExcRateDinamic.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                edtExcRateDinamic.setFocusable(true);
+                edtExcRateDinamic.setFocusableInTouchMode(true);
+                return false;
+            }
+        });
         edtExcRateDinamic.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {  }
@@ -86,6 +97,9 @@ public class CompareFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {      }
         });
+
+        edtExcRateDinamic.clearFocus();
+        vievForFocus.requestFocus();
 
         mSeekBar = (SeekBar) rootView.findViewById(R.id.seekBar);
         mSeekBar.setMax(100);
@@ -119,7 +133,7 @@ public class CompareFragment extends Fragment {
 
     private void setDinamicPercent(float excRate) {
         float percentDiffRate = (excRate/ExcRateNow - 1)*100;
-        txtPrecentProfitDinamic.setText(f.format(this.PercentGrowA - this.PercentGrowB - percentDiffRate)+"%");
+        txtPrecentProfitDinamic.setText(f.format(this.PercentGrowA - this.PercentGrowB - percentDiffRate) + "%");
     }
 
 
@@ -166,6 +180,28 @@ public class CompareFragment extends Fragment {
 
         float excRateCalc = (100+diffPercent)* excRateNow/100;
         txtExcRateCalc.setText(f.formatExcRate(excRateCalc));
+
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+
+
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+
+
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        edtExcRateDinamic.setFocusable(false);
+        edtExcRateDinamic.setFocusableInTouchMode(false);
 
     }
 
