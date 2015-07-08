@@ -1,8 +1,10 @@
 package com.by.alex.depositcalcupd;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -14,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -47,6 +51,7 @@ public class CurrencyTwoFragment extends Fragment {
     private int spnTimeperiodNumber, spnTimelineChoice;
     private String  spnPeriod, CurrencyA;
     Formatter f = new Formatter();
+    boolean showOverlay;
 
     OnTabChangedListener mCallback;
 
@@ -187,10 +192,43 @@ public class CurrencyTwoFragment extends Fragment {
             }
         });
 
-
         calc_it();
 
         return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        showOverlay = mSettings.getBoolean("show_overlay_1", true);
+        if (showOverlay == true)
+        {
+            showActivityOverlay();
+        }
+    }
+
+    private void showActivityOverlay() {
+        final Dialog dialog = new Dialog(getActivity(),
+                android.R.style.Theme_Translucent_NoTitleBar);
+
+        dialog.setContentView(R.layout.overlay_activity);
+
+        LinearLayout layout = (LinearLayout) dialog
+                .findViewById(R.id.Overlay_activity);
+        ImageView iv = (ImageView)dialog.findViewById(R.id.ivOverlayEntertask);
+        iv.setImageResource(R.drawable.overlay_1);
+        layout.setBackgroundColor(Color.TRANSPARENT);
+        layout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                dialog.dismiss();
+                SharedPreferences.Editor editor = mSettings.edit();
+                editor.putBoolean("show_overlay_1", false);
+                editor.commit();
+            }
+        });
+        dialog.show();
     }
 
     private ArrayAdapter<String> getCurrencyPairs() {

@@ -208,13 +208,19 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             }
         });
 
+
+
+        return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         showOverlay = mSettings.getBoolean("show_overlay_0", true);
         if (showOverlay == true)
         {
             showActivityOverlay();
         }
-
-        return rootView;
     }
 
     private void showActivityOverlay() {
@@ -234,7 +240,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             public void onClick(View arg0) {
                 dialog.dismiss();
                 SharedPreferences.Editor editor = mSettings.edit();
-                //editor.putBoolean("overlaypref", false);
+                editor.putBoolean("show_overlay_0", false);
                 editor.commit();
             }
         });

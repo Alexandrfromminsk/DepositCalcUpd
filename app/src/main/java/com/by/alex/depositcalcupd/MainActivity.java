@@ -1,7 +1,9 @@
 package com.by.alex.depositcalcupd;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -30,6 +32,8 @@ public class MainActivity extends ActionBarActivity
 
     public static final String APP_PREFERENCES = "calcsettings";
 
+    SharedPreferences mSettings;
+
     private String[] tabs;
     private static final int TAB_ONE = 0;
     private static final int TAB_TWO = 1;
@@ -48,6 +52,19 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        boolean showOverlays = mSettings.getBoolean("show_overlays", true);
+        if (showOverlays == true)
+        {
+            SharedPreferences.Editor editor = mSettings.edit();
+            editor.putBoolean("show_overlay_0", true);
+            editor.putBoolean("show_overlay_1", true);
+            editor.putBoolean("show_overlay_2", true);
+            editor.commit();
+        }
+
+
         setContentView(R.layout.activity_main);
         tabs = getResources().getStringArray(R.array.tabs_array);
         myManager = getSupportFragmentManager();
