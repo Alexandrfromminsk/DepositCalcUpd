@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -207,8 +208,8 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             }
         });
 
-        showOverlay = mSettings.getBoolean("overlaypref", true);
-        if (showOverlay == true) //REPLACE to true
+        showOverlay = mSettings.getBoolean("show_overlay_0", true);
+        if (showOverlay == true)
         {
             showActivityOverlay();
         }
@@ -224,6 +225,8 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
         LinearLayout layout = (LinearLayout) dialog
                 .findViewById(R.id.Overlay_activity);
+        ImageView iv = (ImageView)dialog.findViewById(R.id.ivOverlayEntertask);
+        iv.setImageResource(R.drawable.overlay_0);
         layout.setBackgroundColor(Color.TRANSPARENT);
         layout.setOnClickListener(new OnClickListener() {
 
@@ -231,7 +234,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             public void onClick(View arg0) {
                 dialog.dismiss();
                 SharedPreferences.Editor editor = mSettings.edit();
-                editor.putBoolean("overlaypref", false);
+                //editor.putBoolean("overlaypref", false);
                 editor.commit();
             }
         });
