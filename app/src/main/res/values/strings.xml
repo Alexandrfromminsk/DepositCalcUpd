@@ -86,7 +86,9 @@
     <string name="pref_header_general">Общие настройки</string>
     <string name="pref_header_other_general">Другие настройки</string>
     <string name="check_news">Проверять обновления</string>
+    <string name="show_overlays">Показать подсказки</string>
     <string name="check_news_description">Проверка будет проходить в фоновом режиме</string>
+    <string name="show_overlays_description">Подсказки будут показаны при следующей запуске</string>
     <string name="pref_title_login">Логин пользователя</string>
     <string name="pref_default_login">yourlogin</string>
     <string name="pref_title_notifications">Частота уведомлений</string>

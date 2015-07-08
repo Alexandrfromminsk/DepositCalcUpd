@@ -1,6 +1,10 @@
 package com.by.alex.depositcalcupd;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -10,6 +14,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -25,6 +31,7 @@ public class CompareFragment extends Fragment {
     private String  textInCur;
     private boolean Inverted_conversion;
     private SeekBar mSeekBar;
+    SharedPreferences mSettings;
 
     OnTabChangedListener mCallback;
 
@@ -45,6 +52,8 @@ public class CompareFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.compare_fragment, container,false);
+
+        mSettings = getActivity().getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
         textInCur = getResources().getString(R.string.cmpr_txtInCur);
         txtInCurOne1 = (TextView) rootView.findViewById(R.id.txtInCurOne1);
@@ -76,26 +85,28 @@ public class CompareFragment extends Fragment {
         });
         edtExcRateDinamic.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {  }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 float dynRate, profitBConverted, diffProfit, diffInCurrB;
                 dynRate = f.parseExcRate(edtExcRateDinamic.getText().toString()); //may be returned 1 if wrong format
-                if (Inverted_conversion) profitBConverted = ProfitB*dynRate;
-                else profitBConverted = ProfitB/dynRate;
+                if (Inverted_conversion) profitBConverted = ProfitB * dynRate;
+                else profitBConverted = ProfitB / dynRate;
 
                 diffProfit = ProfitA - profitBConverted;
 
-                if (Inverted_conversion) diffInCurrB = diffProfit/dynRate;
-                else diffInCurrB = diffProfit*dynRate;
+                if (Inverted_conversion) diffInCurrB = diffProfit / dynRate;
+                else diffInCurrB = diffProfit * dynRate;
                 txtCurTwoProfitDinamic.setText(f.format(diffInCurrB));
                 txtCurOneProfitDinamic.setText(f.format(diffProfit));
                 setDinamicPercent(dynRate);
             }
 
             @Override
-            public void afterTextChanged(Editable s) {      }
+            public void afterTextChanged(Editable s) {
+            }
         });
 
         edtExcRateDinamic.clearFocus();
@@ -108,20 +119,58 @@ public class CompareFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 float dynRate;
-                float step = ExcRateNow/100;
-                dynRate = (progress - 50)*step + ExcRateNow;
+                float step = ExcRateNow / 100;
+                dynRate = (progress - 50) * step + ExcRateNow;
                 edtExcRateDinamic.setText(f.formatExcRate(dynRate));
 
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {    }
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {     }
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
         });
 
+
+
         return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        boolean showOverlay = mSettings.getBoolean("show_overlay_2", true);
+        if (showOverlay == true)
+        {
+            showActivityOverlay();
+        }
+    }
+
+    private void showActivityOverlay() {
+        final Dialog dialog = new Dialog(getActivity(),
+                android.R.style.Theme_Translucent_NoTitleBar);
+
+        dialog.setContentView(R.layout.overlay_activity);
+
+        LinearLayout layout = (LinearLayout) dialog
+                .findViewById(R.id.Overlay_activity);
+        ImageView iv = (ImageView)dialog.findViewById(R.id.ivOverlayEntertask);
+        iv.setImageResource(R.drawable.overlay_2);
+        layout.setBackgroundColor(Color.TRANSPARENT);
+        layout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                dialog.dismiss();
+                SharedPreferences.Editor editor = mSettings.edit();
+                editor.putBoolean("show_overlay_2", false);
+                editor.commit();
+            }
+        });
+        dialog.show();
     }
 
     public void saveData(){
@@ -183,19 +232,6 @@ public class CompareFragment extends Fragment {
 
     }
 
-    @Override
-    public void onPause(){
-        super.onPause();
-
-
-    }
-
-    @Override
-    public void onStop(){
-        super.onStop();
-
-
-    }
 
     @Override
     public void onResume(){
