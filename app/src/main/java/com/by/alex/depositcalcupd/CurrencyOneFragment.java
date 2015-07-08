@@ -1,10 +1,8 @@
 package com.by.alex.depositcalcupd;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -19,8 +17,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -216,35 +212,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     @Override
     public void onStart() {
         super.onStart();
-        showOverlay = mSettings.getBoolean("show_overlay_0", true);
-        if (showOverlay == true)
-        {
-            showActivityOverlay();
-        }
-    }
 
-    private void showActivityOverlay() {
-        final Dialog dialog = new Dialog(getActivity(),
-                android.R.style.Theme_Translucent_NoTitleBar);
-
-        dialog.setContentView(R.layout.overlay_activity);
-
-        LinearLayout layout = (LinearLayout) dialog
-                .findViewById(R.id.Overlay_activity);
-        ImageView iv = (ImageView)dialog.findViewById(R.id.ivOverlayEntertask);
-        iv.setImageResource(R.drawable.overlay_0);
-        layout.setBackgroundColor(Color.TRANSPARENT);
-        layout.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                dialog.dismiss();
-                SharedPreferences.Editor editor = mSettings.edit();
-                editor.putBoolean("show_overlay_0", false);
-                editor.commit();
-            }
-        });
-        dialog.show();
     }
 
 

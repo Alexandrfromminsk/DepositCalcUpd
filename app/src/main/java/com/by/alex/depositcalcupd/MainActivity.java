@@ -1,9 +1,11 @@
 package com.by.alex.depositcalcupd;
 
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +15,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.by.alex.depositcalcupd.adapter.TabsPagerAdapter;
 
@@ -144,14 +149,19 @@ public class MainActivity extends ActionBarActivity
         String tag = makeFragmentName(mViewPager.getId(), tab.getPosition());
 
         switch (tab.getPosition()){
+            case TAB_ONE:
+                showActivityOverlay(TAB_ONE);
+                break;
             case TAB_TWO:
                 secondTab = (CurrencyTwoFragment) myManager.findFragmentByTag(tag);
                 secondTab.setDataFromFirstTab(CurrencyA, SummA, Timeperiod, Spn_timeperiod, DataBegin, DataEnd);
+                showActivityOverlay(TAB_TWO);
                 break;
             case TAB_COMPARE:
                 compareTab = (CompareFragment) myManager.findFragmentByTag(tag);
                 compareTab.setDataFromTabs(CurrencyA, CurrencyB, ProfitA, ProfitB, ExcRate,
                         PercentGrowA, PercentGrowB, Inverted_conversion);
+                showActivityOverlay(TAB_COMPARE);
                 break;
         }
     }
@@ -175,7 +185,39 @@ public class MainActivity extends ActionBarActivity
                 break;
         }
     }
+    private void showActivityOverlay(int tab_number) {
 
+        String settings_name = "show_overlay_" + tab_number;
+
+        boolean showOverlay = mSettings.getBoolean(settings_name, true);
+        if (showOverlay == true) {
+
+            final Dialog dialog = new Dialog(this,
+                    android.R.style.Theme_Translucent_NoTitleBar);
+
+            dialog.setContentView(R.layout.overlay_activity);
+
+            LinearLayout layout = (LinearLayout) dialog
+                    .findViewById(R.id.Overlay_activity);
+            ImageView iv = (ImageView) dialog.findViewById(R.id.ivOverlayEntertask);
+            String image_name = "overlay_" + tab_number;
+            iv.setImageResource(getResources().getIdentifier(image_name,"drawable",getPackageName()));
+            layout.setBackgroundColor(Color.TRANSPARENT);
+            layout.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View arg0) {
+                    dialog.dismiss();
+
+                }
+            });
+            dialog.show();
+
+            SharedPreferences.Editor editor = mSettings.edit();
+            editor.putBoolean(settings_name, false);
+            editor.commit();
+        }
+    }
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         //Toast.makeText(getApplicationContext(), "onTabReselected".toString(), Toast.LENGTH_SHORT).show();
