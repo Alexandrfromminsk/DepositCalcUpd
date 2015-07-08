@@ -42,7 +42,6 @@
                 <TextView
                     style="@style/MyViewRightColumnCentered"
                     android:textColor="@color/colorAccent"
-                    android:layout_gravity="left|center_vertical"
                     android:id="@+id/txtExcRateCalc" />
             </TableRow>
 
@@ -216,6 +215,8 @@
                     style="@style/MyViewRightColumnCentered"
                     android:textColor="@color/colorAccent"
                     android:layout_gravity="left|center_vertical"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:inputType="numberDecimal"
                     android:id="@+id/edtExcRateDinamic" />
             </TableRow>
