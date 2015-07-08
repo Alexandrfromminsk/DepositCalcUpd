@@ -9,7 +9,6 @@
     <ImageView
         android:id="@+id/ivOverlayEntertask"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:src="@drawable/overlay_first_tab" />
+        android:layout_height="fill_parent" />
 
 </LinearLayout>
