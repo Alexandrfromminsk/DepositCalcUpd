@@ -59,13 +59,16 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
 
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        boolean showOverlays = mSettings.getBoolean("show_overlays", true);
+        //sp = PreferenceManager.getDefaultSharedPreferences(this);
+
+        boolean showOverlays = getSharedPreferences("pref_key_settings", Context.MODE_PRIVATE).getBoolean("show_overlays", false);
         if (showOverlays == true)
         {
             SharedPreferences.Editor editor = mSettings.edit();
             editor.putBoolean("show_overlay_0", true);
             editor.putBoolean("show_overlay_1", true);
             editor.putBoolean("show_overlay_2", true);
+            editor.putBoolean("showOverlays", false);
             editor.commit();
         }
 
@@ -192,6 +195,10 @@ public class MainActivity extends ActionBarActivity
         boolean showOverlay = mSettings.getBoolean(settings_name, true);
         if (showOverlay == true) {
 
+            SharedPreferences.Editor editor = mSettings.edit();
+            editor.putBoolean(settings_name, false);
+            editor.commit();
+
             final Dialog dialog = new Dialog(this,
                     android.R.style.Theme_Translucent_NoTitleBar);
 
@@ -201,21 +208,16 @@ public class MainActivity extends ActionBarActivity
                     .findViewById(R.id.Overlay_activity);
             ImageView iv = (ImageView) dialog.findViewById(R.id.ivOverlayEntertask);
             String image_name = "overlay_" + tab_number;
-            iv.setImageResource(getResources().getIdentifier(image_name,"drawable",getPackageName()));
+            iv.setImageResource(getResources().getIdentifier(image_name, "drawable", getPackageName()));
             layout.setBackgroundColor(Color.TRANSPARENT);
             layout.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View arg0) {
                     dialog.dismiss();
-
                 }
             });
             dialog.show();
-
-            SharedPreferences.Editor editor = mSettings.edit();
-            editor.putBoolean(settings_name, false);
-            editor.commit();
         }
     }
     @Override
