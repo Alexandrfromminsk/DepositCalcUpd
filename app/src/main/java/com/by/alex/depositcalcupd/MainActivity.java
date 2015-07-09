@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -37,7 +38,7 @@ public class MainActivity extends ActionBarActivity
 
     public static final String APP_PREFERENCES = "calcsettings";
 
-    SharedPreferences mSettings;
+    SharedPreferences mSettings, defaultSettings;
 
     private String[] tabs;
     private static final int TAB_ONE = 0;
@@ -59,16 +60,18 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
 
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        //sp = PreferenceManager.getDefaultSharedPreferences(this);
+        defaultSettings = PreferenceManager.getDefaultSharedPreferences(this);
 
-        boolean showOverlays = getSharedPreferences("pref_key_settings", Context.MODE_PRIVATE).getBoolean("show_overlays", false);
+        boolean showOverlays = defaultSettings.getBoolean("show_overlays", true);
         if (showOverlays == true)
         {
             SharedPreferences.Editor editor = mSettings.edit();
             editor.putBoolean("show_overlay_0", true);
             editor.putBoolean("show_overlay_1", true);
             editor.putBoolean("show_overlay_2", true);
-            editor.putBoolean("showOverlays", false);
+            editor.commit();
+            SharedPreferences.Editor editorDefault = defaultSettings.edit();
+            editorDefault.putBoolean("showOverlays", false);
             editor.commit();
         }
 
