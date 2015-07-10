@@ -8,6 +8,7 @@
 
     <ImageView
         android:id="@+id/ivOverlayEntertask"
+        android:layout_margin="0dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 
