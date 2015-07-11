@@ -37,7 +37,7 @@
             android:key="show_overlays"
             android:title="@string/show_overlays"
             android:summary="@string/show_overlays_description"
-            android:defaultValue="false" />
+            android:defaultValue="true" />
 
     </PreferenceCategory>
 
