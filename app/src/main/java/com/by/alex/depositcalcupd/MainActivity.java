@@ -137,11 +137,19 @@ public class MainActivity extends ActionBarActivity
                 //show gmail
                 return true;
             case R.id.help:
-                //showHelp();
+                showHelp();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showHelp() {
+
+        FragmentManager fm = getSupportFragmentManager();
+        HelpDialog dialogFragment = new HelpDialog ();
+        dialogFragment.show(fm, "");
+
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)

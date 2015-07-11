@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Сравнение вкладов</string>
     <string name="action_settings">Настройки</string>
+    <string name="of_adv">Выключить рекламу</string>
     <string name="about">О программе</string>
     <string name="feedback">Оставить отзыв</string>
 
@@ -13,6 +14,12 @@
     <string name="title_home">Home</string>
 
     <string name="choose_data">Выберите дату</string>
+
+    <string name="help_title">Помощь</string>
+    <string name="help_category_one">Значения полей</string>
+    <string name="help_category_two">Порядок работы</string>
+    <string name="help_category_three">Принципы рассчета</string>
+    <string name="help_dismiss">Отмена</string>
 
     <string name="txtCurrencyA">Валюта 1</string>
     <string name="txtCurrencyB">Валюта 2</string>
