@@ -5,14 +5,6 @@
     <string name="about">О программе</string>
     <string name="feedback">Оставить отзыв</string>
 
-    <string name="action_search">Search</string>
-    <string name="drawer_open">Open</string>
-    <string name="drawer_close">Close</string>
-
-    <string name="title_messages">Messages</string>
-    <string name="title_friends">Friends</string>
-    <string name="title_home">Home</string>
-
     <string name="choose_data">Выберите дату</string>
 
     <string name="help_title">Помощь</string>

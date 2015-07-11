@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.by.alex.depositcalcupd.adapter.TabsPagerAdapter;
+import com.by.alex.depositcalcupd.help.HelpDialog;
 
 //import android.app.FragmentManager;
 
