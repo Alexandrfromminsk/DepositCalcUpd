@@ -27,6 +27,12 @@
         android:title="@string/help_title" />
 
     <item
+        android:id="@+id/sendEmail"
+        android:orderInCategory="100"
+        app:showAsAction="never"
+        android:title="@string/sendEmail" />
+
+    <item
         android:id="@+id/about"
         android:orderInCategory="100"
         app:showAsAction="never"

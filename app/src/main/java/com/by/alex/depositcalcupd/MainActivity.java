@@ -1,8 +1,10 @@
 package com.by.alex.depositcalcupd;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -17,9 +19,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.by.alex.depositcalcupd.adapter.TabsPagerAdapter;
 import com.by.alex.depositcalcupd.help.HelpDialog;
@@ -138,15 +140,49 @@ public class MainActivity extends ActionBarActivity
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
+            case R.id.sendEmail:
+                sendEmail();
+                return true;
             case R.id.feedback:
                 //show gmail
                 return true;
             case R.id.help:
                 showHelp();
                 return true;
+            case R.id.about:
+                showAbout();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void sendEmail() {
+        Intent Email = new Intent(android.content.Intent.ACTION_SEND);
+        Email.setType("text/email");
+        Email.putExtra(Intent.EXTRA_EMAIL, new String[] { "android.depositcalc@gmail.com" });
+        Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+        Email.putExtra(Intent.EXTRA_TEXT, "Dear ...," + "");
+        try {
+            startActivity(Email);;
+        } catch (android.content.ActivityNotFoundException exception) {
+            Toast.makeText(this, getResources().getString(R.string.sendEmail_error), Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    private void showAbout() {
+        final AlertDialog aboutDialog = new AlertDialog.Builder(
+                this).setMessage(getResources().getString(R.string.about_text))
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                    }
+                }).create();
+
+        aboutDialog.show();
     }
 
     private void showHelp() {
