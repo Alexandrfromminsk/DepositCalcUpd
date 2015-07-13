@@ -26,6 +26,15 @@
                 <category android:name="android.intent.category.PREFERENCE" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".help.HelpDetailActivity"
+            android:label="@string/help_title"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name=".help.HelpDetailActivity" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

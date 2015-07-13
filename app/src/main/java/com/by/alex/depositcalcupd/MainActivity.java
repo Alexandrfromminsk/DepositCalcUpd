@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.by.alex.depositcalcupd.adapter.TabsPagerAdapter;
+import com.by.alex.depositcalcupd.help.HelpDialog;
 
 //import android.app.FragmentManager;
 
@@ -150,24 +151,10 @@ public class MainActivity extends ActionBarActivity
 
     private void showHelp() {
 
-      final Dialog dialog = new Dialog(this,
-              android.R.style.Theme_Translucent_NoTitleBar);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        dialog.setContentView(R.layout.overlay_activity);
+        FragmentManager fm = getSupportFragmentManager();
+        HelpDialog dialogFragment = new HelpDialog ();
+        dialogFragment.show(fm, "");
 
-        LinearLayout layout = (LinearLayout) dialog
-                    .findViewById(R.id.Overlay_activity);
-        ImageView iv = (ImageView) dialog.findViewById(R.id.ivOverlayEntertask);
-
-        layout.setBackgroundColor(Color.TRANSPARENT);
-        layout.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -227,9 +214,7 @@ public class MainActivity extends ActionBarActivity
 
             final Dialog dialog = new Dialog(this,
                     android.R.style.Theme_Translucent_NoTitleBar);
-            //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
             dialog.setContentView(R.layout.overlay_activity);
 
             LinearLayout layout = (LinearLayout) dialog

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/help_category_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/help_category_one" />
+
+    <Button
+        android:id="@+id/help_category_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/help_category_two" />
+
+    <Button
+        android:id="@+id/help_category_three"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/help_category_three" />
+    <Button
+        android:id="@+id/dismiss"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/help_dismiss" />
+
+</LinearLayout>
