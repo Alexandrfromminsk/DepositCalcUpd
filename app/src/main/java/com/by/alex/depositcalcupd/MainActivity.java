@@ -3,11 +3,13 @@ package com.by.alex.depositcalcupd;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -144,7 +146,7 @@ public class MainActivity extends ActionBarActivity
                 sendEmail();
                 return true;
             case R.id.feedback:
-                //show gmail
+                leaveFeedback();
                 return true;
             case R.id.help:
                 showHelp();
@@ -154,6 +156,16 @@ public class MainActivity extends ActionBarActivity
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void leaveFeedback() {
+        Uri uri = Uri.parse("market://details?id=" + getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + getPackageName())));
         }
     }
 
