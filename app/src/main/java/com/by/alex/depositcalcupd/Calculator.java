@@ -134,5 +134,35 @@ public  class Calculator {
         Float[] result = calcProfit(SummBegin, Percent, d, Capitalization);
         return result;
     }
+    //Russian tax.
+    //tax_percent - tax amount (30 or 35%)
+    //key_value is % if more that it then tax should be applyed (18.25% for RUR and 9%)
+    public static Float[] calcProfit(float SummBegin, float Percent, int Days, int Capitalization, int tax_percent, float key_percent) {
+
+        Float[] temp_result = calcProfit(SummBegin, Percent, Days, Capitalization);
+
+        if (key_percent>Percent)   return temp_result;
+        else {
+            Float[] result = new Float[3];
+            float untaxed_summ = (float) ((SummBegin*key_percent*Days)/(365.0*100.0)) + SummBegin;
+            float tax = (float) ((temp_result[FULLSUMM] - untaxed_summ)*tax_percent/100.0);
+            result[PERCENT] = (float)((temp_result[PROFIT]-tax/SummBegin)*100.0);
+            result[PROFIT] = temp_result[PROFIT]-tax;
+            result[FULLSUMM] = temp_result[FULLSUMM]-tax;
+
+            return result;
+
+        }
+    }
+
+    //Russian tax.
+    public static Float[] calcProfit(float SummBegin, float Percent, int Capitalization, String BeginDate, String EndDate,  int tax_percent, float key_percent) {
+
+        Float[] temp_result = calcProfit(SummBegin, Percent, Capitalization, BeginDate, EndDate);
+
+
+        return temp_result;
+    }
+
 
 }

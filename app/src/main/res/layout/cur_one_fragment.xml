@@ -46,8 +46,6 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
             <EditText
                 style="@style/MyViewRightColumn"
                 android:inputType="number"
-                android:ems="10"
-                android:textStyle="bold"
                 android:id="@+id/edtSummAvalue"
                 android:typeface="sans" />
         </TableRow>

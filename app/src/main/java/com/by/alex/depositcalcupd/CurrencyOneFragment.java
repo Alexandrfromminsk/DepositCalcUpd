@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -288,8 +289,35 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
 
             Float[] profit;
             int dmy = spnTimeperiod.getSelectedItemPosition();
-            if (dmy==0) profit = Calculator.calcProfit(s, pr, d,cap);
-            else  profit = Calculator.calcProfit(s, pr, cap, BeginDate, EndDate);
+
+            boolean russian_tax = mSettings.getBoolean("russian_tax", false);
+
+            if (!russian_tax) {
+                if (dmy == 0) profit = Calculator.calcProfit(s, pr, d, cap);
+                else profit = Calculator.calcProfit(s, pr, cap, BeginDate, EndDate);
+            }
+            else {
+
+                int tax_percent;
+                String tax_percent_string = mSettings.getString("tax_percent", "35");
+                String key_percent_string = (spnCurrency.getSelectedItem().toString().equals("RUR"))?
+                        mSettings.getString("tax_percent", "18.25"): mSettings.getString("key_percent_foreign", "9");
+                float key_percent;
+                try {
+                    key_percent = Float.valueOf(key_percent_string);
+                    tax_percent= Integer.valueOf(tax_percent_string);
+                } catch (NumberFormatException nfe)
+                {
+                    key_percent = (float)18.25;
+                    tax_percent = 35;
+                    Toast.makeText(getActivity(),"NumberFormatException: " + nfe.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                if (dmy == 0) profit = Calculator.calcProfit(s, pr, d, cap, tax_percent, key_percent);
+                else profit = Calculator.calcProfit(s, pr, cap, BeginDate, EndDate, tax_percent, key_percent);
+
+            }
 
             txtGrowValue.setText(f.format(profit[Calculator.PERCENT]));
             txtProfitAValue.setText(f.format(profit[Calculator.PROFIT]));
