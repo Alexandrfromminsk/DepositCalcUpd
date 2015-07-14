@@ -105,10 +105,10 @@ public  class Calculator {
 
     public static Float[] calcProfit(float SummBegin, float Percent, int Capitalization,
                                      String BeginDate, String EndDate) {
-       // Float[] result = new Float[3];
+
         long Days;
         int d=0;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("d-M-yyyy");
 
         try {
             Date start = sdf.parse(BeginDate);
@@ -146,7 +146,7 @@ public  class Calculator {
             Float[] result = new Float[3];
             float untaxed_summ = (float) ((SummBegin*key_percent*Days)/(365.0*100.0)) + SummBegin;
             float tax = (float) ((temp_result[FULLSUMM] - untaxed_summ)*tax_percent/100.0);
-            result[PERCENT] = (float)((temp_result[PROFIT]-tax/SummBegin)*100.0);
+            result[PERCENT] = (float)(((temp_result[PROFIT]-tax)/SummBegin)*100.0);
             result[PROFIT] = temp_result[PROFIT]-tax;
             result[FULLSUMM] = temp_result[FULLSUMM]-tax;
 
@@ -158,11 +158,32 @@ public  class Calculator {
     //Russian tax.
     public static Float[] calcProfit(float SummBegin, float Percent, int Capitalization, String BeginDate, String EndDate,  int tax_percent, float key_percent) {
 
-        Float[] temp_result = calcProfit(SummBegin, Percent, Capitalization, BeginDate, EndDate);
+        long Days;
+        int d = 0;
+        SimpleDateFormat sdf = new SimpleDateFormat("d-M-yyyy");
 
+        try {
+            Date start = sdf.parse(BeginDate);
+            Date end = sdf.parse(EndDate);
+            long diff = end.getTime() - start.getTime();
+            Days = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            Days = 0;
+        }
 
-        return temp_result;
+        try {
+            if (Days < Integer.MIN_VALUE || Days > Integer.MAX_VALUE) {
+                throw new IllegalArgumentException
+                        (Days + " cannot be cast to int without changing its value.");
+            } else d = (int) Days;
+        } catch (IllegalArgumentException ex) {
+            Log.e("Calculator", "Timeperiod so big");
+        }
+
+        Float[] result = calcProfit(SummBegin, Percent, d, Capitalization, tax_percent, key_percent);
+
+        return result;
     }
-
 
 }
