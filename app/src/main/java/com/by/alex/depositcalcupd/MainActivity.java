@@ -21,12 +21,15 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.by.alex.depositcalcupd.adapter.TabsPagerAdapter;
 import com.by.alex.depositcalcupd.help.HelpDialog;
+
+import java.lang.reflect.Field;
 
 //import android.app.FragmentManager;
 
@@ -64,6 +67,8 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getOverflowMenu();
 
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         defaultSettings = PreferenceManager.getDefaultSharedPreferences(this);
@@ -315,6 +320,19 @@ public class MainActivity extends ActionBarActivity
 
     }
 
+    private void getOverflowMenu() {
+
+        try {
+            ViewConfiguration config = ViewConfiguration.get(this);
+            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            if(menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     private String makeFragmentName(int viewId, int index)
     {
