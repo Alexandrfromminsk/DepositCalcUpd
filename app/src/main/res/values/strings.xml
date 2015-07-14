@@ -89,22 +89,28 @@
     <string name="title_activity_settings">Настройки</string>
     <string name="pref_header_general">Общие настройки</string>
     <string name="pref_header_other_general">Другие настройки</string>
-    <string name="check_news">Проверять обновления</string>
+    <string name="russian_tax">Учитывать налог на вклады</string>
     <string name="show_overlays">Показать подсказки</string>
-    <string name="check_news_description">Проверка будет проходить в фоновом режиме</string>
+    <string name="tax_description">В РФ доходы по ставке выше ключевой облагаются налогом. Отметьте этот пункт настроек для учета налога.</string>
     <string name="show_overlays_description">Подсказки будут показаны при следующей запуске</string>
-    <string name="pref_title_login">Логин пользователя</string>
-    <string name="pref_default_login">yourlogin</string>
-    <string name="pref_title_notifications">Частота уведомлений</string>
-    <string-array name="pref_list_titles">
-        <item>Всегда</item>
-        <item>По событию</item>
-        <item>Никогда</item>
+    <string name="tax_percent">Величина налога</string>
+    <string name="pref_default_tax_percent">35</string>
+    <string name="key_percent">Ключевая ставка</string>
+    <string name="key_percent_description">Налог буден рассчитываться для вкладов в рублях, если их ставка превышает указанную. </string>
+    <string name="pref_default_key_percent">18.25</string>
+    <string name="key_percent_foreign">Максимальная безналоговая ставка для вкладов в иностранной валюте</string>
+    <string name="key_percent_foreign_description">Вклады в иностранной валюте по ставке выше указанной будут облагаться налогом.</string>
+    <string name="pref_default_key_percent_foreign">9</string>
+    <string name="pref_set_language">Выбрать язык</string>
+    <string-array name="pref_list_lang">
+        <item>Русский</item>
+        <item>Белорусский</item>
+        <item>Украинский</item>
     </string-array>
-    <string-array name="pref_list_values">
-        <item>1</item>
+    <string-array name="pref_list_lang_values">
         <item>0</item>
-        <item>-1</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
 
 </resources>
