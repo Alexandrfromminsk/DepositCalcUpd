@@ -30,8 +30,6 @@ import com.by.alex.depositcalcupd.help.HelpDialog;
 
 import java.lang.reflect.Field;
 
-//import android.app.FragmentManager;
-
 
 public class MainActivity extends ActionBarActivity
         implements ActionBar.TabListener, OnTabChangedListener {

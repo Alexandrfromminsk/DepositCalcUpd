@@ -19,6 +19,7 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
+            android:windowSoftInputMode="stateHidden"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name=".SettingsActivity" />
