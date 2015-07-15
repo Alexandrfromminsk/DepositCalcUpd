@@ -47,7 +47,6 @@ public class CurrencyTwoFragment extends Fragment {
     private int spnTimeperiodNumber, spnTimelineChoice;
     private String  spnPeriod, CurrencyA;
     Formatter f = new Formatter();
-    boolean showOverlay;
 
     OnTabChangedListener mCallback;
 
@@ -283,11 +282,52 @@ public class CurrencyTwoFragment extends Fragment {
         if (allFieldsWithData()) {
             float s = f.parseNumber(edtSummAvalue.getText().toString());
             float pr = Float.parseFloat(edtPercentB.getText().toString());
-            int d = this.spnTimeperiodNumber;
-            if (this.spnTimelineChoice ==1) d*=30;
-            if (this.spnTimelineChoice ==2) d*=365;
             int cap = spnCapital.getSelectedItemPosition();
-            Float[] profit = Calculator.calcProfit(s, pr, d, cap);
+            Float[] profit;
+            int days = Calculator.calcNumberDays(edtBeginDate.getText().toString(), edtDateEnd.getText().toString());
+
+            boolean russian_tax = mSettings.getBoolean("russian_tax", false);
+            boolean ukr_tax = mSettings.getBoolean("ukr_tax", false);
+
+            if (russian_tax) {
+                int tax_percent;
+                float key_percent;
+                String tax_percent_string = mSettings.getString("tax_percent", "35");
+                String key_percent_string = (spnCurrency.getSelectedItem().toString().equals("RUR"))?
+                        mSettings.getString("key_percent", "18.25"): mSettings.getString("key_percent_foreign", "9");
+
+
+                try {
+                    key_percent = Float.valueOf(key_percent_string);
+                    tax_percent= Integer.valueOf(tax_percent_string);
+                } catch (NumberFormatException nfe)
+                {
+
+                    tax_percent = (int) getResources().getDimension(R.dimen.default_rus_tax_percent_int);
+                    key_percent = getResources().getDimension(R.dimen.default_key_percent_float);
+                }
+
+                profit = Calculator.calcProfit(s, pr, days, cap, tax_percent, key_percent);
+
+            }
+            else if (ukr_tax) {
+                int ukr_tax_percent;
+                String ukr_tax_percent_string = mSettings.getString("ukr_tax_percent", "15");
+
+                try {
+                    ukr_tax_percent= Integer.valueOf(ukr_tax_percent_string);
+                } catch (NumberFormatException nfe)
+                {
+                    ukr_tax_percent = (int)getResources().getDimension(R.dimen.default_ukr_tax_percent_int);
+                }
+
+                profit = Calculator.calcProfit(s, pr, days, cap, ukr_tax_percent);
+
+            }
+            else {
+                profit = Calculator.calcProfit(s, pr, days, cap);
+
+            }
 
             txtGrowValue.setText(f.format(profit[Calculator.PERCENT]));
             txtProfitBValue.setText(f.format(profit[Calculator.PROFIT]));

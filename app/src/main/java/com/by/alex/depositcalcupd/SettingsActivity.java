@@ -52,29 +52,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                 }
                 break;
         }
-/*
-        if (key.equals("russian_tax"))
-        {
-            ut.setChecked(false);
-
-            SharedPreferences.Editor ed = mSettings.edit();
-            ed.putBoolean("ukr_tax", false); // your updated setting
-            ed.commit();
-            //Preference preference = findPreference("ukr_tax");
-            //preference.setEnabled(false);
-        }
-
-        else if (key.equals("ukr_tax"))
-        {
-            rt.setChecked(false);
-
-            SharedPreferences.Editor ed = mSettings.edit();
-            ed.putBoolean("russian_tax", false); // your updated setting
-            ed.commit();
-            //Preference preference = findPreference("russian_tax");
-            //preference.setEnabled(false);
-        }
-*/
     }
 
     @Override

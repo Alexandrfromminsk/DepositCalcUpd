@@ -19,7 +19,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -281,43 +280,54 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         if (allFieldsWithData()) {
             float s = f.parseSumm(edtSummAvalue.getText().toString());
             float pr = Float.parseFloat(edtPercentA.getText().toString());
-            int d = Integer.parseInt(edtTimeperiod.getText().toString());
             int cap = spnCapital.getSelectedItemPosition();
             String BeginDate, EndDate;
             BeginDate = edtBeginDate.getText().toString();
             EndDate = edtDateEnd.getText().toString();
 
             Float[] profit;
-            int dmy = spnTimeperiod.getSelectedItemPosition();
+            int days = Calculator.calcNumberDays(BeginDate, EndDate);
 
             boolean russian_tax = mSettings.getBoolean("russian_tax", false);
+            boolean ukr_tax = mSettings.getBoolean("ukr_tax", false);
 
-            if (!russian_tax) {
-                if (dmy == 0) profit = Calculator.calcProfit(s, pr, d, cap);
-                else profit = Calculator.calcProfit(s, pr, cap, BeginDate, EndDate);
-            }
-            else {
+            if (russian_tax) {
                 int tax_percent;
                 float key_percent;
                 String tax_percent_string = mSettings.getString("tax_percent", "35");
                 String key_percent_string = (spnCurrency.getSelectedItem().toString().equals("RUR"))?
                         mSettings.getString("key_percent", "18.25"): mSettings.getString("key_percent_foreign", "9");
-                Toast.makeText(getActivity(),key_percent_string,
-                        Toast.LENGTH_SHORT).show();
+
 
                 try {
                     key_percent = Float.valueOf(key_percent_string);
                     tax_percent= Integer.valueOf(tax_percent_string);
                 } catch (NumberFormatException nfe)
                 {
-                    key_percent = (float)18.25;
-                    tax_percent = 35;
-                    Toast.makeText(getActivity(),"NumberFormatException: " + nfe.getMessage(),
-                            Toast.LENGTH_SHORT).show();
+
+                    tax_percent = (int) getResources().getDimension(R.dimen.default_rus_tax_percent_int);
+                    key_percent = getResources().getDimension(R.dimen.default_key_percent_float);
                 }
 
-                if (dmy == 0) profit = Calculator.calcProfit(s, pr, d, cap, tax_percent, key_percent);
-                else profit = Calculator.calcProfit(s, pr, cap, BeginDate, EndDate, tax_percent, key_percent);
+                profit = Calculator.calcProfit(s, pr, days, cap, tax_percent, key_percent);
+
+            }
+            else if (ukr_tax) {
+                int ukr_tax_percent;
+                String ukr_tax_percent_string = mSettings.getString("ukr_tax_percent", "15");
+
+                try {
+                    ukr_tax_percent= Integer.valueOf(ukr_tax_percent_string);
+                } catch (NumberFormatException nfe)
+                {
+                    ukr_tax_percent = (int)getResources().getDimension(R.dimen.default_ukr_tax_percent_int);
+                }
+
+                profit = Calculator.calcProfit(s, pr, days, cap, ukr_tax_percent);
+
+            }
+            else {
+                profit = Calculator.calcProfit(s, pr, days, cap);
 
             }
 

@@ -61,7 +61,6 @@
             android:maxLines="1" />
 
         <CheckBoxPreference
-            android:id="@+id/ukr_tax"
             android:key="ukr_tax"
             android:title="@string/ukr_tax"
             android:summary="@string/ukr_tax_description"
