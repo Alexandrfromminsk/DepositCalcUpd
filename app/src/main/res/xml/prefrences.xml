@@ -19,6 +19,7 @@
         android:key="pref_key_other_settings">
 
         <CheckBoxPreference
+            android:id="@+id/rus_tax"
             android:key="russian_tax"
             android:title="@string/russian_tax"
             android:summary="@string/tax_description"
@@ -28,7 +29,7 @@
             android:dependency="russian_tax"
             android:key="tax_percent"
             android:title="@string/tax_percent"
-            android:defaultValue="@dimen/default_tax_percent_int"
+            android:defaultValue="@dimen/default_rus_tax_percent_int"
             android:selectAllOnFocus="true"
             android:inputType="number"
             android:capitalize="words"
@@ -53,6 +54,24 @@
             android:title="@string/key_percent_foreign"
             android:defaultValue="@dimen/key_percent_foreign_float"
             android:summary="@string/key_percent_foreign_description"
+            android:selectAllOnFocus="true"
+            android:inputType="number"
+            android:capitalize="words"
+            android:singleLine="true"
+            android:maxLines="1" />
+
+        <CheckBoxPreference
+            android:id="@+id/ukr_tax"
+            android:key="ukr_tax"
+            android:title="@string/ukr_tax"
+            android:summary="@string/ukr_tax_description"
+            android:defaultValue="false" />
+
+        <EditTextPreference
+            android:dependency="ukr_tax"
+            android:key="ukr_tax_percent"
+            android:title="@string/tax_percent"
+            android:defaultValue="@dimen/default_ukr_tax_percent_int"
             android:selectAllOnFocus="true"
             android:inputType="number"
             android:capitalize="words"

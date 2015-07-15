@@ -89,12 +89,16 @@
     <string name="title_activity_settings">Настройки</string>
     <string name="pref_header_general">Общие настройки</string>
     <string name="pref_header_other_general">Другие настройки</string>
-    <string name="russian_tax">Учитывать налог на вклады</string>
+    <string name="russian_tax">Учитывать российский налог на вклады</string>
+    <string name="ukr_tax">Учитывать украинский налог на вклады</string>
     <string name="show_overlays">Показать подсказки</string>
-    <string name="tax_description">В РФ доходы по ставке выше ключевой облагаются налогом. Отметьте этот пункт настроек для учета налога.</string>
+    <string name="tax_description">В РФ доходы по ставке выше ключевой облагаются налогом.</string>
+    <string name="ukr_tax_description">В Украине любой доход со вкладов облагается налогом.</string>
     <string name="show_overlays_description">Подсказки будут показаны при следующей запуске</string>
     <string name="tax_percent">Величина налога</string>
-    <item name="default_tax_percent_int" format="integer" type="dimen">35</item>
+    <item name="default_rus_tax_percent_int" format="integer" type="dimen">35</item>
+    <item name="default_ukr_tax_percent_int" format="integer" type="dimen">15</item>
+
     <string name="key_percent">Ключевая ставка</string>
     <string name="key_percent_description">Налог буден рассчитываться для вкладов в рублях, если их ставка превышает указанную. </string>
     <item name="default_key_percent_float" format="float" type="dimen">18.25</item>
