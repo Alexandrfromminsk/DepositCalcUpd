@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,7 +36,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     String textSumm;
 
     SharedPreferences mSettings;
-    boolean showOverlay;
 
     public static final String BEGIN_DATE = "BEGIN_DATE";
     public static final String END_DATE = "END_DATE";
@@ -174,7 +174,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         }
 
         setEndDate();
-        calc_it();
 
         edtTimeperiod.addTextChangedListener(new TextWatcher() {
             @Override
@@ -408,6 +407,13 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         super.onDestroy();
         saveSettings();
         //Toast.makeText(getActivity(), "ondestroy  First tab".toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        calc_it();
+        Toast.makeText(getActivity(), "onResume  First tab".toString(), Toast.LENGTH_SHORT).show();
     }
 
     // 3 TextWatcher's methods
