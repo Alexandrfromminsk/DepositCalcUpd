@@ -19,7 +19,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -413,7 +412,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     public void onResume() {
         super.onResume();
         calc_it();
-        Toast.makeText(getActivity(), "onResume  First tab".toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "onResume  First tab".toString(), Toast.LENGTH_SHORT).show();
     }
 
     // 3 TextWatcher's methods

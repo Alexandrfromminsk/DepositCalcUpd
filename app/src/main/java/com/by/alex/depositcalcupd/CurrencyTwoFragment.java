@@ -16,7 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -344,7 +343,7 @@ public class CurrencyTwoFragment extends Fragment {
     public void onResume() {
         super.onResume();
         calc_it();
-        Toast.makeText(getActivity(), "onResume  Sec tab".toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "onResume  Sec tab".toString(), Toast.LENGTH_SHORT).show();
     }
 
 
