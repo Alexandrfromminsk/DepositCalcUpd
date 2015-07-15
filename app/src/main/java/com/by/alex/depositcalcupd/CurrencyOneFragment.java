@@ -297,12 +297,14 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
                 else profit = Calculator.calcProfit(s, pr, cap, BeginDate, EndDate);
             }
             else {
-
                 int tax_percent;
+                float key_percent;
                 String tax_percent_string = mSettings.getString("tax_percent", "35");
                 String key_percent_string = (spnCurrency.getSelectedItem().toString().equals("RUR"))?
-                        mSettings.getString("tax_percent", "18.25"): mSettings.getString("key_percent_foreign", "9");
-                float key_percent;
+                        mSettings.getString("key_percent", "18.25"): mSettings.getString("key_percent_foreign", "9");
+                Toast.makeText(getActivity(),key_percent_string,
+                        Toast.LENGTH_SHORT).show();
+
                 try {
                     key_percent = Float.valueOf(key_percent_string);
                     tax_percent= Integer.valueOf(tax_percent_string);
