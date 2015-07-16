@@ -146,7 +146,11 @@ public class CurrencyTwoFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 spnTypeConversion.setAdapter(getCurrencyPairs());
-                setTxtSummWithCurrency(spnCurrency.getSelectedItem().toString());
+                String currency = spnCurrency.getSelectedItem().toString();
+                setTxtSummWithCurrency(currency);
+                calc_it();
+                if (CurrencyA.equals(currency))
+                    edtExcRateNow.setText("1");
             }
 
             @Override

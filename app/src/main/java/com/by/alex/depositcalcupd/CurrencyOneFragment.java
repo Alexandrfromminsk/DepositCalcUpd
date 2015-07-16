@@ -154,6 +154,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setTxtSummWithCurrency(spnCurrency.getSelectedItem().toString());
+                calc_it();
             }
 
             @Override
