@@ -89,8 +89,8 @@
     <string name="title_activity_settings">Настройки</string>
     <string name="pref_header_general">Общие настройки</string>
     <string name="pref_header_other_general">Другие настройки</string>
-    <string name="russian_tax">Учитывать российский налог на вклады</string>
-    <string name="ukr_tax">Учитывать украинский налог на вклады</string>
+    <string name="russian_tax">Pоссийский налог на вклады</string>
+    <string name="ukr_tax">Украинский налог на вклады</string>
     <string name="show_overlays">Показать подсказки</string>
     <string name="tax_description">В РФ доходы по ставке выше ключевой облагаются налогом.</string>
     <string name="ukr_tax_description">В Украине любой доход со вкладов облагается налогом.</string>

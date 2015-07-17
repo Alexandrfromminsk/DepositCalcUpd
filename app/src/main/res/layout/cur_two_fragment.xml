@@ -153,11 +153,14 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorGreyLine">
+                android:padding="8sp"
+                >
 
                 <TextView
+                    android:background="@color/colorGreyLine"
                     android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
+                    android:layout_span="2"
+                    android:layout_height="1sp"
                     android:id="@+id/greyline" />
             </TableRow>
 
