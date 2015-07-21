@@ -117,4 +117,9 @@
         <item>2</item>
     </string-array>
 
+    <string name="banner_ad_unit_id">ca-app-pub-8104407829518430/3628038307</string>
+    <string name="banner_ad_unit_id_test">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit_id_test2">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit_id_test3">ca-app-pub-3940256099942544/6300978111</string>
+
 </resources>
