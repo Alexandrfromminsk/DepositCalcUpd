@@ -203,7 +203,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-
         return rootView;
     }
 

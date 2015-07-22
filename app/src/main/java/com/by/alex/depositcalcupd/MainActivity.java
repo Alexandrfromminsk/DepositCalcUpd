@@ -4,14 +4,17 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -24,6 +27,7 @@ import android.view.ViewConfiguration;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import com.android.vending.billing.IInAppBillingService;
 
 import com.by.alex.depositcalcupd.adapter.TabsPagerAdapter;
 import com.by.alex.depositcalcupd.help.HelpDialog;
@@ -58,7 +62,20 @@ public class MainActivity extends ActionBarActivity
     private float ProfitA, ProfitB;
     private boolean Inverted_conversion;
 
-    //private Toolbar mToolbar;
+    IInAppBillingService mService;
+
+    ServiceConnection mServiceConn = new ServiceConnection() {
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mService = null;
+        }
+
+        @Override
+        public void onServiceConnected(ComponentName name,
+                                       IBinder service) {
+            mService = IInAppBillingService.Stub.asInterface(service);
+        }
+    };
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -80,6 +97,11 @@ public class MainActivity extends ActionBarActivity
             editor.putBoolean("show_overlays", false);
             editor.commit();
         }
+
+        //billing
+        Intent serviceIntent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
+        serviceIntent.setPackage("com.android.vending");
+        bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
 
 
         setContentView(R.layout.activity_main);
@@ -332,6 +354,14 @@ public class MainActivity extends ActionBarActivity
     private String makeFragmentName(int viewId, int index)
     {
         return "android:switcher:" + viewId + ":" + mAdapter.getItemId(index) ;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mService != null) {
+            unbindService(mServiceConn);
+        }
     }
 
 }

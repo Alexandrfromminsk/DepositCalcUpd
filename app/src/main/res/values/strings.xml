@@ -100,7 +100,7 @@
     <item name="default_ukr_tax_percent_int" format="integer" type="dimen">15</item>
 
     <string name="key_percent">Ключевая ставка</string>
-    <string name="key_percent_description">Налог буден рассчитываться для вкладов в рублях, если их ставка превышает указанную. </string>
+    <string name="key_percent_description">Налог будет рассчитываться для вкладов в рублях, если их ставка превышает указанную. </string>
     <item name="default_key_percent_float" format="float" type="dimen">18.25</item>
     <string name="key_percent_foreign">Максимальная безналоговая ставка для вкладов в иностранной валюте</string>
     <string name="key_percent_foreign_description">Вклады в иностранной валюте по ставке выше указанной будут облагаться налогом.</string>
