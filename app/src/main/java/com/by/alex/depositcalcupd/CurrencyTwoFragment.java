@@ -151,9 +151,10 @@ public class CurrencyTwoFragment extends Fragment {
                 spnTypeConversion.setAdapter(getCurrencyPairs());
                 String currency = spnCurrency.getSelectedItem().toString();
                 setTxtSummWithCurrency(currency);
-                calc_it();
                 if (CurrencyA.equals(currency))
                     edtExcRateNow.setText("1");
+                calc_it();
+
             }
 
             @Override

@@ -101,13 +101,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             }
         });
 
-        /*edtSummAvalue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                long sum = f.parseSumm(edtSummAvalue.getText().toString());
-                edtSummAvalue.setText(f.formatSumm(sum));
-            }
-        });*/
         edtPercentA = (EditText) rootView.findViewById(R.id.edtPercent);
         edtPercentA.addTextChangedListener(this);
         edtBeginDate = (EditText) rootView.findViewById(R.id.edtBeginDate);
@@ -157,7 +150,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setTxtSummWithCurrency(spnCurrency.getSelectedItem().toString());
-                calc_it();
+                if (mSettings.getBoolean("russian_tax", false))   calc_it();
             }
 
             @Override
