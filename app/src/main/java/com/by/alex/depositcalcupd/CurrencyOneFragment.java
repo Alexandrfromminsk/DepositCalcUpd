@@ -20,8 +20,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.appodeal.ads.Appodeal;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -199,17 +198,20 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             }
         });
 
-        AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
+        //Pure AdMob
+        /*AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
+
+        // Appodeal
+        String appKey = MainActivity.APPODEAl_KEY;
+        Appodeal.disableLocationPermissionCheck();
+        Appodeal.initialize(getActivity(), appKey, Appodeal.BANNER);
+
+        Appodeal.show(getActivity(), Appodeal.BANNER_BOTTOM);
+
 
         return rootView;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
     }
 
 
@@ -411,7 +413,8 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     public void onResume() {
         super.onResume();
         calc_it();
-        //Toast.makeText(getActivity(), "onResume  First tab".toString(), Toast.LENGTH_SHORT).show();
+        Appodeal.onResume(getActivity(), Appodeal.BANNER);
+
     }
 
     // 3 TextWatcher's methods

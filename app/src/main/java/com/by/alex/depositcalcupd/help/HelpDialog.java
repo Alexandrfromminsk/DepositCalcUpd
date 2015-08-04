@@ -60,7 +60,7 @@ public class HelpDialog extends DialogFragment {
 
             intent.putExtra("head", position);
 
-            //запускаем вторую активность
+            //Run second activity
             startActivity(intent);
         }
 

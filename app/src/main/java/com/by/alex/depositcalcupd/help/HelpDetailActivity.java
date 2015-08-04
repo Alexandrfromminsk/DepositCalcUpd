@@ -24,18 +24,18 @@ public class HelpDetailActivity extends ActionBarActivity {
         WebView webView = (WebView) findViewById(R.id.webView);
 
         Intent intent = getIntent();
-        //получаем строку и формируем имя ресурса
+        //get line and create res name
         String resName = "help" + intent.getIntExtra("head", 1);
         Log.i("name", resName);
-        Context context = getBaseContext(); //получаем контекст
+        Context context = getBaseContext(); //get Context
 
-        //читаем текстовый файл из ресурсов по имени
+        //Read text from from res by name
         String text = readRawTextFile(context, getResources().getIdentifier(resName, "raw", getPackageName()));
 
         webView.loadDataWithBaseURL(null, text, "text/html", "en_US", null);
     }
 
-    //читаем текст из raw-ресурсов
+    //Read text from raw-res
     public static String readRawTextFile(Context context, int resId)
     {
         InputStream inputStream = context.getResources().openRawResource(resId);

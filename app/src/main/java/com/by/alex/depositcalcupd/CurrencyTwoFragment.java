@@ -17,9 +17,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 import java.util.ArrayList;
 
 
@@ -195,9 +192,19 @@ public class CurrencyTwoFragment extends Fragment {
             }
         });
 
+        // Pure AdMob
+        /*
         AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
+
+        // Appodeal
+        /*
+        String appKey = MainActivity.APPODEAl_KEY;
+        Appodeal.disableLocationPermissionCheck();
+        Appodeal.initialize(getActivity(), appKey, Appodeal.BANNER);
+
+        Appodeal.show(getActivity(), Appodeal.BANNER_BOTTOM);*/
 
         return rootView;
     }

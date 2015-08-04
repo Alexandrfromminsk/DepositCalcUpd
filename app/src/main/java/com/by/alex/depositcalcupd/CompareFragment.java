@@ -15,8 +15,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.appodeal.ads.Appodeal;
 
 public class CompareFragment extends Fragment {
 
@@ -132,18 +131,21 @@ public class CompareFragment extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-
+    /* Pure adMob
         AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+       */
 
+        // Appodeal
+        /*String appKey = MainActivity.APPODEAl_KEY;
+        Appodeal.disableLocationPermissionCheck();
+        Appodeal.initialize(getActivity(), appKey, Appodeal.BANNER);
+
+        Appodeal.show(getActivity(), Appodeal.BANNER_BOTTOM);*/
         return rootView;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
 
     public void saveData(){
         //Send data which will be saved at MainActivity

@@ -48,6 +48,8 @@ public class MainActivity extends ActionBarActivity
 
     public static final String APP_PREFERENCES = "calcsettings";
 
+    public static final String APPODEAl_KEY = "2692085ef276225935b92b6e70888009f34d1df42690867b";
+
     SharedPreferences mSettings;
 
     private String[] tabs;
