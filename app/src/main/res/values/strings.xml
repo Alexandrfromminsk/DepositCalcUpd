@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Сравнение вкладов</string>
     <string name="action_settings">Настройки</string>
-    <string name="of_adv">Выключить рекламу</string>
+    <string name="off_adv">Выключить рекламу</string>
     <string name="about">О программе</string>
     <string name="feedback">Оставить отзыв</string>
     <string name="sendEmail">Отправить письмо</string>

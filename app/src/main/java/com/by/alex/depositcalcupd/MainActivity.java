@@ -3,11 +3,13 @@ package com.by.alex.depositcalcupd;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -15,6 +17,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -27,12 +30,16 @@ import android.view.ViewConfiguration;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import com.android.vending.billing.IInAppBillingService;
 
+import com.android.vending.billing.IInAppBillingService;
 import com.by.alex.depositcalcupd.adapter.TabsPagerAdapter;
 import com.by.alex.depositcalcupd.help.HelpDialog;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity
@@ -47,8 +54,9 @@ public class MainActivity extends ActionBarActivity
     CompareFragment compareTab;
 
     public static final String APP_PREFERENCES = "calcsettings";
-
     public static final String APPODEAl_KEY = "2692085ef276225935b92b6e70888009f34d1df42690867b";
+    String inappid = "adsdisable";
+
 
     SharedPreferences mSettings;
 
@@ -101,9 +109,29 @@ public class MainActivity extends ActionBarActivity
         }
 
         //billing
+        //https://stuff.mit.edu/afs/sipb/project/android/docs/google/play/billing/billing_integrate.html
         Intent serviceIntent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
         serviceIntent.setPackage("com.android.vending");
         bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
+
+      /*  ArrayList skuList = new ArrayList();
+        skuList.add("premiumUpgrade");
+        skuList.add("gas");
+        Bundle querySkus = new Bundle();
+        querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
+
+        try {
+            Bundle skuDetails = mService.getSkuDetails(3,
+                    getPackageName(), "inapp", querySkus);
+            
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }*/
+
+
+
+
+        //end billing
 
 
         setContentView(R.layout.activity_main);
@@ -169,6 +197,9 @@ public class MainActivity extends ActionBarActivity
             case R.id.sendEmail:
                 sendEmail();
                 return true;
+            case R.id.off_adv:
+                buyAdsDisable();
+                return true;            
             case R.id.feedback:
                 leaveFeedback();
                 return true;
@@ -180,6 +211,69 @@ public class MainActivity extends ActionBarActivity
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void buyAdsDisable() {
+
+            ArrayList skuList = new ArrayList();
+            skuList.add(inappid);
+            Bundle querySkus = new Bundle();
+            querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
+            Bundle skuDetails;
+            try {
+                skuDetails = mService.getSkuDetails(3, getPackageName(),
+                        "inapp", querySkus);
+
+                int response = skuDetails.getInt("RESPONSE_CODE");
+                if (response == 0) {
+                    ArrayList<String> responseList = skuDetails.getStringArrayList("DETAILS_LIST");
+
+                    for (String thisResponse : responseList) {
+                        JSONObject object = new JSONObject(thisResponse);
+                        String sku = object.getString("productId");
+                        String price = object.getString("price");
+                        if (sku.equals(inappid)) {
+                            System.out.println("price " + price);
+                            Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(), sku, "inapp", "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ");
+                            PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT");
+                            try {
+                                startIntentSenderForResult(pendingIntent.getIntentSender(), 1001, new Intent(), Integer.valueOf(0), Integer.valueOf(0), Integer.valueOf(0));
+                            } catch (IntentSender.SendIntentException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (RemoteException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1001) {
+            String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
+
+            if (resultCode == RESULT_OK) {
+                try {
+                    JSONObject jo = new JSONObject(purchaseData);
+                    String sku = jo.getString(inappid);
+                    Toast.makeText(MainActivity.this, "You have bought the " + sku + ". Excellent choice,adventurer!", Toast.LENGTH_LONG).show();
+                }
+                catch (JSONException e) {
+                    System.out.println("Failed to parse purchase data.");
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

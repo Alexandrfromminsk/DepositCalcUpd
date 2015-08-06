@@ -18,7 +18,7 @@
         android:id="@+id/off_adv"
         android:orderInCategory="100"
         app:showAsAction="never"
-        android:title="@string/of_adv" />
+        android:title="@string/off_adv" />
 
     <item
         android:id="@+id/help"
