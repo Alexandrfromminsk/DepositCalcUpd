@@ -20,8 +20,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.appodeal.ads.Appodeal;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -202,14 +200,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         /*AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);*/
-
-        // Appodeal
-        String appKey = MainActivity.APPODEAl_KEY;
-        Appodeal.disableLocationPermissionCheck();
-        Appodeal.initialize(getActivity(), appKey, Appodeal.BANNER);
-
-        Appodeal.show(getActivity(), Appodeal.BANNER_BOTTOM);
-
 
         return rootView;
     }
@@ -413,8 +403,6 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     public void onResume() {
         super.onResume();
         calc_it();
-        Appodeal.onResume(getActivity(), Appodeal.BANNER);
-
     }
 
     // 3 TextWatcher's methods

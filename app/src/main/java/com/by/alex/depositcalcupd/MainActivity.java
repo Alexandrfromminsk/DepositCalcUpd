@@ -23,6 +23,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
+import com.appodeal.ads.Appodeal;
 import com.by.alex.depositcalcupd.adapter.TabsPagerAdapter;
 import com.by.alex.depositcalcupd.help.HelpDialog;
 
@@ -55,7 +57,8 @@ public class MainActivity extends ActionBarActivity
 
     public static final String APP_PREFERENCES = "calcsettings";
     public static final String APPODEAl_KEY = "2692085ef276225935b92b6e70888009f34d1df42690867b";
-    String inappid = "adsdisable";
+    //adsdisable
+    String inappid = "android.test.purchased";
 
 
     SharedPreferences mSettings;
@@ -84,8 +87,10 @@ public class MainActivity extends ActionBarActivity
         public void onServiceConnected(ComponentName name,
                                        IBinder service) {
             mService = IInAppBillingService.Stub.asInterface(service);
+            checkPurchase();
         }
     };
+
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -113,25 +118,6 @@ public class MainActivity extends ActionBarActivity
         Intent serviceIntent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
         serviceIntent.setPackage("com.android.vending");
         bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
-
-      /*  ArrayList skuList = new ArrayList();
-        skuList.add("premiumUpgrade");
-        skuList.add("gas");
-        Bundle querySkus = new Bundle();
-        querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
-
-        try {
-            Bundle skuDetails = mService.getSkuDetails(3,
-                    getPackageName(), "inapp", querySkus);
-            
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }*/
-
-
-
-
-        //end billing
 
 
         setContentView(R.layout.activity_main);
@@ -172,6 +158,15 @@ public class MainActivity extends ActionBarActivity
                 super.onPageScrollStateChanged(state);
             }
         });
+
+        if (!mSettings.getBoolean("AdsDisable", false)) {
+            // Appodeal
+            String appKey = MainActivity.APPODEAl_KEY;
+            Appodeal.disableLocationPermissionCheck();
+            Appodeal.initialize(this, appKey, Appodeal.BANNER);
+
+            Appodeal.show(this, Appodeal.BANNER_BOTTOM);
+        }
 
     }
 
@@ -215,67 +210,116 @@ public class MainActivity extends ActionBarActivity
     }
 
     private void buyAdsDisable() {
+        String tag = "test_purchase";
 
-            ArrayList skuList = new ArrayList();
-            skuList.add(inappid);
-            Bundle querySkus = new Bundle();
-            querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
-            Bundle skuDetails;
+        if (mService == null) return;
+
+        ArrayList<String> skuList = new ArrayList<String>();
+        skuList.add(inappid);
+        Bundle querySkus = new Bundle();
+        querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
+
+        Bundle skuDetails;
+        try {
+            skuDetails = mService.getSkuDetails(3, getPackageName(), "inapp", querySkus);
+
+            Toast.makeText(this, "getSkuDetails() - success return Bundle", Toast.LENGTH_SHORT).show();
+            Log.i(tag, "getSkuDetails() - success return Bundle");
+        } catch (RemoteException e) {
+            e.printStackTrace();
+
+            Toast.makeText(this, "getSkuDetails() - fail!", Toast.LENGTH_SHORT).show();
+            Log.w(tag, "getSkuDetails() - fail!");
+            return;
+        }
+
+        int response = skuDetails.getInt("RESPONSE_CODE");
+        Toast.makeText(this, "getSkuDetails() - \"RESPONSE_CODE\" return " + String.valueOf(response), Toast.LENGTH_SHORT).show();
+        Log.i(tag, "getSkuDetails() - \"RESPONSE_CODE\" return " + String.valueOf(response));
+
+        if (response != 0) return;
+
+        ArrayList<String> responseList = skuDetails.getStringArrayList("DETAILS_LIST");
+        Log.i(tag, "getSkuDetails() - \"DETAILS_LIST\" return " + responseList.toString());
+
+        if (responseList.size() == 0) return;
+
+        for (String thisResponse : responseList) {
             try {
-                skuDetails = mService.getSkuDetails(3, getPackageName(),
-                        "inapp", querySkus);
+                JSONObject object = new JSONObject(thisResponse);
 
-                int response = skuDetails.getInt("RESPONSE_CODE");
-                if (response == 0) {
-                    ArrayList<String> responseList = skuDetails.getStringArrayList("DETAILS_LIST");
+                String sku   = object.getString("productId");
+                String title = object.getString("title");
+                String price = object.getString("price");
 
-                    for (String thisResponse : responseList) {
-                        JSONObject object = new JSONObject(thisResponse);
-                        String sku = object.getString("productId");
-                        String price = object.getString("price");
-                        if (sku.equals(inappid)) {
-                            System.out.println("price " + price);
-                            Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(), sku, "inapp", "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ");
-                            PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT");
-                            try {
-                                startIntentSenderForResult(pendingIntent.getIntentSender(), 1001, new Intent(), Integer.valueOf(0), Integer.valueOf(0), Integer.valueOf(0));
-                            } catch (IntentSender.SendIntentException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
+                Log.i(tag, "getSkuDetails() - \"DETAILS_LIST\":\"productId\" return " + sku);
+                Log.i(tag, "getSkuDetails() - \"DETAILS_LIST\":\"title\" return " + title);
+                Log.i(tag, "getSkuDetails() - \"DETAILS_LIST\":\"price\" return " + price);
+
+                if (!sku.equals(inappid)) continue;
+
+                Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(), sku, "inapp", "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ");
+
+                Toast.makeText(this, "getBuyIntent() - success return Bundle", Toast.LENGTH_SHORT).show();
+                Log.i(tag, "getBuyIntent() - success return Bundle");
+
+                response = buyIntentBundle.getInt("RESPONSE_CODE");
+                Toast.makeText(this, "getBuyIntent() - \"RESPONSE_CODE\" return " + String.valueOf(response), Toast.LENGTH_SHORT).show();
+                Log.i(tag, "getBuyIntent() - \"RESPONSE_CODE\" return " + String.valueOf(response));
+
+                if (response != 0) continue;
+
+                PendingIntent pendingIntent = buyIntentBundle.getParcelable("BUY_INTENT");
+                try {
+                    startIntentSenderForResult(pendingIntent.getIntentSender(), 1001, new Intent(), 0, 0, 0);
+                } catch (IntentSender.SendIntentException e) {
+                    e.printStackTrace();
                 }
-            }
-            catch (RemoteException e) {
-                // TODO Auto-generated catch block
+            } catch (JSONException e) {
                 e.printStackTrace();
-            }
-            catch (JSONException e) {
-                // TODO Auto-generated catch block
+            } catch (RemoteException e) {
+                e.printStackTrace();
+
+                Toast.makeText(this, "getSkuDetails() - fail!", Toast.LENGTH_SHORT).show();
+                Log.w(tag, "getBuyIntent() - fail!");
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
 
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String tag = "test_purchase";
         if (requestCode == 1001) {
-            String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
+            if (resultCode != RESULT_OK) return;
 
-            if (resultCode == RESULT_OK) {
-                try {
-                    JSONObject jo = new JSONObject(purchaseData);
-                    String sku = jo.getString(inappid);
-                    Toast.makeText(MainActivity.this, "You have bought the " + sku + ". Excellent choice,adventurer!", Toast.LENGTH_LONG).show();
-                }
-                catch (JSONException e) {
-                    System.out.println("Failed to parse purchase data.");
-                    e.printStackTrace();
-                }
+            int responseCode = data.getIntExtra("RESPONSE_CODE", 1);
+            Toast.makeText(this, "onActivityResult() - \"RESPONSE_CODE\" return " + String.valueOf(responseCode), Toast.LENGTH_SHORT).show();
+            Log.i(tag, "onActivityResult() - \"RESPONSE_CODE\" return " + String.valueOf(responseCode));
+
+            if (responseCode != 0) return;
+
+            String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
+            String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");
+
+            Log.i(tag, "onActivityResult() - \"INAPP_PURCHASE_DATA\" return " + purchaseData.toString());
+            Log.i(tag, "onActivityResult() - \"INAPP_DATA_SIGNATURE\" return " + dataSignature.toString());
+
+            // TODO: management purchase result
+            if (purchaseData.toString().equals(inappid)){
+                SharedPreferences.Editor editor = mSettings.edit();
+                editor.putBoolean("AdsDisable", true);
+                editor.commit();
+
+                //disable menu
+                invalidateOptionsMenu();
             }
         }
     }
+
 
     private void leaveFeedback() {
         Uri uri = Uri.parse("market://details?id=" + getPackageName());
@@ -450,6 +494,70 @@ public class MainActivity extends ActionBarActivity
     private String makeFragmentName(int viewId, int index)
     {
         return "android:switcher:" + viewId + ":" + mAdapter.getItemId(index) ;
+    }
+
+    private void checkPurchase() {
+            String tag = "test_purchase";
+
+            if (mService == null) return;
+
+            Bundle ownedItems;
+            try {
+                ownedItems = mService.getPurchases(3, getPackageName(), "inapp", null);
+                Log.i(tag, "checkPurchase() - success return Bundle");
+            } catch (RemoteException e) {
+                e.printStackTrace();
+                Log.w(tag, "checkPurchase() - fail! No Bundle get");
+                return;
+            }
+
+            int response = ownedItems.getInt("RESPONSE_CODE");
+            Log.i(tag, "checkPurchase() - RESPONSE_CODE return " + String.valueOf(response));
+
+            if (response != 0) return;
+
+            ArrayList<String> ownedSkus = ownedItems.getStringArrayList("INAPP_PURCHASE_ITEM_LIST");
+            ArrayList<String> purchaseDataList = ownedItems.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
+            ArrayList<String> signatureList = ownedItems.getStringArrayList("INAPP_DATA_SIGNATURE");
+            String continuationToken = ownedItems.getString("INAPP_CONTINUATION_TOKEN");
+
+            Log.i(tag, "getPurchases() - \"INAPP_PURCHASE_ITEM_LIST\" return " + ownedSkus.toString()); // must be adsdisable
+            Log.i(tag, "getPurchases() - \"INAPP_PURCHASE_DATA_LIST\" return " + purchaseDataList.toString());
+            Log.i(tag, "getPurchases() - \"INAPP_DATA_SIGNATURE\" return " + (signatureList != null ? signatureList.toString() : "null"));
+            Log.i(tag, "getPurchases() - \"INAPP_CONTINUATION_TOKEN\" return " + (continuationToken != null ? continuationToken : "null"));
+
+            // TODO: management owned purchase
+            if (ownedSkus.toString().contains(inappid)){
+                SharedPreferences.Editor editor = mSettings.edit();
+                editor.putBoolean("AdsDisable", true);
+                editor.commit();
+
+                //disable menu
+                invalidateOptionsMenu();
+            }
+
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu (Menu menu) {
+
+        Toast.makeText(this, "onPrepareOptionsMenu" + mSettings.getBoolean("AdsDisable", false), Toast.LENGTH_SHORT).show();
+
+        MenuItem item = menu.findItem(R.id.off_adv);
+        if (mSettings.getBoolean("AdsDisable", false)) {
+            //Disable off_adv menu item
+            item.setEnabled(false);
+            //item.getIcon().setAlpha(130);
+        }
+        return true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!mSettings.getBoolean("AdsDisable", false))
+            Appodeal.onResume(this, Appodeal.BANNER);
+
     }
 
     @Override
