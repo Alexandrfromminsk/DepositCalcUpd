@@ -58,12 +58,11 @@ public class MainActivity extends ActionBarActivity
     public static final String APP_PREFERENCES = "calcsettings";
     public static final String APPODEAl_KEY = "2692085ef276225935b92b6e70888009f34d1df42690867b";
     //adsdisable
-    String inappid = "android.test.purchased";
+    final String productID = "android.test.purchased";
 
 
     SharedPreferences mSettings;
 
-    private String[] tabs;
     private static final int TAB_ONE = 0;
     private static final int TAB_TWO = 1;
     private static final int TAB_COMPARE = 2;
@@ -103,14 +102,14 @@ public class MainActivity extends ActionBarActivity
 
 
         boolean showOverlays = mSettings.getBoolean("show_overlays", true);
-        if (showOverlays == true)
+        if (showOverlays)
         {
             SharedPreferences.Editor editor = mSettings.edit();
             editor.putBoolean("show_overlay_0", true);
             editor.putBoolean("show_overlay_1", true);
             editor.putBoolean("show_overlay_2", true);
             editor.putBoolean("show_overlays", false);
-            editor.commit();
+            editor.apply();
         }
 
         //billing
@@ -121,7 +120,7 @@ public class MainActivity extends ActionBarActivity
 
 
         setContentView(R.layout.activity_main);
-        tabs = getResources().getStringArray(R.array.tabs_array);
+        String[] tabs = getResources().getStringArray(R.array.tabs_array);
         myManager = getSupportFragmentManager();
 
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
@@ -215,7 +214,7 @@ public class MainActivity extends ActionBarActivity
         if (mService == null) return;
 
         ArrayList<String> skuList = new ArrayList<String>();
-        skuList.add(inappid);
+        skuList.add(productID);
         Bundle querySkus = new Bundle();
         querySkus.putStringArrayList("ITEM_ID_LIST", skuList);
 
@@ -223,18 +222,18 @@ public class MainActivity extends ActionBarActivity
         try {
             skuDetails = mService.getSkuDetails(3, getPackageName(), "inapp", querySkus);
 
-            Toast.makeText(this, "getSkuDetails() - success return Bundle", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "getSkuDetails() - success return Bundle", Toast.LENGTH_SHORT).show();
             Log.i(tag, "getSkuDetails() - success return Bundle");
         } catch (RemoteException e) {
             e.printStackTrace();
 
-            Toast.makeText(this, "getSkuDetails() - fail!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "getSkuDetails() - fail!", Toast.LENGTH_SHORT).show();
             Log.w(tag, "getSkuDetails() - fail!");
             return;
         }
 
         int response = skuDetails.getInt("RESPONSE_CODE");
-        Toast.makeText(this, "getSkuDetails() - \"RESPONSE_CODE\" return " + String.valueOf(response), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "getSkuDetails() - \"RESPONSE_CODE\" return " + String.valueOf(response), Toast.LENGTH_SHORT).show();
         Log.i(tag, "getSkuDetails() - \"RESPONSE_CODE\" return " + String.valueOf(response));
 
         if (response != 0) return;
@@ -249,22 +248,25 @@ public class MainActivity extends ActionBarActivity
                 JSONObject object = new JSONObject(thisResponse);
 
                 String sku   = object.getString("productId");
+                /*
                 String title = object.getString("title");
                 String price = object.getString("price");
 
-                Log.i(tag, "getSkuDetails() - \"DETAILS_LIST\":\"productId\" return " + sku);
+
                 Log.i(tag, "getSkuDetails() - \"DETAILS_LIST\":\"title\" return " + title);
                 Log.i(tag, "getSkuDetails() - \"DETAILS_LIST\":\"price\" return " + price);
+                */
+                Log.i(tag, "getSkuDetails() - \"DETAILS_LIST\":\"productId\" return " + sku);
 
-                if (!sku.equals(inappid)) continue;
+                if (!sku.equals(productID)) continue;
 
                 Bundle buyIntentBundle = mService.getBuyIntent(3, getPackageName(), sku, "inapp", "bGoa+V7g/yqDXvKRqq+JTFn4uQZbPiQJo4pf9RzJ");
 
-                Toast.makeText(this, "getBuyIntent() - success return Bundle", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "getBuyIntent() - success return Bundle", Toast.LENGTH_SHORT).show();
                 Log.i(tag, "getBuyIntent() - success return Bundle");
 
                 response = buyIntentBundle.getInt("RESPONSE_CODE");
-                Toast.makeText(this, "getBuyIntent() - \"RESPONSE_CODE\" return " + String.valueOf(response), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "getBuyIntent() - \"RESPONSE_CODE\" return " + String.valueOf(response), Toast.LENGTH_SHORT).show();
                 Log.i(tag, "getBuyIntent() - \"RESPONSE_CODE\" return " + String.valueOf(response));
 
                 if (response != 0) continue;
@@ -280,7 +282,7 @@ public class MainActivity extends ActionBarActivity
             } catch (RemoteException e) {
                 e.printStackTrace();
 
-                Toast.makeText(this, "getSkuDetails() - fail!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "getSkuDetails() - fail!", Toast.LENGTH_SHORT).show();
                 Log.w(tag, "getBuyIntent() - fail!");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -297,22 +299,20 @@ public class MainActivity extends ActionBarActivity
             if (resultCode != RESULT_OK) return;
 
             int responseCode = data.getIntExtra("RESPONSE_CODE", 1);
-            Toast.makeText(this, "onActivityResult() - \"RESPONSE_CODE\" return " + String.valueOf(responseCode), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "onActivityResult() - \"RESPONSE_CODE\" return " + String.valueOf(responseCode), Toast.LENGTH_SHORT).show();
             Log.i(tag, "onActivityResult() - \"RESPONSE_CODE\" return " + String.valueOf(responseCode));
 
             if (responseCode != 0) return;
 
             String purchaseData = data.getStringExtra("INAPP_PURCHASE_DATA");
-            String dataSignature = data.getStringExtra("INAPP_DATA_SIGNATURE");
 
-            Log.i(tag, "onActivityResult() - \"INAPP_PURCHASE_DATA\" return " + purchaseData.toString());
-            Log.i(tag, "onActivityResult() - \"INAPP_DATA_SIGNATURE\" return " + dataSignature.toString());
+            Log.i(tag, "onActivityResult() - \"INAPP_PURCHASE_DATA\" return " + purchaseData);
 
             // TODO: management purchase result
-            if (purchaseData.toString().equals(inappid)){
+            if (purchaseData.equals(productID)){
                 SharedPreferences.Editor editor = mSettings.edit();
                 editor.putBoolean("AdsDisable", true);
-                editor.commit();
+                editor.apply();
 
                 //disable menu
                 invalidateOptionsMenu();
@@ -338,7 +338,7 @@ public class MainActivity extends ActionBarActivity
         Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
         Email.putExtra(Intent.EXTRA_TEXT, "Dear ...," + "");
         try {
-            startActivity(Email);;
+            startActivity(Email);
         } catch (android.content.ActivityNotFoundException exception) {
             Toast.makeText(this, getResources().getString(R.string.sendEmail_error), Toast.LENGTH_LONG).show();
         }
@@ -346,8 +346,10 @@ public class MainActivity extends ActionBarActivity
     }
 
     private void showAbout() {
+        String versionName = BuildConfig.VERSION_NAME;
         final AlertDialog aboutDialog = new AlertDialog.Builder(
-                this).setMessage(getResources().getString(R.string.about_text))
+                this).setMessage(getResources().getString(R.string.about_text) + "\n\n" +
+                getResources().getString(R.string.about_text_version) + "  " + versionName)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
                     @Override
@@ -416,11 +418,11 @@ public class MainActivity extends ActionBarActivity
         String settings_name = "show_overlay_" + tab_number;
 
         boolean showOverlay = mSettings.getBoolean(settings_name, true);
-        if (showOverlay == true) {
+        if (showOverlay) {
 
             SharedPreferences.Editor editor = mSettings.edit();
             editor.putBoolean(settings_name, false);
-            editor.commit();
+            editor.apply();
 
             final Dialog dialog = new Dialog(this,
                     android.R.style.Theme_Translucent_NoTitleBar);
@@ -445,8 +447,7 @@ public class MainActivity extends ActionBarActivity
     }
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        //Toast.makeText(getApplicationContext(), "onTabReselected".toString(), Toast.LENGTH_SHORT).show();
-    }
+            }
 
 
     @Override
@@ -527,10 +528,10 @@ public class MainActivity extends ActionBarActivity
             Log.i(tag, "getPurchases() - \"INAPP_CONTINUATION_TOKEN\" return " + (continuationToken != null ? continuationToken : "null"));
 
             // TODO: management owned purchase
-            if (ownedSkus.toString().contains(inappid)){
+            if (ownedSkus.toString().contains(productID)){
                 SharedPreferences.Editor editor = mSettings.edit();
                 editor.putBoolean("AdsDisable", true);
-                editor.commit();
+                editor.apply();
 
                 //disable menu
                 invalidateOptionsMenu();

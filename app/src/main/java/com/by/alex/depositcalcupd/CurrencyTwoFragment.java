@@ -213,10 +213,6 @@ public class CurrencyTwoFragment extends Fragment {
         return rootView;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
 
     private ArrayAdapter<String> getCurrencyPairs() {
         ArrayList<String> conversions = new ArrayList<>();
@@ -292,7 +288,7 @@ public class CurrencyTwoFragment extends Fragment {
         ed.putInt(SPN_CAPITAL_B, spnCapital.getSelectedItemPosition());
         ed.putInt(SPN_CURRENCY_B, spnCurrency.getSelectedItemPosition());
         ed.putInt(SPN_TYPE_CONVERSION, spnTypeConversion.getSelectedItemPosition());
-        ed.commit();
+        ed.apply();
 
     }
     public boolean allFieldsWithData(){

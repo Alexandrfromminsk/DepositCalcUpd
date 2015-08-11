@@ -16,7 +16,8 @@
     <string name="help_category_three">Принципы рассчета</string>
     <string name="help_dismiss">Отмена</string>
 
-    <string name="about_text">Супер программа</string>
+    <string name="about_text">Калькулятор валютных депозитов</string>
+    <string name="about_text_version">Версия</string>
 
     <string name="txtCurrencyA">Валюта 1</string>
     <string name="txtCurrencyB">Валюта 2</string>

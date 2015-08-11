@@ -396,7 +396,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         ed.putInt(SPN_CAPITAL, spnCapital.getSelectedItemPosition());
         ed.putInt(SPN_CURRENCY_A, spnCurrency.getSelectedItemPosition());
 
-        ed.commit();
+        ed.apply();
 
     }
 
