@@ -70,7 +70,7 @@
                 <TextView
                     style="@style/MyViewLeftColumn"
                     android:text="@string/txtSumm"
-                    android:id="@+id/txtSummWithCurrency" />
+                    android:id="@+id/txtSummWithCurrencyB" />
 
                 <TextView
                     style="@style/MyViewRightColumn"
@@ -188,7 +188,7 @@
                 <TextView
                     style="@style/MyViewLeftColumn"
                     android:text="@string/txtProfit"
-                    android:id="@+id/textView26" />
+                    android:id="@+id/txtProfitWithCurrencyB" />
 
                 <TextView
                     style="@style/MyViewRightColumn"
@@ -204,7 +204,7 @@
                 <TextView
                     style="@style/MyViewLeftColumn"
                     android:text="@string/txtFullSumm"
-                    android:id="@+id/textView27" />
+                    android:id="@+id/txtFullSummWithCurrencyB" />
 
                 <TextView
                     style="@style/MyViewRightColumn"
@@ -232,6 +232,7 @@
                 ads:adSize="LARGE_BANNER"
                 ads:adUnitId="@string/banner_ad_unit_id_test2">
             </com.google.android.gms.ads.AdView>
+
 
         </TableLayout>
 

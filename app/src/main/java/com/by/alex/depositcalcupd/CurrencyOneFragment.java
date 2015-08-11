@@ -29,10 +29,11 @@ import java.util.GregorianCalendar;
 public class CurrencyOneFragment extends Fragment implements OnClickListener, TextWatcher {
 
     EditText edtSummAvalue, edtPercentA, edtBeginDate, edtTimeperiod;
-    TextView edtDateEnd, txtProfitAValue, txtGrowValue, txtFullSummValue, txtSummWithCurrency;
+    TextView edtDateEnd, txtProfitAValue, txtGrowValue, txtFullSummValue, txtSummWithCurrency,
+        txtFullSummWithCurrency, txtProfitWithCurrency;
     Spinner spnTimeperiod, spnCapital, spnCurrency;
     Formatter f = new Formatter();
-    String textSumm;
+    String textSumm, textFullSumm, textProfit;
 
     SharedPreferences mSettings;
 
@@ -70,6 +71,8 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.cur_one_fragment, container, false);
         textSumm = getResources().getString(R.string.txtSumm);
+        textFullSumm = getResources().getString(R.string.txtFullSumm);
+        textProfit = getResources().getString(R.string.txtProfit);
 
         mSettings = getActivity().getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
@@ -108,7 +111,10 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         txtProfitAValue = (TextView) rootView.findViewById(R.id.txtProfit);
         txtGrowValue = (TextView)rootView.findViewById(R.id.txtGrow);
         txtFullSummValue =(TextView)rootView.findViewById(R.id.txtFullSummValue);
-        txtSummWithCurrency = (TextView) rootView.findViewById(R.id.txtSummWithCurrency);
+        txtSummWithCurrency = (TextView) rootView.findViewById(R.id.txtSummWithCurrencyA);
+        txtFullSummWithCurrency = (TextView) rootView.findViewById(R.id.txtFullSummWithCurrencyA);
+        txtProfitWithCurrency = (TextView) rootView.findViewById(R.id.txtProfitWithCurrencyA);
+
 
         //Spinners
         spnCurrency = (Spinner) rootView.findViewById(R.id.spnCurrencyA);
@@ -146,7 +152,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         spnCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                setTxtSummWithCurrency(spnCurrency.getSelectedItem().toString());
+                setTxtCurrency(spnCurrency.getSelectedItem().toString());
                 if (mSettings.getBoolean("russian_tax", false))   calc_it();
             }
 
@@ -154,7 +160,7 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        setTxtSummWithCurrency(spnCurrency.getSelectedItem().toString());
+        setTxtCurrency(spnCurrency.getSelectedItem().toString());
 
         edtBeginDate = (EditText) rootView.findViewById(R.id.edtBeginDate);
         edtBeginDate.setOnClickListener(this);
@@ -261,9 +267,12 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
         }
     }
 
-    private void setTxtSummWithCurrency(String currency){
+    private void setTxtCurrency(String currency){
         txtSummWithCurrency.setText(this.textSumm + ", " + currency);
+        txtFullSummWithCurrency.setText(this.textFullSumm + ", " + currency);
+        txtProfitWithCurrency.setText(this.textProfit + ", " + currency);
     }
+
 
     public void calc_it(){
         if (allFieldsWithData()) {

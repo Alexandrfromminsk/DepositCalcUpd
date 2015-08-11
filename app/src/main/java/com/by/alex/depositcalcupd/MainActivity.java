@@ -541,13 +541,10 @@ public class MainActivity extends ActionBarActivity
     @Override
     public boolean onPrepareOptionsMenu (Menu menu) {
 
-        Toast.makeText(this, "onPrepareOptionsMenu" + mSettings.getBoolean("AdsDisable", false), Toast.LENGTH_SHORT).show();
-
         MenuItem item = menu.findItem(R.id.off_adv);
         if (mSettings.getBoolean("AdsDisable", false)) {
             //Disable off_adv menu item
             item.setEnabled(false);
-            //item.getIcon().setAlpha(130);
         }
         return true;
     }
