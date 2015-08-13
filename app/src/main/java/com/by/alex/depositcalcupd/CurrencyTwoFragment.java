@@ -165,17 +165,6 @@ public class CurrencyTwoFragment extends Fragment {
 
         setTxtCurrency(spnCurrency.getSelectedItem().toString());
 
-
-        if(savedInstanceState == null){
-            loadSavedSettings();
-
-        }else {
-            loadSavedInstanceState(savedInstanceState);
-        }
-
-        if (txtTimeperiod.getText().toString().length()==0)
-            txtTimeperiod.setText(this.spnTimeperiodNumber + " " + this.spnPeriod);
-
         spnTypeConversion.setAdapter(getCurrencyPairs());
 
         spnTypeConversion.post(new Runnable() {
@@ -195,6 +184,19 @@ public class CurrencyTwoFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+
+        if(savedInstanceState == null){
+            loadSavedSettings();
+
+        }else {
+            loadSavedInstanceState(savedInstanceState);
+        }
+
+        if (txtTimeperiod.getText().toString().length()==0)
+            txtTimeperiod.setText(this.spnTimeperiodNumber + " " + this.spnPeriod);
+
+
 
         // Pure AdMob
         /*
@@ -259,18 +261,18 @@ public class CurrencyTwoFragment extends Fragment {
     }
 
     void loadSavedSettings() {
-        edtDateEnd.setText(mSettings.getString(END_DATE_B, "01-02-2017"));
-        edtExcRateNow.setText(mSettings.getString(EXC_RATE_NOW_B, "15000"));
+        edtDateEnd.setText(mSettings.getString(END_DATE_B, "1-2-2017"));
+        edtExcRateNow.setText(mSettings.getString(EXC_RATE_NOW_B, "16000"));
         edtSummAvalue.setText(mSettings.getString(SUMM_B_VALUE, "1000000"));
-        edtPercentB.setText(mSettings.getString(PERCENT_B, "50"));
+        edtPercentB.setText(mSettings.getString(PERCENT_B, "5"));
         txtProfitBValue.setText(mSettings.getString(PROFIT_B, "0"));
         txtGrowValue.setText(mSettings.getString(GROW_B, "0"));
         txtFullSummValue.setText(mSettings.getString(GROW_B, "0"));
-        edtBeginDate.setText(mSettings.getString(BEGIN_DATE_B, "01-02-2016"));
+        edtBeginDate.setText(mSettings.getString(BEGIN_DATE_B, "1-2-2016"));
         this.CurrencyA = mSettings.getString(CURRENCY_A, "BLR");
         spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL_B, 0));
-        spnCurrency.setSelection(mSettings.getInt(SPN_CURRENCY_B, 1));
-        spnTypeConversion.setSelection(mSettings.getInt(SPN_TYPE_CONVERSION, 0));
+        spnCurrency.setSelection(mSettings.getInt(SPN_CURRENCY_B, 3));
+        spnTypeConversion.setSelection(mSettings.getInt(SPN_TYPE_CONVERSION, 1));
 
     }
 
@@ -329,7 +331,7 @@ public class CurrencyTwoFragment extends Fragment {
             }
             else if (ukr_tax) {
                 int ukr_tax_percent;
-                String ukr_tax_percent_string = mSettings.getString("ukr_tax_percent", "15");
+                String ukr_tax_percent_string = mSettings.getString("ukr_tax_percent", "20");
 
                 try {
                     ukr_tax_percent= Integer.valueOf(ukr_tax_percent_string);

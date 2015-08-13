@@ -98,7 +98,7 @@
     <string name="show_overlays_description">Подсказки будут показаны при следующей запуске</string>
     <string name="tax_percent">Величина налога</string>
     <item name="default_rus_tax_percent_int" format="integer" type="dimen">35</item>
-    <item name="default_ukr_tax_percent_int" format="integer" type="dimen">15</item>
+    <item name="default_ukr_tax_percent_int" format="integer" type="dimen">20</item>
 
     <string name="key_percent">Ключевая ставка</string>
     <string name="key_percent_description">Налог будет рассчитываться для вкладов в рублях, если их ставка превышает указанную. </string>
