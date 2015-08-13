@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+xmlns:ads="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".MainActivity"
+android:id="@+id/first_tab"
+android:background="#FFFFFF"> //3F51B5 or 52b7c8
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView1">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="4sp"
+        android:shrinkColumns="1">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/MyViewLeftColumnCentered"
+                android:text="@string/txtCurrencyA"
+                android:id="@+id/textView16" />
+
+            <Spinner
+                style="@style/MyViewRightColumnCentered"
+                android:spinnerMode="dialog"
+                android:id="@+id/spnCurrencyA">
+            </Spinner>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/MyViewLeftColumnCentered"
+                android:text="@string/txtSumm"
+                android:id="@+id/txtSummWithCurrencyA" />
+
+            <EditText
+                style="@style/MyViewRightColumnCentered"
+                android:inputType="number"
+                android:id="@+id/edtSummAvalue"
+                android:typeface="sans" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/MyViewLeftColumnCentered"
+                android:text="@string/txtPercent"
+                android:id="@+id/textView19" />
+
+            <EditText
+                style="@style/MyViewRightColumnCentered"
+                android:inputType="numberDecimal"
+
+                android:ems="10"
+                android:id="@+id/edtPercent"
+                android:ellipsize="start" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/MyViewLeftColumnCentered"
+                android:text="@string/txtCapital"
+                android:id="@+id/textView20" />
+
+            <Spinner
+                style="@style/MyViewRightColumnCentered"
+                android:spinnerMode="dialog"
+                android:id="@+id/spnCapital" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/MyViewLeftColumnCentered"
+                android:text="@string/txtTimeperiodText"
+                android:layout_gravity="center_vertical|right"
+                android:id="@+id/textView23"/>
+
+            <LinearLayout
+                style="@style/MyViewRightColumnCentered"
+                android:orientation="horizontal"
+                android:paddingLeft="5sp"
+                android:paddingRight="5sp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:id="@+id/edtTimeperiod"
+                    android:layout_weight="2"/>
+
+                <Spinner
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spnTimeperiod"
+                    android:layout_weight="5"
+                    android:spinnerMode="dialog" />
+            </LinearLayout>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/MyViewLeftColumnCentered"
+                android:text="@string/txtDateBegin"
+                android:id="@+id/textView22" />
+
+            <EditText
+                style="@style/MyViewRightColumnCentered"
+                android:inputType="date"
+                android:clickable="true"
+                android:focusable="false"
+                android:id="@+id/edtBeginDate" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/MyViewLeftColumnCentered"
+                android:text="@string/txtDateEnd"
+                android:id="@+id/textView24" />
+
+            <TextView
+                style="@style/MyViewRightColumnCentered"
+                android:id="@+id/edtEndDate" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGreyLine">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:id="@+id/greyline" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/MyViewLeftColumnCentered"
+                android:text="@string/txtGrow"
+                android:id="@+id/textView25" />
+
+            <TextView
+                style="@style/MyViewRightColumnCentered"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/txtGrow" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/MyViewLeftColumnCentered"
+                android:text="@string/txtProfit"
+                android:id="@+id/txtProfitWithCurrencyA" />
+
+            <TextView
+                style="@style/MyViewRightColumnCentered"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/txtProfit" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/MyViewLeftColumnCentered"
+                android:text="@string/txtFullSumm"
+                android:id="@+id/txtFullSummWithCurrencyA" />
+
+            <TextView
+                style="@style/MyViewRightColumnCentered"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/txtFullSummValue" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textViewEmptyForScroll" />
+        </TableRow>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="LARGE_BANNER"
+            ads:adUnitId="@string/banner_ad_unit_id_test">
+        </com.google.android.gms.ads.AdView>
+
+    </TableLayout>
+
+
+</ScrollView>
+
+
+</FrameLayout>
