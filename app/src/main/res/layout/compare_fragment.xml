@@ -59,6 +59,8 @@
                     android:id="@+id/greyline" />
             </TableRow>
 
+
+
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -72,6 +74,26 @@
                     android:id="@+id/textView1" />
 
             </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2">
+
+                <TextView
+                    style="@style/MyViewLeftColumnCentered"
+                    android:textStyle="bold"
+                    android:text="@string/cmpr_txtExcRateCurrent_new"
+                    android:id="@+id/textView3" />
+
+                <TextView
+                    style="@style/MyViewRightColumnCentered"
+                    android:id="@+id/txtExcRateNow"
+                    android:textColor="@color/colorAccent"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_column="1"/>
+            </TableRow>
+
 
             <TableRow
                 android:layout_width="match_parent"
@@ -116,24 +138,6 @@
                     android:id="@+id/txtPrecentProfitNow" />
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="2">
-
-                <TextView
-                    style="@style/MyViewLeftColumnCentered"
-                    android:textStyle="bold"
-                    android:text="@string/cmpr_txtExcRateCurrent_new"
-                    android:id="@+id/textView3" />
-
-                <TextView
-                    style="@style/MyViewRightColumnCentered"
-                    android:id="@+id/txtExcRateNow"
-                    android:textColor="@color/colorAccent"
-                    android:layout_gravity="left|center_vertical"
-                    android:layout_column="1"/>
-            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
