@@ -144,7 +144,7 @@ public class CompareFragment extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
        */
-
+        
         return rootView;
     }
 
@@ -231,7 +231,6 @@ public class CompareFragment extends Fragment {
         else diffInCurrB = diffProfit*excRateNow;
 
         txtCurTwoProfitNow.setText(f.format(diffInCurrB));
-
 
         //maybe another approach should be used
         edtExcRateDinamic.setText(f.formatExcRate(excRateNow));
