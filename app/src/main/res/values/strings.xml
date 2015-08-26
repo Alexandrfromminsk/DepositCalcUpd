@@ -36,7 +36,7 @@
     <string name="txtCross">Кросс-курс</string>
 
     <string name="cmpr_txtFirstSection">Разница прибыли первого вклада по отношению к второму при текущем обменном курсе</string>
-    <string name="cmpr_txtFirstSection_new">Разница прибыли между первым и вторым вкладами</string>
+    <string name="cmpr_txtFirstSection_new">Сравнение вкладов</string>
     <string name="cmpr_txtСurrency">Курс</string>
 
     <string name="cmpr_txtExcRateCurrent">Обменный курс (текущий)</string>
@@ -47,7 +47,9 @@
     <string name="cmpr_txtChooseCur">Выбрать обменный курс</string>
     <string name="cmpr_txtNoDiffInProfit">Отсутствует разница в прибыли при курсе</string>
 
-    <string name="cmpr_txtSecondSection">Равная прибыль при рассчитанном обменном курсе</string>
+    <string name="cmpr_txtDiffProfits">Разница в прибыли</string>
+    <string name="cmpr_txtDiffFull">Разность итоговых сумм на вкладах</string>
+
     <string name="cmpr_txtExcRateCalc">Обменный курс (расчетный)</string>
 
     <string name="cmpr_txtThirdSection">Разница при произвольном обменном курсе</string>

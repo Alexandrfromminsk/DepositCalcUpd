@@ -82,7 +82,6 @@
 
                 <TextView
                     style="@style/MyViewLeftColumnCentered"
-                    android:textStyle="bold"
                     android:text="@string/cmpr_txtExcRateCurrent_new"
                     android:id="@+id/textView3" />
 
@@ -92,6 +91,19 @@
                     android:textColor="@color/colorAccent"
                     android:layout_gravity="left|center_vertical"
                     android:layout_column="1"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/MyView"
+                    android:gravity="center_horizontal"
+                    android:layout_span="2"
+                    android:textStyle="bold"
+                    android:text="@string/cmpr_txtDiffProfits"
+                    android:id="@+id/txtDiffProfits1" />
             </TableRow>
 
 
@@ -116,11 +128,24 @@
 
                 <TextView
                     style="@style/MyViewLeftColumnCentered"
-                    android:id="@+id/txtInCurTwo2" />
+                    android:id="@+id/txtInCurTwo1" />
 
                 <TextView
                     style="@style/MyViewRightColumnCentered"
                     android:id="@+id/txtCurTwoProfitNow" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/MyView"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:layout_span="2"
+                    android:text="@string/cmpr_txtDiffFull"
+                    android:id="@+id/txtDiffFull1" />
             </TableRow>
 
             <TableRow
@@ -130,6 +155,35 @@
 
                 <TextView
                     style="@style/MyViewLeftColumnCentered"
+                    android:id="@+id/txtInCurOne2" />
+
+                <TextView
+                    style="@style/MyViewRightColumnCentered"
+                    android:id="@+id/txtCurOneFullNov" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2">
+
+                <TextView
+                    style="@style/MyViewLeftColumnCentered"
+                    android:id="@+id/txtInCurTwo2" />
+
+                <TextView
+                    style="@style/MyViewRightColumnCentered"
+                    android:id="@+id/txtCurTwoFullNov" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2">
+
+                <TextView
+                    style="@style/MyViewLeftColumnCentered"
+                    android:textStyle="bold"
                     android:text="@string/cmpr_txtInPercent"
                     android:id="@+id/textView7" />
 
@@ -165,12 +219,25 @@
 
             <TableRow
                 android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/MyView"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:layout_span="2"
+                    android:text="@string/cmpr_txtDiffProfits"
+                    android:id="@+id/txtDiffProfits2" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:weightSum="2">
 
                 <TextView
                     style="@style/MyViewLeftColumnCentered"
-                    android:id="@+id/txtInCurOne2" />
+                    android:id="@+id/txtInCurOne3" />
 
                 <TextView
                     style="@style/MyViewRightColumnCentered"
@@ -184,11 +251,24 @@
 
                 <TextView
                     style="@style/MyViewLeftColumnCentered"
-                    android:id="@+id/txtInCurTwo1" />
+                    android:id="@+id/txtInCurTwo3" />
 
                 <TextView
                     style="@style/MyViewRightColumnCentered"
                     android:id="@+id/txtCurTwoProfitDinamic" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/MyView"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:layout_span="2"
+                    android:text="@string/cmpr_txtDiffFull"
+                    android:id="@+id/txtDiffFull2" />
             </TableRow>
 
             <TableRow
@@ -198,6 +278,36 @@
 
                 <TextView
                     style="@style/MyViewLeftColumnCentered"
+                    android:id="@+id/txtInCurOne4" />
+
+                <TextView
+                    style="@style/MyViewRightColumnCentered"
+                    android:id="@+id/txtCurOneFullDinamic" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2">
+
+                <TextView
+                    style="@style/MyViewLeftColumnCentered"
+                    android:id="@+id/txtInCurTwo4" />
+
+                <TextView
+                    style="@style/MyViewRightColumnCentered"
+                    android:id="@+id/txtCurTwoFullDinamic" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2">
+
+                <TextView
+                    style="@style/MyViewLeftColumnCentered"
+                    android:textStyle="bold"
                     android:text="@string/cmpr_txtInPercent"
                     android:id="@+id/textView15" />
 

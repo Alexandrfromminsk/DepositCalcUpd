@@ -388,7 +388,7 @@ public class MainActivity extends ActionBarActivity
             case TAB_COMPARE:
                 compareTab = (CompareFragment) myManager.findFragmentByTag(tag);
                 compareTab.setDataFromTabs(CurrencyA, CurrencyB, ProfitA, ProfitB, ExcRate,
-                        PercentGrowA, PercentGrowB, Inverted_conversion);
+                        PercentGrowA, PercentGrowB, Inverted_conversion, SummA);
                 showActivityOverlay(TAB_COMPARE);
                 break;
         }
