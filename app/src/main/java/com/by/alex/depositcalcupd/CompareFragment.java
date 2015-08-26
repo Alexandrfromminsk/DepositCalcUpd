@@ -17,10 +17,10 @@ import android.widget.TextView;
 
 public class CompareFragment extends Fragment {
 
-    TextView txtPrecentProfitNow,txtCurOneProfitNow, txtCurTwoProfitNow, txtExcRateNow,
-            txtInCurTwo1, txtInCurTwo2, txtInCurOne1,txtInCurOne2, txtInCurTwo3, txtInCurOne3,
+    TextView txtPrecentProfitNow,txtCurOneProfitNow, txtExcRateNow,
+            txtInCurTwo3, txtInCurOne3,
             txtInCurTwo4, txtInCurOne4,txtExcRateCalc, vievForFocus,
-            txtCurOneFullNov, txtCurTwoFullNov,txtCurOneFullDinamic, txtCurTwoFullDinamic,
+            txtCurOneFullDinamic, txtCurTwoFullDinamic,
             txtPercentProfitDinamic,txtCurOneProfitDinamic, txtCurTwoProfitDinamic;
     EditText edtExcRateDinamic;
     Formatter f = new Formatter();
@@ -54,25 +54,17 @@ public class CompareFragment extends Fragment {
         mSettings = getActivity().getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
         textInCur = getResources().getString(R.string.cmpr_txtInCur);
-        txtInCurOne1 = (TextView) rootView.findViewById(R.id.txtInCurOne1);
-        txtInCurOne2 = (TextView) rootView.findViewById(R.id.txtInCurOne2);
+
         txtInCurOne3 = (TextView) rootView.findViewById(R.id.txtInCurOne3);
         txtInCurOne4 = (TextView) rootView.findViewById(R.id.txtInCurOne4);
-        txtInCurTwo1 = (TextView) rootView.findViewById(R.id.txtInCurTwo1);
-        txtInCurTwo2 = (TextView) rootView.findViewById(R.id.txtInCurTwo2);
         txtInCurTwo3 = (TextView) rootView.findViewById(R.id.txtInCurTwo3);
         txtInCurTwo4 = (TextView) rootView.findViewById(R.id.txtInCurTwo4);
 
-        txtCurOneFullNov= (TextView) rootView.findViewById(R.id.txtCurOneFullNov);
-        txtCurTwoFullNov= (TextView) rootView.findViewById(R.id.txtCurTwoFullNov);
+
         txtCurOneFullDinamic= (TextView) rootView.findViewById(R.id.txtCurOneFullDinamic);
         txtCurTwoFullDinamic= (TextView) rootView.findViewById(R.id.txtCurTwoFullDinamic);
 
-        vievForFocus = (TextView) rootView.findViewById(R.id.txtNoDiffInProfit);
-        txtPrecentProfitNow = (TextView) rootView.findViewById(R.id.txtPrecentProfitNow);
-        txtCurOneProfitNow = (TextView) rootView.findViewById(R.id.txtCurOneProfitNow);
-        txtCurTwoProfitNow = (TextView) rootView.findViewById(R.id.txtCurTwoProfitNow);
-        txtExcRateNow = (TextView) rootView.findViewById(R.id.txtExcRateNow);
+        vievForFocus = (TextView) rootView.findViewById(R.id.txtExcRateCalc);
 
         txtExcRateCalc = (TextView) rootView.findViewById(R.id.txtExcRateCalc);
 
@@ -192,17 +184,13 @@ public class CompareFragment extends Fragment {
         String textInCurOne = String.format("%s 1, %s", textInCur, currencyA);
         String textInCurTwo = String.format("%s 2, %s", textInCur, currencyB);
 
-        txtInCurOne1.setText(textInCurOne);
-        txtInCurOne2.setText(textInCurOne);
+
         txtInCurOne3.setText(textInCurOne);
         txtInCurOne4.setText(textInCurOne);
 
-        txtInCurTwo1.setText(textInCurTwo);
-        txtInCurTwo2.setText(textInCurTwo);
         txtInCurTwo3.setText(textInCurTwo);
         txtInCurTwo4.setText(textInCurTwo);
 
-        txtExcRateNow.setText(f.formatExcRate(excRateNow));
 
         diffPercent = PercentGrowA - PercentGrowB;
         diffFullSumm = summAbegin*diffPercent/100;
@@ -218,19 +206,11 @@ public class CompareFragment extends Fragment {
 
         diffProfit = profitA - profitBConverted;
 
-        txtPrecentProfitNow.setText(f.format(diffPercent) + " %");
-        txtCurOneProfitNow.setText(f.format(diffProfit));
-
-
-        txtCurOneFullNov.setText(f.format(diffFullSumm));
-        txtCurTwoFullNov.setText(f.format(diffFullSummInCurrB));
         txtCurOneFullDinamic.setText(f.format(diffFullSumm));
         txtCurTwoFullDinamic.setText(f.format(diffFullSummInCurrB));
 
         if (Inverted_conversion) diffInCurrB = diffProfit/excRateNow;
         else diffInCurrB = diffProfit*excRateNow;
-
-        txtCurTwoProfitNow.setText(f.format(diffInCurrB));
 
         //maybe another approach should be used
         edtExcRateDinamic.setText(f.formatExcRate(excRateNow));

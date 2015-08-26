@@ -47,12 +47,12 @@
     <string name="cmpr_txtChooseCur">Выбрать обменный курс</string>
     <string name="cmpr_txtNoDiffInProfit">Отсутствует разница в прибыли при курсе</string>
 
-    <string name="cmpr_txtDiffProfits">Разница в прибыли</string>
+    <string name="cmpr_txtDiffProfits">Разность прибылей вкладов</string>
     <string name="cmpr_txtDiffFull">Разность итоговых сумм на вкладах</string>
 
     <string name="cmpr_txtExcRateCalc">Обменный курс (расчетный)</string>
 
-    <string name="cmpr_txtThirdSection">Разница при произвольном обменном курсе</string>
+    <string name="cmpr_txtThirdSection">Сравнение первого вклада относительно второго при заданном обменном курсе</string>
     <string name="cmpr_txtExcRateVar">Обменный курс (произвольный)</string>
 
     <string-array name="timeperiods_array">
