@@ -82,6 +82,18 @@
                     android:gravity="center_horizontal"
                     android:textStyle="bold"
                     android:layout_span="2"
+                    android:id="@+id/txtItog" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/MyView"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:layout_span="2"
                     android:text="@string/cmpr_txtDiffProfits"
                     android:id="@+id/txtDiffProfits2" />
             </TableRow>
@@ -202,7 +214,6 @@
                     android:gravity="center_horizontal"
                     android:layout_span="2"
                     android:layout_margin="16sp"
-                    android:text="@string/cmpr_txtFirstSection_new"
                     android:id="@+id/seekBar" />
             </TableRow>
 

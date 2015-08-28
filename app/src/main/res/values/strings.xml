@@ -35,12 +35,9 @@
     <string name="txtTypeConversion">Конверсия</string>
     <string name="txtCross">Кросс-курс</string>
 
-    <string name="cmpr_txtFirstSection">Разница прибыли первого вклада по отношению к второму при текущем обменном курсе</string>
-    <string name="cmpr_txtFirstSection_new">Сравнение вкладов</string>
     <string name="cmpr_txtСurrency">Курс</string>
 
-    <string name="cmpr_txtExcRateCurrent">Обменный курс (текущий)</string>
-    <string name="cmpr_txtExcRateCurrent_new">При текущем обменном курсе</string>
+    <string name="cmpr_txtItog">%s$1 более выгодный при курсе %s$2</string>
 
     <string name="cmpr_txtInPercent">В процентах</string>
     <string name="cmpr_txtInCur">В валюте</string>

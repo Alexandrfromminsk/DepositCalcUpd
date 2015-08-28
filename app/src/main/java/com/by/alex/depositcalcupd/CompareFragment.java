@@ -20,13 +20,13 @@ public class CompareFragment extends Fragment {
     TextView txtPrecentProfitNow,txtCurOneProfitNow, txtExcRateNow,
             txtInCurTwo3, txtInCurOne3,
             txtInCurTwo4, txtInCurOne4,txtExcRateCalc, vievForFocus,
-            txtCurOneFullDinamic, txtCurTwoFullDinamic,
+            txtCurOneFullDinamic, txtCurTwoFullDinamic, txtItog,
             txtPercentProfitDinamic,txtCurOneProfitDinamic, txtCurTwoProfitDinamic;
     EditText edtExcRateDinamic;
     Formatter f = new Formatter();
 
     private float ExcRateNow, ProfitA, ProfitB, PercentGrowA, PercentGrowB, SummABegin;
-    private String  textInCur;
+    private String  textInCur, itog;
     private boolean Inverted_conversion;
     private SeekBar mSeekBar;
     SharedPreferences mSettings;
@@ -54,6 +54,7 @@ public class CompareFragment extends Fragment {
         mSettings = getActivity().getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
         textInCur = getResources().getString(R.string.cmpr_txtInCur);
+        itog = getResources().getString(R.string.cmpr_txtItog);
 
         txtInCurOne3 = (TextView) rootView.findViewById(R.id.txtInCurOne3);
         txtInCurOne4 = (TextView) rootView.findViewById(R.id.txtInCurOne4);
@@ -65,7 +66,7 @@ public class CompareFragment extends Fragment {
         txtCurTwoFullDinamic= (TextView) rootView.findViewById(R.id.txtCurTwoFullDinamic);
 
         vievForFocus = (TextView) rootView.findViewById(R.id.txtExcRateCalc);
-
+        txtItog=(TextView) rootView.findViewById(R.id.txtItog);
         txtExcRateCalc = (TextView) rootView.findViewById(R.id.txtExcRateCalc);
 
         txtPercentProfitDinamic = (TextView) rootView.findViewById(R.id.txtPrecentProfitDinamic);
