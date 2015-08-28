@@ -80,7 +80,6 @@
                 <TextView
                     style="@style/MyView"
                     android:gravity="center_horizontal"
-                    android:textStyle="bold"
                     android:layout_span="2"
                     android:id="@+id/txtItog" />
             </TableRow>

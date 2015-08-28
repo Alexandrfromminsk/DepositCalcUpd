@@ -37,7 +37,7 @@
 
     <string name="cmpr_txtСurrency">Курс</string>
 
-    <string name="cmpr_txtItog">%s$1 более выгодный при курсе %s$2</string>
+    <string name="cmpr_txtItog">%1$s более выгодный при курсе %2$s</string>
 
     <string name="cmpr_txtInPercent">В процентах</string>
     <string name="cmpr_txtInCur">В валюте</string>

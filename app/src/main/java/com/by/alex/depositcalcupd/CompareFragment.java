@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -26,7 +27,8 @@ public class CompareFragment extends Fragment {
     Formatter f = new Formatter();
 
     private float ExcRateNow, ProfitA, ProfitB, PercentGrowA, PercentGrowB, SummABegin;
-    private String  textInCur, itog;
+    private String  textInCur, itog, vkladOneColored, colorOne, vkladTwoColored, colorTwo,
+            kursColored, colorKurs, colorTemplate;
     private boolean Inverted_conversion;
     private SeekBar mSeekBar;
     SharedPreferences mSettings;
@@ -54,7 +56,16 @@ public class CompareFragment extends Fragment {
         mSettings = getActivity().getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
         textInCur = getResources().getString(R.string.cmpr_txtInCur);
+
         itog = getResources().getString(R.string.cmpr_txtItog);
+        colorTemplate = "<font color='%1$s'>%2$s </font>";
+        colorOne = "green";
+        colorKurs = String.valueOf(getResources().getColor(R.color.colorAccent));
+        colorTwo = "red";
+        vkladOneColored = String.format(colorTemplate, colorOne ,getResources().getStringArray(R.array.tabs_array)[0]);
+        vkladTwoColored = String.format(colorTemplate, colorTwo ,getResources().getStringArray(R.array.tabs_array)[1]);
+        //kursColored = String.format(colorTemplate, colorKurs,edtExcRateDinamic.getText());
+
 
         txtInCurOne3 = (TextView) rootView.findViewById(R.id.txtInCurOne3);
         txtInCurOne4 = (TextView) rootView.findViewById(R.id.txtInCurOne4);
@@ -132,6 +143,8 @@ public class CompareFragment extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+
+
     /* Pure adMob
         AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -139,6 +152,17 @@ public class CompareFragment extends Fragment {
        */
         
         return rootView;
+    }
+
+    private void makeItog(float diffPercent) {
+
+        kursColored = String.format(colorTemplate, colorKurs, edtExcRateDinamic.getText());
+
+        if (diffPercent>=0)
+            txtItog.setText(Html.fromHtml(String.format(itog, vkladOneColored, kursColored)), TextView.BufferType.SPANNABLE);
+        else
+            txtItog.setText(Html.fromHtml(String.format(itog, vkladTwoColored, kursColored)), TextView.BufferType.SPANNABLE);
+
     }
 
 
@@ -165,6 +189,8 @@ public class CompareFragment extends Fragment {
         txtCurOneFullDinamic.setText(f.format(diffFullSumm));
         txtCurTwoFullDinamic.setText(f.format(diffFullSummB));
         txtPercentProfitDinamic.setText(f.format(percent) + "%");
+
+        makeItog(percent);
     }
 
 
@@ -185,13 +211,10 @@ public class CompareFragment extends Fragment {
         String textInCurOne = String.format("%s 1, %s", textInCur, currencyA);
         String textInCurTwo = String.format("%s 2, %s", textInCur, currencyB);
 
-
         txtInCurOne3.setText(textInCurOne);
         txtInCurOne4.setText(textInCurOne);
-
         txtInCurTwo3.setText(textInCurTwo);
         txtInCurTwo4.setText(textInCurTwo);
-
 
         diffPercent = PercentGrowA - PercentGrowB;
         diffFullSumm = summAbegin*diffPercent/100;
@@ -223,6 +246,8 @@ public class CompareFragment extends Fragment {
         if (Inverted_conversion) excRateCalc=(100+diffPercent)*excRateNow/100;
         else  excRateCalc= (100-diffPercent)* excRateNow/100;
         txtExcRateCalc.setText(f.formatExcRate(excRateCalc));
+
+        makeItog(diffPercent);
 
     }
 
