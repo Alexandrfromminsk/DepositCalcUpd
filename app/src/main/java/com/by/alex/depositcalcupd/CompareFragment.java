@@ -18,8 +18,7 @@ import android.widget.TextView;
 
 public class CompareFragment extends Fragment {
 
-    TextView txtInCurTwo3, txtInCurOne3,
-            txtInCurTwo4, txtInCurOne4,txtExcRateCalc, vievForFocus,
+    TextView txtInCurTwo3, txtInCurOne3, txtInCurTwo4, txtInCurOne4,txtExcRateCalc, vievForFocus,
             txtCurOneFullDinamic, txtCurTwoFullDinamic, txtItog,
             txtPercentProfitDinamic,txtCurOneProfitDinamic, txtCurTwoProfitDinamic;
     EditText edtExcRateDinamic;
