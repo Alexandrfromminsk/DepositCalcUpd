@@ -66,7 +66,6 @@ public  class Calculator {
         }
 
         if (Capitalization==3) {
-
             //Capitalization every 90 day (kvartal)
 
             int num_capitalizations = Days/90;
@@ -84,7 +83,6 @@ public  class Calculator {
         }
 
         if (Capitalization==4) {
-
             //Capitalization every 365 day
             int num_capitalizations = Days/365;
 
