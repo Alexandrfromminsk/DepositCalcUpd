@@ -168,7 +168,6 @@ public class CompareFragment extends Fragment {
         //Send data which will be saved at MainActivity
         //Log.e("befocallbackCompareTab", "befocallbackCompareTab");
         mCallback.saveCompareTabData(777);
-
     }
 
     private void setDinamicPercentAndFullSumm(float excRate) {
@@ -246,7 +245,6 @@ public class CompareFragment extends Fragment {
         txtExcRateCalc.setText(f.formatExcRate(excRateCalc));
 
         makeItog(diffPercent);
-
     }
 
 
