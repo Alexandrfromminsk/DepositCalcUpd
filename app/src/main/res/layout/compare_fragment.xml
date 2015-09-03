@@ -86,6 +86,136 @@
 
             <TableRow
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    style="@style/MyViewLeftColumnCentered"
+                    android:textStyle="bold"
+                    android:text="@string/cmpr_txtChooseCur"
+                    android:id="@+id/textView13" />
+
+
+                <EditText
+                    style="@style/MyViewRightColumnCentered"
+                    android:textColor="@color/colorAccent"
+                    android:layout_gravity="left|center_vertical"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:inputType="numberDecimal"
+                    android:id="@+id/edtExcRateDinamic" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <SeekBar
+                    android:gravity="center_horizontal"
+                    android:layout_span="2"
+                    android:layout_margin="16sp"
+                    android:id="@+id/seekBar" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4sp"
+
+                    android:stretchColumns="*"
+                    android:layout_gravity="center">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+
+                        <TextView
+                            style="@style/MyView"
+                            android:text=""
+                            android:id="@+id/tab11" />
+
+                        <TextView
+                            style="@style/MyView"
+                            android:text="BLR"
+                            android:id="@+id/tab12" />
+
+                        <TextView
+                            style="@style/MyView"
+                            android:text="USD"
+                            android:id="@+id/tab13" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            style="@style/MyView"
+                            android:text="Vklad1"
+                            android:id="@+id/tab14" />
+
+                        <TextView
+                            style="@style/MyView"
+                            android:text="500"
+                            android:id="@+id/tab15" />
+                        <TextView
+                            style="@style/MyView"
+                            android:text="5.000.000"
+                            android:id="@+id/tab16" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            style="@style/MyView"
+                            android:text="Vklad2"
+                            android:id="@+id/tab17" />
+
+                        <TextView
+                            style="@style/MyView"
+                            android:text="200"
+                            android:id="@+id/tab18" />
+                        <TextView
+                            style="@style/MyView"
+                            android:text="3.000.000"
+                            android:id="@+id/tab19" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            style="@style/MyView"
+                            android:text="Razniza"
+                            android:id="@+id/tab110" />
+
+                        <TextView
+                            style="@style/MyView"
+                            android:text="100"
+                            android:id="@+id/tab111" />
+                        <TextView
+                            style="@style/MyView"
+                            android:text="1.000.000"
+                            android:id="@+id/tab112" />
+                    </TableRow>
+
+                </TableLayout>
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -181,39 +311,6 @@
                 <TextView
                     style="@style/MyViewRightColumnCentered"
                     android:id="@+id/txtPrecentProfitDinamic" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <TextView
-                    style="@style/MyViewLeftColumnCentered"
-                    android:textStyle="bold"
-                    android:text="@string/cmpr_txtChooseCur"
-                    android:id="@+id/textView13" />
-
-
-                <EditText
-                    style="@style/MyViewRightColumnCentered"
-                    android:textColor="@color/colorAccent"
-                    android:layout_gravity="left|center_vertical"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:inputType="numberDecimal"
-                    android:id="@+id/edtExcRateDinamic" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <SeekBar
-                    android:gravity="center_horizontal"
-                    android:layout_span="2"
-                    android:layout_margin="16sp"
-                    android:id="@+id/seekBar" />
             </TableRow>
 
 
