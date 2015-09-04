@@ -117,11 +117,24 @@
                     android:id="@+id/seekBar" />
             </TableRow>
 
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/MyView"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:layout_span="2"
+                    android:text="@string/cmpr_txtDiffProfits"
+                    android:id="@+id/txtDiffProfits2" />
+            </TableRow>
+
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center">
+                android:gravity="center">
 
                 <TableLayout
                     android:layout_width="match_parent"
@@ -158,7 +171,7 @@
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="Vklad1"
+                            android:text="@string/cmpr_depoOne"
                             android:id="@+id/tab14" />
 
                         <TextView
@@ -180,7 +193,7 @@
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="Vklad2"
+                            android:text="@string/cmpr_depoTwo"
                             android:id="@+id/tab17" />
 
                         <TextView
@@ -200,7 +213,7 @@
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="Razniza"
+                            android:text="@string/cmpr_depodiff"
                             android:id="@+id/tab110" />
 
                         <TextView
@@ -217,18 +230,7 @@
             </TableRow>
 
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <TextView
-                    style="@style/MyView"
-                    android:gravity="center_horizontal"
-                    android:textStyle="bold"
-                    android:layout_span="2"
-                    android:text="@string/cmpr_txtDiffProfits"
-                    android:id="@+id/txtDiffProfits2" />
-            </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"

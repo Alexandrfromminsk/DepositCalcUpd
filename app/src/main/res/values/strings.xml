@@ -36,21 +36,21 @@
     <string name="txtCross">Кросс-курс</string>
 
     <string name="cmpr_txtСurrency">Курс</string>
-
     <string name="cmpr_txtItog">%1$s более выгодный при курсе %2$s</string>
+    <string name="cmpr_txtChooseCur">Выбрать обменный курс</string>
+    <string name="cmpr_txtNoDiffInProfit">Одинаковая прибыльность при курсе</string>
+    <string name="cmpr_txtDiffProfits">Разность прибылей вкладов</string>
+    <string name="cmpr_txtDiffFull">Разность итоговых сумм на вкладах</string>
+    <string name="cmpr_txtThirdSection">Сравнение вкладов при заданном обменном курсе</string>
+    <string name="cmpr_txtExcRateVar">Обменный курс (произвольный)</string>
+
+    <string name="cmpr_depoOne">Вклад 1</string>
+    <string name="cmpr_depoTwo">Вклад 2</string>
+    <string name="cmpr_depodiff">Разность</string>
+
 
     <string name="cmpr_txtInPercent">В процентах</string>
     <string name="cmpr_txtInCur">В валюте</string>
-    <string name="cmpr_txtChooseCur">Выбрать обменный курс</string>
-    <string name="cmpr_txtNoDiffInProfit">Отсутствует разница в прибыли при курсе</string>
-
-    <string name="cmpr_txtDiffProfits">Разность прибылей вкладов</string>
-    <string name="cmpr_txtDiffFull">Разность итоговых сумм на вкладах</string>
-
-    <string name="cmpr_txtExcRateCalc">Обменный курс (расчетный)</string>
-
-    <string name="cmpr_txtThirdSection">Сравнение первого вклада относительно второго при заданном обменном курсе</string>
-    <string name="cmpr_txtExcRateVar">Обменный курс (произвольный)</string>
 
     <string-array name="timeperiods_array">
         <item>день</item>

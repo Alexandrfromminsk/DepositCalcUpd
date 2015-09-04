@@ -20,7 +20,9 @@ public class CompareFragment extends Fragment {
 
     TextView txtInCurTwo3, txtInCurOne3, txtInCurTwo4, txtInCurOne4,txtExcRateCalc, vievForFocus,
             txtCurOneFullDinamic, txtCurTwoFullDinamic, txtItog,
-            txtPercentProfitDinamic,txtCurOneProfitDinamic, txtCurTwoProfitDinamic;
+            txtPercentProfitDinamic,txtCurOneProfitDinamic, txtCurTwoProfitDinamic,
+            tabCurOne, tabCurTwo, tabCurOne2, tabCurTwo2,
+            tabVkladOne, tabCurTwo, tabCurOne2, tabCurTwo2;
     EditText edtExcRateDinamic;
     Formatter f = new Formatter();
 
