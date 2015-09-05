@@ -451,7 +451,8 @@ public class MainActivity extends ActionBarActivity
 
 
     @Override
-    public void saveFirstTabData(String spn_currency, float summ, int timeperiod, int spn_tpr, String dateBegin, String dateEnd, float profit, float percent_grow) {
+    public void saveFirstTabData(String spn_currency, float summ, int timeperiod, int spn_tpr,
+                                 String dateBegin, String dateEnd, float profit, float percent_grow) {
         this.CurrencyA = spn_currency;
         this.SummA = summ;
         this.Timeperiod = timeperiod;

@@ -161,7 +161,6 @@
                             style="@style/MyViewTable"
                             android:text="USD"
                             android:id="@+id/tab13" />
-
                     </TableRow>
 
                     <TableRow
@@ -178,6 +177,7 @@
                             style="@style/MyViewTable"
                             android:text="500"
                             android:id="@+id/tab15" />
+
                         <TextView
                             style="@style/MyViewTable"
                             android:layout_gravity="right"
@@ -200,6 +200,7 @@
                             style="@style/MyViewTable"
                             android:text="200"
                             android:id="@+id/tab18" />
+
                         <TextView
                             style="@style/MyViewTable"
                             android:text="3.000.000"
@@ -220,6 +221,7 @@
                             style="@style/MyViewTable"
                             android:text="100.000.000"
                             android:id="@+id/tab111" />
+
                         <TextView
                             style="@style/MyViewTable"
                             android:text="1.000.000"
@@ -227,37 +229,6 @@
                     </TableRow>
 
                 </TableLayout>
-            </TableRow>
-
-
-
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="2">
-
-                <TextView
-                    style="@style/MyViewLeftColumnCentered"
-                    android:id="@+id/txtInCurOne3" />
-
-                <TextView
-                    style="@style/MyViewRightColumnCentered"
-                    android:id="@+id/txtCurOneProfitDinamic" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="2">
-
-                <TextView
-                    style="@style/MyViewLeftColumnCentered"
-                    android:id="@+id/txtInCurTwo3" />
-
-                <TextView
-                    style="@style/MyViewRightColumnCentered"
-                    android:id="@+id/txtCurTwoProfitDinamic" />
             </TableRow>
 
             <TableRow
@@ -276,31 +247,99 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:weightSum="2">
+                android:gravity="center">
 
-                <TextView
-                    style="@style/MyViewLeftColumnCentered"
-                    android:id="@+id/txtInCurOne4" />
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:stretchColumns="*"
+                    android:layout_gravity="center">
 
-                <TextView
-                    style="@style/MyViewRightColumnCentered"
-                    android:id="@+id/txtCurOneFullDinamic" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:weightSum="3">
+
+                        <TextView
+                            style="@style/MyViewTable"
+                            android:text=""
+                            android:id="@+id/tab21" />
+
+                        <TextView
+                            style="@style/MyViewTable"
+                            android:text="BLR"
+                            android:id="@+id/tab22" />
+
+                        <TextView
+                            style="@style/MyViewTable"
+                            android:text="USD"
+                            android:id="@+id/tab23" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:weightSum="3">
+
+                        <TextView
+                            style="@style/MyViewTable"
+                            android:text="@string/cmpr_depoOne"
+                            android:id="@+id/tab24" />
+
+                        <TextView
+                            style="@style/MyViewTable"
+                            android:text="500"
+                            android:id="@+id/tab25" />
+                        <TextView
+                            style="@style/MyViewTable"
+                            android:layout_gravity="right"
+                            android:text="5.000.000.000"
+                            android:id="@+id/tab26" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:weightSum="3">
+
+                        <TextView
+                            style="@style/MyViewTable"
+                            android:text="@string/cmpr_depoTwo"
+                            android:id="@+id/tab27" />
+
+                        <TextView
+                            style="@style/MyViewTable"
+                            android:text="200"
+                            android:id="@+id/tab28" />
+                        <TextView
+                            style="@style/MyViewTable"
+                            android:text="3.000.000"
+                            android:id="@+id/tab29" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:weightSum="3">
+
+                        <TextView
+                            style="@style/MyViewTable"
+                            android:text="@string/cmpr_depodiff"
+                            android:id="@+id/tab210" />
+
+                        <TextView
+                            style="@style/MyViewTable"
+                            android:text="100.000.000"
+                            android:id="@+id/tab211" />
+                        <TextView
+                            style="@style/MyViewTable"
+                            android:text="1.000.000"
+                            android:id="@+id/tab212" />
+                    </TableRow>
+
+                </TableLayout>
             </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="2">
-
-                <TextView
-                    style="@style/MyViewLeftColumnCentered"
-                    android:id="@+id/txtInCurTwo4" />
-
-                <TextView
-                    style="@style/MyViewRightColumnCentered"
-                    android:id="@+id/txtCurTwoFullDinamic" />
-            </TableRow>
-
 
             <TableRow
                 android:layout_width="match_parent"

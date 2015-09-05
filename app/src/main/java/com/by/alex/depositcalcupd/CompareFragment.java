@@ -18,16 +18,21 @@ import android.widget.TextView;
 
 public class CompareFragment extends Fragment {
 
-    TextView txtInCurTwo3, txtInCurOne3, txtInCurTwo4, txtInCurOne4,txtExcRateCalc, vievForFocus,
-            txtCurOneFullDinamic, txtCurTwoFullDinamic, txtItog,
-            txtPercentProfitDinamic,txtCurOneProfitDinamic, txtCurTwoProfitDinamic,
-            tabCurOne, tabCurTwo, tabCurOne2, tabCurTwo2,
-            tabVkladOne, tabCurTwo, tabCurOne2, tabCurTwo2;
+    TextView txtExcRateCalc, vievForFocus, txtItog,txtPercentProfitDinamic,
+            tab1CurOne, tab1CurTwo,
+            tab1SumOne, tab1SumOneCurTwo,
+            tab1SumTwo, tab1SumTwoCurTwo,
+            tab1DiffOne, tab1DiffOneTwo,
+            tab2CurOne, tab2CurTwo,
+            tab2SumOne, tab2SumOneCurTwo,
+            tab2SumTwo, tab2SumTwoCurTwo,
+            tab2DiffOne, tab2DiffOneTwo;
+
     EditText edtExcRateDinamic;
     Formatter f = new Formatter();
 
     private float ExcRateNow, ProfitA, ProfitB, PercentGrowA, PercentGrowB, SummABegin;
-    private String  textInCur, itog, vkladOneColored, colorOne, vkladTwoColored, colorTwo,
+    private String  itog, vkladOneColored, colorOne, vkladTwoColored, colorTwo,
             kursColored, colorKurs, colorTemplate;
     private boolean Inverted_conversion;
     private SeekBar mSeekBar;
@@ -55,7 +60,24 @@ public class CompareFragment extends Fragment {
 
         mSettings = getActivity().getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
-        textInCur = getResources().getString(R.string.cmpr_txtInCur);
+        tab1CurOne = (TextView) rootView.findViewById(R.id.tab12);
+        tab1CurTwo = (TextView) rootView.findViewById(R.id.tab13);
+        tab1SumOne = (TextView) rootView.findViewById(R.id.tab15);
+        tab1SumOneCurTwo = (TextView) rootView.findViewById(R.id.tab16);
+        tab1SumTwo= (TextView) rootView.findViewById(R.id.tab18);
+        tab1SumTwoCurTwo = (TextView) rootView.findViewById(R.id.tab19);
+        tab1DiffOne = (TextView) rootView.findViewById(R.id.tab111);
+        tab1DiffOneTwo = (TextView) rootView.findViewById(R.id.tab112);
+
+        tab2CurOne = (TextView) rootView.findViewById(R.id.tab22);
+        tab2CurTwo = (TextView) rootView.findViewById(R.id.tab23);
+        tab2SumOne = (TextView) rootView.findViewById(R.id.tab25);
+        tab2SumOneCurTwo = (TextView) rootView.findViewById(R.id.tab26);
+        tab2SumTwo= (TextView) rootView.findViewById(R.id.tab28);
+        tab2SumOneCurTwo = (TextView) rootView.findViewById(R.id.tab29);
+        tab2DiffOne = (TextView) rootView.findViewById(R.id.tab211);
+        tab2DiffOneTwo = (TextView) rootView.findViewById(R.id.tab212);
+
 
         itog = getResources().getString(R.string.cmpr_txtItog);
         colorTemplate = "<font color='%1$s'>%2$s </font>";
@@ -64,26 +86,12 @@ public class CompareFragment extends Fragment {
         colorTwo = "red";
         vkladOneColored = String.format(colorTemplate, colorOne ,getResources().getStringArray(R.array.tabs_array)[0]);
         vkladTwoColored = String.format(colorTemplate, colorTwo ,getResources().getStringArray(R.array.tabs_array)[1]);
-        //kursColored = String.format(colorTemplate, colorKurs,edtExcRateDinamic.getText());
-
-
-        txtInCurOne3 = (TextView) rootView.findViewById(R.id.txtInCurOne3);
-        txtInCurOne4 = (TextView) rootView.findViewById(R.id.txtInCurOne4);
-        txtInCurTwo3 = (TextView) rootView.findViewById(R.id.txtInCurTwo3);
-        txtInCurTwo4 = (TextView) rootView.findViewById(R.id.txtInCurTwo4);
-
-
-        txtCurOneFullDinamic= (TextView) rootView.findViewById(R.id.txtCurOneFullDinamic);
-        txtCurTwoFullDinamic= (TextView) rootView.findViewById(R.id.txtCurTwoFullDinamic);
 
         vievForFocus = (TextView) rootView.findViewById(R.id.txtExcRateCalc);
         txtItog=(TextView) rootView.findViewById(R.id.txtItog);
         txtExcRateCalc = (TextView) rootView.findViewById(R.id.txtExcRateCalc);
 
         txtPercentProfitDinamic = (TextView) rootView.findViewById(R.id.txtPrecentProfitDinamic);
-        txtCurOneProfitDinamic = (TextView) rootView.findViewById(R.id.txtCurOneProfitDinamic);
-        txtCurTwoProfitDinamic = (TextView) rootView.findViewById(R.id.txtCurTwoProfitDinamic);
-
         edtExcRateDinamic = (EditText) rootView.findViewById(R.id.edtExcRateDinamic);
 
         edtExcRateDinamic.setOnTouchListener(new View.OnTouchListener() {
@@ -110,8 +118,6 @@ public class CompareFragment extends Fragment {
 
                 if (Inverted_conversion) diffInCurrB = diffProfit / dynRate;
                 else diffInCurrB = diffProfit * dynRate;
-                txtCurTwoProfitDinamic.setText(f.format(diffInCurrB));
-                txtCurOneProfitDinamic.setText(f.format(diffProfit));
                 setDinamicPercentAndFullSumm(dynRate);
             }
 
@@ -185,8 +191,7 @@ public class CompareFragment extends Fragment {
             diffFullSumm = (percent*SummABegin)/100;
             diffFullSummB = diffFullSumm*excRate;
         }
-        txtCurOneFullDinamic.setText(f.format(diffFullSumm));
-        txtCurTwoFullDinamic.setText(f.format(diffFullSummB));
+
         txtPercentProfitDinamic.setText(f.format(percent) + "%");
 
         makeItog(percent);
@@ -196,7 +201,8 @@ public class CompareFragment extends Fragment {
     public void setDataFromTabs(String currencyA, String currencyB, float profitA, float profitB,
                                 float excRateNow, float PercentGrowA, float PercentGrowB,
                                 boolean inverted_conversion, float summAbegin) {
-        float profitBConverted, diffProfit, diffPercent, diffInCurrB, diffFullSumm, diffFullSummInCurrB;
+        float profitBConverted, profitAConverted, diffProfit, diffPercent, diffInCurrB,
+                diffFullSumm, diffFullSummInCurrB;
 
         this.Inverted_conversion = inverted_conversion;
 
@@ -207,30 +213,35 @@ public class CompareFragment extends Fragment {
         this.ProfitB = profitB;
         this.SummABegin = summAbegin;
 
-        String textInCurOne = String.format("%s 1, %s", textInCur, currencyA);
-        String textInCurTwo = String.format("%s 2, %s", textInCur, currencyB);
+        tab1CurOne.setText(currencyA);
+        tab2CurOne.setText(currencyA);
+        tab1CurTwo.setText(currencyB);
+        tab2CurTwo.setText(currencyB);
 
-        txtInCurOne3.setText(textInCurOne);
-        txtInCurOne4.setText(textInCurOne);
-        txtInCurTwo3.setText(textInCurTwo);
-        txtInCurTwo4.setText(textInCurTwo);
+        tab1SumOne.setText(f.format(profitA));
+        tab1SumTwoCurTwo.setText(f.format(profitB));
 
         diffPercent = PercentGrowA - PercentGrowB;
         diffFullSumm = summAbegin*diffPercent/100;
 
         if (Inverted_conversion) {
             profitBConverted = profitB * excRateNow;
-            diffFullSummInCurrB = diffFullSumm/excRateNow;
+            profitAConverted = profitA / excRateNow;
+
         }
         else {
-            profitBConverted = profitB/excRateNow;
-            diffFullSummInCurrB = diffFullSumm*excRateNow;
+            profitBConverted = profitB / excRateNow;
+            profitAConverted = profitA * excRateNow;
         }
+
+        tab1SumOneCurTwo.setText(f.format(profitAConverted));
+        tab1SumTwo.setText(f.format(profitBConverted));
+        tab1DiffOne.setText(f.format(profitA - profitBConverted));
+        tab1DiffOneTwo.setText(f.format(profitAConverted - profitB));
+
 
         diffProfit = profitA - profitBConverted;
 
-        txtCurOneFullDinamic.setText(f.format(diffFullSumm));
-        txtCurTwoFullDinamic.setText(f.format(diffFullSummInCurrB));
 
         if (Inverted_conversion) diffInCurrB = diffProfit/excRateNow;
         else diffInCurrB = diffProfit*excRateNow;
@@ -238,8 +249,6 @@ public class CompareFragment extends Fragment {
         //maybe another approach should be used
         edtExcRateDinamic.setText(f.formatExcRate(excRateNow));
         txtPercentProfitDinamic.setText(f.format(diffPercent) + " %");
-        txtCurOneProfitDinamic.setText(f.format(diffProfit));
-        txtCurTwoProfitDinamic.setText(f.format(diffInCurrB));
 
         float excRateCalc;
         if (Inverted_conversion) excRateCalc=(100+diffPercent)*excRateNow/100;
