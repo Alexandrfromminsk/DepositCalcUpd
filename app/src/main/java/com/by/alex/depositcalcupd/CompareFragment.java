@@ -31,8 +31,7 @@ public class CompareFragment extends Fragment {
     EditText edtExcRateDinamic;
     Formatter f = new Formatter();
 
-    private float ExcRateNow, ProfitA, ProfitB, PercentGrowA, PercentGrowB, SummABegin,
-            FullSummA, FullSummB;
+    private float ExcRateNow, ProfitA, ProfitB, PercentGrowA, PercentGrowB, FullSummA, FullSummB;
     private String  itog, vkladOneColored, colorOne, vkladTwoColored, colorTwo,
             kursColored, colorKurs, colorTemplate;
     private boolean Inverted_conversion;
@@ -110,15 +109,9 @@ public class CompareFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                float dynRate, profitBConverted, diffProfit, diffInCurrB;
+                float dynRate;
                 dynRate = f.parseExcRate(edtExcRateDinamic.getText().toString()); //may be returned 1 if wrong format
-                if (Inverted_conversion) profitBConverted = ProfitB * dynRate;
-                else profitBConverted = ProfitB / dynRate;
 
-                diffProfit = ProfitA - profitBConverted;
-
-                if (Inverted_conversion) diffInCurrB = diffProfit / dynRate;
-                else diffInCurrB = diffProfit * dynRate;
                 setDinamicPercentFullSummProfit(dynRate);
             }
 
@@ -229,7 +222,6 @@ public class CompareFragment extends Fragment {
         this.PercentGrowB = PercentGrowB;
         this.ProfitA = profitA;
         this.ProfitB = profitB;
-        this.SummABegin = summAbegin;
         this.FullSummA = summAbegin + profitA;
         this.FullSummB =(profitB / PercentGrowB)*100;
 
