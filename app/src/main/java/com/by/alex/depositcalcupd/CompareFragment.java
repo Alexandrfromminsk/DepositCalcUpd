@@ -247,7 +247,6 @@ public class CompareFragment extends Fragment {
         txtExcRateCalc.setText(f.formatExcRate(excRateCalc));
 
         setDinamicPercentFullSummProfit(excRateNow);
-
         makeItog(diffPercent);
     }
 
