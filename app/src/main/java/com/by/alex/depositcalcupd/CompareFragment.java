@@ -237,7 +237,6 @@ public class CompareFragment extends Fragment {
         tab2SumTwoCurTwo.setText(f.format(FullSummB));
 
         diffPercent = PercentGrowA - PercentGrowB;
-
         edtExcRateDinamic.setText(f.formatExcRate(excRateNow));
         txtPercentProfitDinamic.setText(f.format(diffPercent) + " %");
 
