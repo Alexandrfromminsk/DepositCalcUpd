@@ -35,7 +35,8 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:weightSum="2">
+                android:weightSum="2"
+                android:layout_marginBottom="0sp">
 
                 <TextView
                     style="@style/MyViewLeftColumnCentered"
@@ -149,17 +150,14 @@
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text=""
                             android:id="@+id/tab11" />
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="BLR"
                             android:id="@+id/tab12" />
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="USD"
                             android:id="@+id/tab13" />
                     </TableRow>
 
@@ -175,13 +173,10 @@
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="500"
                             android:id="@+id/tab15" />
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:layout_gravity="right"
-                            android:text="5.000.000.000"
                             android:id="@+id/tab16" />
 
                     </TableRow>
@@ -198,12 +193,10 @@
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="200"
                             android:id="@+id/tab18" />
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="3.000.000"
                             android:id="@+id/tab19" />
                     </TableRow>
 
@@ -219,12 +212,10 @@
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="100.000.000"
                             android:id="@+id/tab111" />
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="1.000.000"
                             android:id="@+id/tab112" />
                     </TableRow>
 
@@ -262,17 +253,14 @@
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text=""
                             android:id="@+id/tab21" />
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="BLR"
                             android:id="@+id/tab22" />
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="USD"
                             android:id="@+id/tab23" />
                     </TableRow>
 
@@ -288,12 +276,9 @@
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="500"
                             android:id="@+id/tab25" />
                         <TextView
                             style="@style/MyViewTable"
-                            android:layout_gravity="right"
-                            android:text="5.000.000.000"
                             android:id="@+id/tab26" />
 
                     </TableRow>
@@ -310,11 +295,9 @@
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="200"
                             android:id="@+id/tab28" />
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="3.000.000"
                             android:id="@+id/tab29" />
                     </TableRow>
 
@@ -330,31 +313,13 @@
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="100.000.000"
                             android:id="@+id/tab211" />
                         <TextView
                             style="@style/MyViewTable"
-                            android:text="1.000.000"
                             android:id="@+id/tab212" />
                     </TableRow>
 
                 </TableLayout>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="2">
-
-                <TextView
-                    style="@style/MyViewLeftColumnCentered"
-                    android:textStyle="bold"
-                    android:text="@string/cmpr_txtInPercent"
-                    android:id="@+id/textView15" />
-
-                <TextView
-                    style="@style/MyViewRightColumnCentered"
-                    android:id="@+id/txtPrecentProfitDinamic" />
             </TableRow>
 
 
