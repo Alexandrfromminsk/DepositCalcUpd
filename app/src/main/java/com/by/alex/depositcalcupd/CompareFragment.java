@@ -154,7 +154,7 @@ public class CompareFragment extends Fragment {
     private void makeItog(float diffPercent) {
 
         String kursColored = String.format(colorTemplate, colorKurs, edtExcRateDinamic.getText());
-        String percentColored = String.format(colorTemplate, colorKurs, f.format(Math.abs(diffPercent)));
+        String percentColored = String.format(colorTemplate, colorKurs, f.format(Math.abs(diffPercent))) + '%';
 
         if (diffPercent>=0)
             txtItog.setText(Html.fromHtml(String.format(itog, vkladOneColored, kursColored, percentColored)), TextView.BufferType.SPANNABLE);
