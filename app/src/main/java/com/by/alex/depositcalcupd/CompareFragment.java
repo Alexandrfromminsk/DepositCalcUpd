@@ -109,7 +109,6 @@ public class CompareFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 float dynRate;
                 dynRate = f.parseExcRate(edtExcRateDinamic.getText().toString()); //may be returned 1 if wrong format
-
                 setDinamicPercentFullSummProfit(dynRate);
             }
 
@@ -220,7 +219,7 @@ public class CompareFragment extends Fragment {
         this.ProfitA = profitA;
         this.ProfitB = profitB;
         this.FullSummA = summAbegin + profitA;
-        this.FullSummB =(profitB / PercentGrowB)*100;
+        this.FullSummB = (Inverted_conversion) ? summAbegin/excRateNow + profitB: summAbegin*excRateNow + profitB;
 
         tab1CurOne.setText(currencyA);
         tab2CurOne.setText(currencyA);

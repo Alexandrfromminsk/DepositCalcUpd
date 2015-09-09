@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class CurrencyTwoFragment extends Fragment {
 
     EditText edtExcRateNow, edtPercentB;
-    TextView edtDateEnd, txtProfitBValue, txtGrowValue, txtFullSummValue, edtSummAvalue,
+    TextView edtDateEnd, txtProfitBValue, txtGrowValue, txtFullSummValue, edtSummBvalue,
             edtBeginDate, txtTimeperiod, txtSummWithCurrency, txtFullSummWithCurrency, txtProfitWithCurrency;
 
     Spinner spnCapital, spnCurrency, spnTypeConversion;
@@ -78,7 +78,7 @@ public class CurrencyTwoFragment extends Fragment {
         mSettings = getActivity().getSharedPreferences(MainActivity.APP_PREFERENCES, Context.MODE_PRIVATE);
 
         edtExcRateNow = (EditText) rootView.findViewById(R.id.edtExchangeRateB);
-        edtSummAvalue = (TextView) rootView.findViewById(R.id.edtSummBvalue);
+        edtSummBvalue = (TextView) rootView.findViewById(R.id.edtSummBvalue);
         edtPercentB = (EditText) rootView.findViewById(R.id.edtPercentB);
         txtTimeperiod = (TextView) rootView.findViewById(R.id.txtTimeperiod);
         txtSummWithCurrency = (TextView) rootView.findViewById(R.id.txtSummWithCurrencyB);
@@ -92,7 +92,7 @@ public class CurrencyTwoFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                edtSummAvalue.setText(f.format(calc_summ()));
+                edtSummBvalue.setText(f.format(calc_summ()));
                 calc_it();
             }
 
@@ -176,7 +176,7 @@ public class CurrencyTwoFragment extends Fragment {
         spnTypeConversion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                edtSummAvalue.setText(String.valueOf(f.format(calc_summ())));
+                edtSummBvalue.setText(String.valueOf(f.format(calc_summ())));
                 calc_it();
             }
 
@@ -204,13 +204,6 @@ public class CurrencyTwoFragment extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);*/
 
-        // Appodeal
-        /*
-        String appKey = MainActivity.APPODEAl_KEY;
-        Appodeal.disableLocationPermissionCheck();
-        Appodeal.initialize(getActivity(), appKey, Appodeal.BANNER);
-
-        Appodeal.show(getActivity(), Appodeal.BANNER_BOTTOM);*/
 
         return rootView;
     }
@@ -233,7 +226,7 @@ public class CurrencyTwoFragment extends Fragment {
         outState.putString("edtPercentB", edtPercentB.getText().toString());
         outState.putString("edtBeginDate", edtBeginDate.getText().toString());
         outState.putString("edtDateEndB", edtDateEnd.getText().toString());
-        outState.putString("edtSummAvalue", edtSummAvalue.getText().toString());
+        outState.putString("edtSummBvalue", edtSummBvalue.getText().toString());
         outState.putString("txtProfitBValue", txtProfitBValue.getText().toString());
         outState.putString("txtGrowValue", txtGrowValue.getText().toString());
         outState.putString("txtFullSummValue", txtFullSummValue.getText().toString());
@@ -247,7 +240,7 @@ public class CurrencyTwoFragment extends Fragment {
 
     void loadSavedInstanceState(Bundle savedInstanceState) {
         edtDateEnd.setText(savedInstanceState.getString("edtDateEnd"));
-        edtSummAvalue.setText(savedInstanceState.getString("edtSummAvalue"));
+        edtSummBvalue.setText(savedInstanceState.getString("edtSummBvalue"));
         edtPercentB.setText(savedInstanceState.getString("edtPercentB"));
         txtProfitBValue.setText(savedInstanceState.getString("txtProfitBValue"));
         txtGrowValue.setText(savedInstanceState.getString("txtGrowValue"));
@@ -263,7 +256,7 @@ public class CurrencyTwoFragment extends Fragment {
     void loadSavedSettings() {
         edtDateEnd.setText(mSettings.getString(END_DATE_B, "1-2-2017"));
         edtExcRateNow.setText(mSettings.getString(EXC_RATE_NOW_B, "16000"));
-        edtSummAvalue.setText(mSettings.getString(SUMM_B_VALUE, "1000000"));
+        edtSummBvalue.setText(mSettings.getString(SUMM_B_VALUE, "1000000"));
         edtPercentB.setText(mSettings.getString(PERCENT_B, "5"));
         txtProfitBValue.setText(mSettings.getString(PROFIT_B, "0"));
         txtGrowValue.setText(mSettings.getString(GROW_B, "0"));
@@ -281,7 +274,7 @@ public class CurrencyTwoFragment extends Fragment {
         ed.putString(BEGIN_DATE_B, edtBeginDate.getText().toString());
         ed.putString(END_DATE_B, edtDateEnd.getText().toString());
         ed.putString(EXC_RATE_NOW_B, edtExcRateNow.getText().toString());
-        ed.putString(SUMM_B_VALUE, edtSummAvalue.getText().toString());
+        ed.putString(SUMM_B_VALUE, edtSummBvalue.getText().toString());
         ed.putString(PERCENT_B, edtPercentB.getText().toString());
         ed.putString(PROFIT_B, txtProfitBValue.getText().toString());
         ed.putString(CURRENCY_A, this.CurrencyA);
@@ -294,12 +287,12 @@ public class CurrencyTwoFragment extends Fragment {
 
     }
     public boolean allFieldsWithData(){
-        return (edtPercentB.getText().length()>0)&(edtSummAvalue.getText().length()>0);
+        return (edtPercentB.getText().length()>0)&(edtSummBvalue.getText().length()>0);
 
     }
     public void calc_it(){
         if (allFieldsWithData()) {
-            float s = f.parseNumber(edtSummAvalue.getText().toString());
+            float s = f.parseNumber(edtSummBvalue.getText().toString());
             float pr = Float.parseFloat(edtPercentB.getText().toString());
             int cap = spnCapital.getSelectedItemPosition();
             Float[] profit;
@@ -395,6 +388,7 @@ public class CurrencyTwoFragment extends Fragment {
         float conversion = Float.valueOf(edtExcRateNow.getText().toString());
         float profit = f.parseNumber(txtProfitBValue.getText().toString());
         float percent_grow = f.parseNumber(txtGrowValue.getText().toString());
+   //     float summBbegin = f.parseSumm(txtSummWithCurrency.)
         //inverted_conversion = true mean that conversion is inverted and must be used / instaed of *
         boolean inverted_conversion = (spnTypeConversion.getSelectedItemPosition()>0);
         mCallback.saveSecondTabData(spnCurrency.getSelectedItem().toString(), conversion, profit,
@@ -416,7 +410,7 @@ public class CurrencyTwoFragment extends Fragment {
         }
 
         this.summFromFirstTab = summ;
-        edtSummAvalue.setText(String.valueOf(f.format(calc_summ())));
+        edtSummBvalue.setText(String.valueOf(f.format(calc_summ())));
         calc_it();
     }
 }
