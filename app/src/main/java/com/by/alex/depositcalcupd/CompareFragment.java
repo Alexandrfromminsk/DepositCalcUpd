@@ -238,7 +238,7 @@ public class CompareFragment extends Fragment {
         float excRateCalc;
         if (Inverted_conversion) excRateCalc=(100+diffPercent)*excRateNow/100;
         else  excRateCalc= (100-diffPercent)* excRateNow/100;
-        txtExcRateCalc.setText(f.formatExcRate(excRateCalc));
+        txtExcRateCalc.setText(f.formatExcRate(excRateCalc) + String.format("(%1$s)",ExcRateNow - excRateCalc));
 
         setDinamicPercentFullSummProfit(excRateNow);
         makeItog(diffPercent);

@@ -51,4 +51,8 @@
         <item name="android:layout_margin">0sp</item>
     </style>
 
+    <style name="MyViewTableLeftColumn" parent="@style/MyView">
+        <item name="android:gravity">left</item>
+    </style>
+
 </resources>
