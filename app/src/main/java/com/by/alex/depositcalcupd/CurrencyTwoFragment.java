@@ -44,7 +44,7 @@ public class CurrencyTwoFragment extends Fragment {
     public static final String CURRENCY_A = "CURRENCY_A";
 
     private float summFromFirstTab = (float)1;
-    private int spnTimeperiodNumber, spnTimelineChoice;
+    private int timeperiodNumber, spnTimelineChoice;
     private String  spnPeriod, CurrencyA;
     Formatter f = new Formatter();
 
@@ -194,7 +194,7 @@ public class CurrencyTwoFragment extends Fragment {
         }
 
         if (txtTimeperiod.getText().toString().length()==0)
-            txtTimeperiod.setText(this.spnTimeperiodNumber + " " + this.spnPeriod);
+            txtTimeperiod.setText(this.timeperiodNumber + " " + this.spnPeriod);
 
 
         // Pure AdMob
@@ -295,7 +295,7 @@ public class CurrencyTwoFragment extends Fragment {
             float pr = Float.parseFloat(edtPercentB.getText().toString());
             int cap = spnCapital.getSelectedItemPosition();
             Float[] profit;
-            int days = Calculator.calcNumberDays(edtBeginDate.getText().toString(), edtDateEnd.getText().toString());
+            int days = Calculator.calcNumberBankDays(timeperiodNumber, spnTimelineChoice);
 
             boolean russian_tax = mSettings.getBoolean("russian_tax", false);
             boolean ukr_tax = mSettings.getBoolean("ukr_tax", false);
@@ -398,10 +398,10 @@ public class CurrencyTwoFragment extends Fragment {
         edtBeginDate.setText(dateBegin);
         edtDateEnd.setText(dateEnd);
 
-        this.spnTimeperiodNumber = timeperiod;
+        this.timeperiodNumber = timeperiod;
         this.spnPeriod = getResources().getStringArray(R.array.timeperiods_array)[spn_tpr];
         this.spnTimelineChoice = spn_tpr;
-        txtTimeperiod.setText(spnTimeperiodNumber + " " + spnPeriod);
+        txtTimeperiod.setText(timeperiodNumber + " " + spnPeriod);
 
         if (!this.CurrencyA.equals(spn_currency)) {
             this.CurrencyA = spn_currency;

@@ -279,12 +279,10 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             float s = f.parseSumm(edtSummAvalue.getText().toString());
             float pr = Float.parseFloat(edtPercentA.getText().toString());
             int cap = spnCapital.getSelectedItemPosition();
-            String BeginDate, EndDate;
-            BeginDate = edtBeginDate.getText().toString();
-            EndDate = edtDateEnd.getText().toString();
+            int timeperiodNumber = Integer.valueOf(edtTimeperiod.getText().toString());
 
             Float[] profit;
-            int days = Calculator.calcNumberDays(BeginDate, EndDate);
+            int days = Calculator.calcNumberBankDays(timeperiodNumber, spnTimeperiod.getSelectedItemPosition());
 
             boolean russian_tax = mSettings.getBoolean("russian_tax", false);
             boolean ukr_tax = mSettings.getBoolean("ukr_tax", false);

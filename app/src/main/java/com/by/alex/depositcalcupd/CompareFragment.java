@@ -210,7 +210,6 @@ public class CompareFragment extends Fragment {
         this.FullSummB = savedInstanceState.getFloat("FullSummB");
         this.FullSummA = savedInstanceState.getFloat("FullSummA");
         this.Inverted_conversion = savedInstanceState.getBoolean("Inverted_conversion");
-
     }
 
     void loadSavedSettings() {

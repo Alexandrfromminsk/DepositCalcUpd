@@ -14,13 +14,15 @@ public  class Calculator {
     static final int PROFIT = 1;
     static final int FULLSUMM = 2;
 
+    static final int DAYS_IN_MONTH = 30;
+    static final int DAYS_IN_YEAR = 365;
 
     public static Float[] calcProfit(float SummBegin, float Percent, int Days){
 
         float profit, fullsumm, percent;
         Float[] result = new Float[3];
 
-        profit = (float) ((SummBegin*Percent*Days)/(365.0*100.0));
+        profit = (float) ((SummBegin*Percent*Days)/(DAYS_IN_YEAR*100.0));
         fullsumm = SummBegin + profit;
         percent = (float) (((fullsumm - SummBegin)/SummBegin)*100.0);
         result[PERCENT] = percent;
@@ -40,7 +42,7 @@ public  class Calculator {
         if (Capitalization==1) {
             //Capitalization every day
 
-            fullsumm = (float) (SummBegin *Math.pow(1+Percent/(365.0*100.0),Days));
+            fullsumm = (float) (SummBegin *Math.pow(1+Percent/(DAYS_IN_YEAR*100.0),Days));
             profit = fullsumm - SummBegin;
             percent = (profit/ SummBegin) * 100;
             result[PERCENT] = percent;
@@ -51,11 +53,11 @@ public  class Calculator {
         if (Capitalization==2) {
             //Capitalization every 30 day
 
-            int num_capitalizations = Days/30;
+            int num_capitalizations = Days/DAYS_IN_MONTH;
 
             if (num_capitalizations>0) {
 
-                fullsumm = (float) (SummBegin * Math.pow(1 + Percent * 30.0 / (365.0 * 100.0), num_capitalizations));
+                fullsumm = (float) (SummBegin * Math.pow(1.0 + Percent * DAYS_IN_MONTH / (DAYS_IN_YEAR * 100.0), num_capitalizations));
                 profit = fullsumm - SummBegin;
                 percent = (profit / SummBegin) * 100;
                 result[PERCENT] = percent;
@@ -72,7 +74,7 @@ public  class Calculator {
 
             if (num_capitalizations>0) {
 
-                fullsumm = (float) (SummBegin * Math.pow(1 + Percent * 90.0 / (365.0 * 100.0), num_capitalizations));
+                fullsumm = (float) (SummBegin * Math.pow(1 + Percent * 90.0 / (DAYS_IN_YEAR * 100.0), num_capitalizations));
                 profit = fullsumm - SummBegin;
                 percent = (profit / SummBegin) * 100;
                 result[PERCENT] = percent;
@@ -84,7 +86,7 @@ public  class Calculator {
 
         if (Capitalization==4) {
             //Capitalization every 365 day
-            int num_capitalizations = Days/365;
+            int num_capitalizations = Days/DAYS_IN_YEAR;
 
             if (num_capitalizations>0) {
 
@@ -106,8 +108,7 @@ public  class Calculator {
 
         int d = calcNumberDays(BeginDate, EndDate);
 
-        Float[] result = calcProfit(SummBegin, Percent, d, Capitalization);
-        return result;
+        return calcProfit(SummBegin, Percent, d, Capitalization);
     }
     //Russian tax.
     //tax_percent - tax amount (30 or 35%)
@@ -119,7 +120,7 @@ public  class Calculator {
         if (key_percent>Percent)   return temp_result;
         else {
             Float[] result = new Float[3];
-            float untaxed_summ = (float) ((SummBegin*key_percent*Days)/(365.0*100.0)) + SummBegin;
+            float untaxed_summ = (float) ((SummBegin*key_percent*Days)/(DAYS_IN_YEAR*100.0)) + SummBegin;
             float tax = (float) ((temp_result[FULLSUMM] - untaxed_summ)*tax_percent/100.0);
             result[PERCENT] = (float)(((temp_result[PROFIT]-tax)/SummBegin)*100.0);
             result[PROFIT] = temp_result[PROFIT]-tax;
@@ -135,19 +136,14 @@ public  class Calculator {
                                      int tax_percent, float key_percent) {
 
         int d = calcNumberDays(BeginDate, EndDate);
-
-        Float[] result = calcProfit(SummBegin, Percent, d, Capitalization, tax_percent, key_percent);
-
-        return result;
+        return calcProfit(SummBegin, Percent, d, Capitalization, tax_percent, key_percent);
     }
 
     //Ukranian tax
     public static Float[] calcProfit(float SummBegin, float Percent, int Capitalization, String BeginDate, String EndDate,
                                      int tax_percent_ukr) {
         int d = calcNumberDays(BeginDate, EndDate);
-        Float[] result = calcProfit(SummBegin, Percent, d, Capitalization, tax_percent_ukr);
-
-        return result;
+        return calcProfit(SummBegin, Percent, d, Capitalization, tax_percent_ukr);
     }
 
     public static Float[] calcProfit(float SummBegin, float Percent, int Days, int Capitalization,
@@ -191,6 +187,20 @@ public  class Calculator {
         }
 
         return d;
+    }
+
+    public static int calcNumberBankDays(Integer Number, Integer SpinnerPosition) {
+        int multiplier = 1;
+        switch (SpinnerPosition) {
+            case 1:
+                multiplier = DAYS_IN_MONTH;
+                break;
+            case 2:
+                multiplier = DAYS_IN_YEAR;
+                break;
+        }
+
+        return Number*multiplier;
     }
 
 }

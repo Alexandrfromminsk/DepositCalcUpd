@@ -105,9 +105,9 @@ android:background="#FFFFFF"> //3F51B5 or 52b7c8
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:maxLength="4"
+                    android:maxLength="3"
                     android:id="@+id/edtTimeperiod"
-                    android:layout_weight="2"/>
+                    android:layout_weight="3"/>
 
                 <Spinner
                     android:layout_width="0dp"
