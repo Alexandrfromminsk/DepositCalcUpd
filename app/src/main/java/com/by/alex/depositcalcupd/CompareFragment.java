@@ -33,10 +33,25 @@ public class CompareFragment extends Fragment {
 
     private float ExcRateNow, ProfitA, ProfitB, PercentGrowA, PercentGrowB, FullSummA, FullSummB;
     private String  itog, vkladOneColored, colorOne, vkladTwoColored, colorTwo,
-            kursColored, colorKurs, colorTemplate;
+            colorKurs, colorTemplate;
     private boolean Inverted_conversion;
     private SeekBar mSeekBar;
     SharedPreferences mSettings;
+
+    public static final String EXCRATENOW = "ExcRateNow";
+    public static final String PROFITA = "ProfitA";
+    public static final String PROFITB = "ProfitB";
+    public static final String PERCENTGROWA = "PercentGrowA";
+    public static final String PERCENTGROWB = "PercentGrowB";
+    public static final String INVERTED_CONVERSION = "Inverted_conversion";
+    public static final String FULLSUMMA = "FullSummA";
+    public static final String FULLSUMMB = "FullSummB";
+    public static final String ITOG = "itog";
+    public static final String VKLADONECOLORED = "vkladOneColored";
+    public static final String VKLADTWOCOLORED = "vkladTwoColored";
+    public static final String EDTEXCRATEDINAMIC = "edtExcRateDinamic";
+    public static final String TXTEXCRATECALC = "txtExcRateCalc";
+
 
     OnTabChangedListener mCallback;
 
@@ -141,6 +156,13 @@ public class CompareFragment extends Fragment {
             }
         });
 
+        if(savedInstanceState == null){
+            loadSavedSettings();
+
+        }else {
+            loadSavedInstanceState(savedInstanceState);
+        }
+
 
     /* Pure adMob
         AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
@@ -163,6 +185,66 @@ public class CompareFragment extends Fragment {
 
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("itog", txtItog.getText().toString());
+        outState.putString("edtExcRateDinamic", edtExcRateDinamic.getText().toString());
+        outState.putString("edtExcRateCalc", txtExcRateCalc.getText().toString());
+        outState.putFloat("ExcRateNow", ExcRateNow);
+        outState.putFloat("ProfitA", ProfitA);
+        outState.putFloat("ProfitB", ProfitB);
+        outState.putFloat("PercentGrowA", PercentGrowA);
+        outState.putFloat("PercentGrowB", PercentGrowB);
+        outState.putFloat("FullSummA", FullSummA);
+        outState.putFloat("FullSummB", FullSummB);
+        outState.putBoolean("Inverted_conversion", Inverted_conversion);
+    }
+
+    void loadSavedInstanceState(Bundle savedInstanceState) {
+        edtExcRateDinamic.setText(savedInstanceState.getString("edtExcRateDinamic"));
+        txtExcRateCalc.setText(savedInstanceState.getString("txtExcRateCalc"));
+        txtItog.setText(savedInstanceState.getString("txtItog"));;
+        this.ExcRateNow = savedInstanceState.getFloat("ExcRateNow");
+        this.ProfitA = savedInstanceState.getFloat("ProfitA");
+        this.ProfitB = savedInstanceState.getFloat("ProfitB");
+        this.PercentGrowA = savedInstanceState.getFloat("PercentGrowA");
+        this.PercentGrowB = savedInstanceState.getFloat("PercentGrowB");
+        this.FullSummB = savedInstanceState.getFloat("FullSummB");
+        this.FullSummA = savedInstanceState.getFloat("FullSummA");
+        this.Inverted_conversion = savedInstanceState.getBoolean("Inverted_conversion");
+
+    }
+
+    void loadSavedSettings() {
+        edtExcRateDinamic.setText(mSettings.getString(EDTEXCRATEDINAMIC, "1"));
+        txtExcRateCalc.setText(mSettings.getString(TXTEXCRATECALC, "1"));
+        txtItog.setText(mSettings.getString(ITOG, "No saved result"));
+        this.ExcRateNow = mSettings.getFloat(EXCRATENOW, 1);
+        this.ProfitA = mSettings.getFloat(PROFITA, 1);
+        this.ProfitB = mSettings.getFloat(PROFITB, 1);
+        this.PercentGrowA = mSettings.getFloat(PERCENTGROWA, 1);
+        this.PercentGrowB = mSettings.getFloat(PERCENTGROWB, 1);
+        this.FullSummA = mSettings.getFloat(FULLSUMMA, 1);
+        this.FullSummB = mSettings.getFloat(FULLSUMMB, 1);
+        this.Inverted_conversion = mSettings.getBoolean(INVERTED_CONVERSION, false);
+    }
+
+    void saveSettings() {
+        SharedPreferences.Editor ed = mSettings.edit();
+        ed.putString(EDTEXCRATEDINAMIC, edtExcRateDinamic.getText().toString());
+        ed.putString(TXTEXCRATECALC, txtExcRateCalc.getText().toString());
+        ed.putString(ITOG, txtItog.getText().toString());
+        ed.putFloat(EXCRATENOW, this.ExcRateNow);
+        ed.putFloat(PROFITA, this.ProfitA);
+        ed.putFloat(PROFITB, this.ProfitB);
+        ed.putFloat(PERCENTGROWA, this.PercentGrowA);
+        ed.putFloat(PERCENTGROWB, this.PercentGrowB);
+        ed.putFloat(FULLSUMMA, this.FullSummA);
+        ed.putFloat(FULLSUMMB, this.FullSummB);
+        ed.putBoolean(INVERTED_CONVERSION, this.Inverted_conversion);
+        ed.apply();
+    }
 
     public void saveData(){
         //Send data which will be saved at MainActivity
@@ -238,7 +320,7 @@ public class CompareFragment extends Fragment {
         float excRateCalc;
         if (Inverted_conversion) excRateCalc=(100+diffPercent)*excRateNow/100;
         else  excRateCalc= (100-diffPercent)* excRateNow/100;
-        txtExcRateCalc.setText(f.formatExcRate(excRateCalc) + String.format("(%1$s)",ExcRateNow - excRateCalc));
+        txtExcRateCalc.setText(f.formatExcRate(excRateCalc) + String.format(" (%+.2f)",excRateCalc - ExcRateNow));
 
         setDinamicPercentFullSummProfit(excRateNow);
         makeItog(diffPercent);
@@ -250,6 +332,12 @@ public class CompareFragment extends Fragment {
         super.onResume();
         edtExcRateDinamic.setFocusable(false);
         edtExcRateDinamic.setFocusableInTouchMode(false);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        saveSettings();
     }
 
 }

@@ -40,15 +40,11 @@
                     android:layout_height="wrap_content"
                     android:weightSum="2">
 
-                    <TextView
-                        style="@style/MyViewLeftColumnCentered"
-                        android:text="@string/cmpr_txtСurrency"
-                        android:id="@+id/textView21" />
-
 
                     <TextView
-                        style="@style/MyViewRightColumnCentered"
-                        android:layout_gravity="left|center_vertical"
+                        style="@style/MyView"
+                        android:gravity="center_horizontal"
+                        android:layout_span="2"
                         android:textColor="@color/colorAccent"
                         android:id="@+id/txtExcRateCalc" />
                 </TableRow>

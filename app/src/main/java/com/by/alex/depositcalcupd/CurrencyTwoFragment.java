@@ -197,7 +197,6 @@ public class CurrencyTwoFragment extends Fragment {
             txtTimeperiod.setText(this.spnTimeperiodNumber + " " + this.spnPeriod);
 
 
-
         // Pure AdMob
         /*
         AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
@@ -221,7 +220,7 @@ public class CurrencyTwoFragment extends Fragment {
 
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+      public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("edtPercentB", edtPercentB.getText().toString());
         outState.putString("edtBeginDate", edtBeginDate.getText().toString());
