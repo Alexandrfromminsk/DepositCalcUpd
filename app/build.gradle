@@ -9,8 +9,8 @@ android {
         applicationId "com.by.alex.depositcalcupd"
         minSdkVersion 11
         targetSdkVersion 22
-        versionCode 7
-        versionName "0.9.9"
+        versionCode 8
+        versionName "0.9.9b"
     }
     buildTypes {
         release {
