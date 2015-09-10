@@ -50,9 +50,6 @@ public class CurrencyTwoFragment extends Fragment {
 
     OnTabChangedListener mCallback;
 
-    //    public interface OnTabChangedListener {
-//        public void saveSecondTabData(int position);
-//    }
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -65,7 +62,6 @@ public class CurrencyTwoFragment extends Fragment {
                     + " must implement OnTabChangedListener");
         }
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,7 +80,6 @@ public class CurrencyTwoFragment extends Fragment {
         txtSummWithCurrency = (TextView) rootView.findViewById(R.id.txtSummWithCurrencyB);
         txtFullSummWithCurrency = (TextView) rootView.findViewById(R.id.txtFullSummWithCurrencyB);
         txtProfitWithCurrency = (TextView) rootView.findViewById(R.id.txtProfitWithCurrencyB);
-
 
         edtExcRateNow.addTextChangedListener(new TextWatcher() {
             @Override
@@ -118,7 +113,6 @@ public class CurrencyTwoFragment extends Fragment {
         txtProfitBValue = (TextView) rootView.findViewById(R.id.txtProfitB);
         txtGrowValue = (TextView)rootView.findViewById(R.id.txtGrowB);
         txtFullSummValue =(TextView)rootView.findViewById(R.id.txtFullSummValueB);
-
 
         //Spinners
         spnTypeConversion = (Spinner) rootView.findViewById(R.id.spnTypeConversion);
@@ -155,7 +149,6 @@ public class CurrencyTwoFragment extends Fragment {
                 if (CurrencyA.equals(currency))
                     edtExcRateNow.setText("1");
                 calc_it();
-
             }
 
             @Override
@@ -185,7 +178,6 @@ public class CurrencyTwoFragment extends Fragment {
             }
         });
 
-
         if(savedInstanceState == null){
             loadSavedSettings();
 
@@ -195,7 +187,6 @@ public class CurrencyTwoFragment extends Fragment {
 
         if (txtTimeperiod.getText().toString().length()==0)
             txtTimeperiod.setText(this.timeperiodNumber + " " + this.spnPeriod);
-
 
         // Pure AdMob
         /*
@@ -356,7 +347,6 @@ public class CurrencyTwoFragment extends Fragment {
     public void onResume() {
         super.onResume();
         calc_it();
-        //Toast.makeText(getActivity(), "onResume  Sec tab".toString(), Toast.LENGTH_SHORT).show();
     }
 
 
