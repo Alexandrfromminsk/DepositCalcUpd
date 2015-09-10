@@ -47,11 +47,8 @@ public class CompareFragment extends Fragment {
     public static final String FULLSUMMA = "FullSummA";
     public static final String FULLSUMMB = "FullSummB";
     public static final String ITOG = "itog";
-    public static final String VKLADONECOLORED = "vkladOneColored";
-    public static final String VKLADTWOCOLORED = "vkladTwoColored";
     public static final String EDTEXCRATEDINAMIC = "edtExcRateDinamic";
     public static final String TXTEXCRATECALC = "txtExcRateCalc";
-
 
     OnTabChangedListener mCallback;
 
@@ -204,7 +201,7 @@ public class CompareFragment extends Fragment {
     void loadSavedInstanceState(Bundle savedInstanceState) {
         edtExcRateDinamic.setText(savedInstanceState.getString("edtExcRateDinamic"));
         txtExcRateCalc.setText(savedInstanceState.getString("txtExcRateCalc"));
-        txtItog.setText(savedInstanceState.getString("txtItog"));;
+        txtItog.setText(savedInstanceState.getString("txtItog"));
         this.ExcRateNow = savedInstanceState.getFloat("ExcRateNow");
         this.ProfitA = savedInstanceState.getFloat("ProfitA");
         this.ProfitB = savedInstanceState.getFloat("ProfitB");
