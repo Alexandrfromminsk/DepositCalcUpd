@@ -37,6 +37,7 @@
 
     <string name="cmpr_txtСurrency">Курс</string>
     <string name="cmpr_txtItog">%1$s выгоднее при курсе %2$s &lt;br /&gt; на %3$s </string>
+    <string name="cmpr_txtItogEqual">Вклады равны при курсе %1$s </string>
     <string name="cmpr_txtChooseCur">Выбрать обменный курс</string>
     <string name="cmpr_txtNoDiffInProfit">Итоговые суммы равны при курсе</string>
     <string name="cmpr_txtDiffProfits">Сравнение прибылей</string>

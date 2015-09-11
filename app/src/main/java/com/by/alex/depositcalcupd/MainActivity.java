@@ -58,7 +58,8 @@ public class MainActivity extends ActionBarActivity
     public static final String APP_PREFERENCES = "calcsettings";
     public static final String APPODEAl_KEY = "2692085ef276225935b92b6e70888009f34d1df42690867b";
     //adsdisable
-    final String productID = "android.test.purchased";
+    //final String productID = "android.test.purchased";
+    final String productID = "adsdisable";
 
 
     SharedPreferences mSettings;
@@ -338,7 +339,7 @@ public class MainActivity extends ActionBarActivity
         Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
         Email.putExtra(Intent.EXTRA_TEXT, "Dear ...," + "");
         try {
-            startActivity(Email);;
+            startActivity(Email);
         } catch (android.content.ActivityNotFoundException exception) {
             Toast.makeText(this, getResources().getString(R.string.sendEmail_error), Toast.LENGTH_LONG).show();
         }

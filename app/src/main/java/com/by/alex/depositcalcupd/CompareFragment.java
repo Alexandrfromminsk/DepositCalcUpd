@@ -32,7 +32,7 @@ public class CompareFragment extends Fragment {
     Formatter f = new Formatter();
 
     private float ExcRateNow, ProfitA, ProfitB, PercentGrowA, PercentGrowB, FullSummA, FullSummB;
-    private String  itog, vkladOneColored, colorOne, vkladTwoColored, colorTwo,
+    private String  itog, itogEq, vkladOneColored, colorOne, vkladTwoColored, colorTwo,
             colorKurs, colorTemplate;
     private boolean Inverted_conversion;
     private SeekBar mSeekBar;
@@ -90,7 +90,7 @@ public class CompareFragment extends Fragment {
         tab2DiffOne = (TextView) rootView.findViewById(R.id.tab211);
         tab2DiffOneTwo = (TextView) rootView.findViewById(R.id.tab212);
 
-
+        itogEq = getResources().getString(R.string.cmpr_txtItogEqual);
         itog = getResources().getString(R.string.cmpr_txtItog);
         colorTemplate = "<font color='%1$s'>%2$s </font>";
         colorOne = "green";
@@ -172,14 +172,16 @@ public class CompareFragment extends Fragment {
 
     private void makeItog(float diffPercent) {
 
+        String percentAbs = f.format(Math.abs(diffPercent));
         String kursColored = String.format(colorTemplate, colorKurs, edtExcRateDinamic.getText());
-        String percentColored = String.format(colorTemplate, colorKurs, f.format(Math.abs(diffPercent))) + '%';
+        String percentColored = String.format(colorTemplate, colorKurs,percentAbs) + '%';
 
-        if (diffPercent>=0)
+        if (percentAbs.equals(f.format(0)))
+            txtItog.setText(Html.fromHtml(String.format(itogEq, kursColored)), TextView.BufferType.SPANNABLE);
+        else if (diffPercent>0)
             txtItog.setText(Html.fromHtml(String.format(itog, vkladOneColored, kursColored, percentColored)), TextView.BufferType.SPANNABLE);
         else
             txtItog.setText(Html.fromHtml(String.format(itog, vkladTwoColored, kursColored, percentColored)), TextView.BufferType.SPANNABLE);
-
     }
 
     @Override
@@ -253,7 +255,6 @@ public class CompareFragment extends Fragment {
         float percent, fullSummAConverted, profitBConverted, profitAConverted,
                 fullSummBConverted;
         if (Inverted_conversion) {
-            percent = this.PercentGrowA - this.PercentGrowB - percentDiffRate;
             profitAConverted = this.ProfitA / excRate;
             profitBConverted = this.ProfitB * excRate;
 
@@ -261,7 +262,6 @@ public class CompareFragment extends Fragment {
             fullSummBConverted = this.FullSummB * excRate;
         }
         else {
-            percent = this.PercentGrowA - this.PercentGrowB + percentDiffRate;
             profitAConverted = this.ProfitA * excRate;
             profitBConverted = this.ProfitB / excRate;
 
@@ -269,16 +269,19 @@ public class CompareFragment extends Fragment {
             fullSummBConverted = this.FullSummB / excRate;
         }
 
-        makeItog(percent);
 
         tab1SumOneCurTwo.setText(f.format(profitAConverted));
         tab1SumTwo.setText(f.format(profitBConverted));
         tab1DiffOne.setText(f.format(this.ProfitA - profitBConverted));
         tab1DiffOneTwo.setText(f.format(profitAConverted - this.ProfitB));
 
+        float fullSummDiff = this.FullSummA - fullSummBConverted;
+        percent = fullSummDiff/FullSummA * 100;
+        makeItog(percent);
+
         tab2SumOneCurTwo.setText(f.format(fullSummAConverted));
         tab2SumTwo.setText(f.format(fullSummBConverted));
-        tab2DiffOne.setText(f.format(this.FullSummA - fullSummBConverted));
+        tab2DiffOne.setText(f.format(fullSummDiff));
         tab2DiffOneTwo.setText(f.format(fullSummAConverted - this.FullSummB));
 
     }
@@ -310,16 +313,25 @@ public class CompareFragment extends Fragment {
         tab2SumOne.setText(f.format(FullSummA));
         tab2SumTwoCurTwo.setText(f.format(FullSummB));
 
-        diffPercent = PercentGrowA - PercentGrowB;
+        //diffPercent = PercentGrowA - PercentGrowB;
+
         edtExcRateDinamic.setText(f.formatExcRate(excRateNow));
 
         float excRateCalc;
+        /*
         if (Inverted_conversion) excRateCalc=(100+diffPercent)*excRateNow/100;
         else  excRateCalc= (100-diffPercent)* excRateNow/100;
         txtExcRateCalc.setText(f.formatExcRate(excRateCalc) + String.format(" (%+.2f)",excRateCalc - ExcRateNow));
+        */
+
+        if (Inverted_conversion) excRateCalc=FullSummA/FullSummB;
+        else  excRateCalc=FullSummB/FullSummA;
+        txtExcRateCalc.setText(f.formatExcRate(excRateCalc) + String.format(" (%+.2f)", excRateCalc - ExcRateNow));
+
+
 
         setDinamicPercentFullSummProfit(excRateNow);
-        makeItog(diffPercent);
+        //makeItog(diffPercent);
     }
 
 
