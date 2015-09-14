@@ -47,8 +47,7 @@ public class HelpDetailActivity extends ActionBarActivity {
 
         try {
             while (( line = buffReader.readLine()) != null) {
-                builder.append(line);
-                builder.append("\n");
+                builder.append(line + "\n");
             }
         } catch (IOException e) {
             return null;

@@ -309,7 +309,6 @@ public class MainActivity extends ActionBarActivity
 
             Log.i(tag, "onActivityResult() - \"INAPP_PURCHASE_DATA\" return " + purchaseData);
 
-            // TODO: management purchase result
             if (purchaseData.equals(productID)){
                 SharedPreferences.Editor editor = mSettings.edit();
                 editor.putBoolean("AdsDisable", true);
