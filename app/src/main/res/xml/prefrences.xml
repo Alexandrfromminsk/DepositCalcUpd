@@ -3,21 +3,6 @@
         android:title="@string/pref_header_general"
         android:key="pref_key_settings">
 
-        <ListPreference
-            android:key="language"
-            android:title="@string/pref_set_language"
-            android:defaultValue="-1"
-            android:entries="@array/pref_list_lang"
-            android:entryValues="@array/pref_list_lang_values"
-            android:negativeButtonText="@null"
-            android:positiveButtonText="@null" />
-    </PreferenceCategory>
-
-
-    <PreferenceCategory
-        android:title="@string/pref_header_other_general"
-        android:key="pref_key_other_settings">
-
         <CheckBoxPreference
             android:id="@+id/rus_tax"
             android:key="russian_tax"

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.webkit.WebView;
+import android.widget.TextView;
 
 import com.by.alex.depositcalcupd.R;
 
@@ -21,7 +21,7 @@ public class HelpDetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.help_detail);
-        WebView webView = (WebView) findViewById(R.id.webView);
+        TextView webView = (TextView) findViewById(R.id.webView);
 
         Intent intent = getIntent();
         //get line and create res name
@@ -31,8 +31,7 @@ public class HelpDetailActivity extends ActionBarActivity {
 
         //Read text from from res by name
         String text = readRawTextFile(context, getResources().getIdentifier(resName, "raw", getPackageName()));
-
-        webView.loadDataWithBaseURL(null, text, "text/html", "en_US", null);
+        webView.setText(text);
     }
 
     //Read text from raw-res

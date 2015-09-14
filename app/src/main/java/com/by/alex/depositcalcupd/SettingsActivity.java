@@ -68,3 +68,15 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         mSettings.unregisterOnSharedPreferenceChangeListener(this);
     }
 }
+
+/*    Prefernces XML for chose language
+        <ListPreference
+            android:key="language"
+            android:title="@string/pref_set_language"
+            android:defaultValue="-1"
+            android:entries="@array/pref_list_lang"
+            android:entryValues="@array/pref_list_lang_values"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null" />
+
+ */
