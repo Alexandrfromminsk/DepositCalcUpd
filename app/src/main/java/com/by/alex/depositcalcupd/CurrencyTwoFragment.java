@@ -244,18 +244,18 @@ public class CurrencyTwoFragment extends Fragment {
     }
 
     void loadSavedSettings() {
-        edtDateEnd.setText(mSettings.getString(END_DATE_B, "1-2-2017"));
-        edtExcRateNow.setText(mSettings.getString(EXC_RATE_NOW_B, "16000"));
-        edtSummBvalue.setText(mSettings.getString(SUMM_B_VALUE, "1000000"));
-        edtPercentB.setText(mSettings.getString(PERCENT_B, "5"));
+        edtDateEnd.setText(mSettings.getString(END_DATE_B, "1-1-2017"));
+        edtExcRateNow.setText(mSettings.getString(EXC_RATE_NOW_B, "1.13"));
+        edtSummBvalue.setText(mSettings.getString(SUMM_B_VALUE, "11300"));
+        edtPercentB.setText(mSettings.getString(PERCENT_B, "3.5"));
         txtProfitBValue.setText(mSettings.getString(PROFIT_B, "0"));
         txtGrowValue.setText(mSettings.getString(GROW_B, "0"));
         txtFullSummValue.setText(mSettings.getString(GROW_B, "0"));
-        edtBeginDate.setText(mSettings.getString(BEGIN_DATE_B, "1-2-2016"));
-        this.CurrencyA = mSettings.getString(CURRENCY_A, "BLR");
-        spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL_B, 0));
+        edtBeginDate.setText(mSettings.getString(BEGIN_DATE_B, "1-1-2016"));
+        this.CurrencyA = mSettings.getString(CURRENCY_A, "EUR");
+        spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL_B, 2));
         spnCurrency.setSelection(mSettings.getInt(SPN_CURRENCY_B, 3));
-        spnTypeConversion.setSelection(mSettings.getInt(SPN_TYPE_CONVERSION, 1));
+        spnTypeConversion.setSelection(mSettings.getInt(SPN_TYPE_CONVERSION, 0));
 
     }
 

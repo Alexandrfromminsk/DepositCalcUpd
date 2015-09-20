@@ -366,17 +366,17 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
     }
 
     void loadSavedSettings() {
-        edtDateEnd.setText(mSettings.getString(END_DATE, "1-2-2017"));
-        edtSummAvalue.setText(mSettings.getString(SUMM_A_VALUE, "10000000"));
-        edtPercentA.setText(mSettings.getString(PERCENT_A, "35"));
+        edtDateEnd.setText(mSettings.getString(END_DATE, "1-1-2017"));
+        edtSummAvalue.setText(mSettings.getString(SUMM_A_VALUE, "10000"));
+        edtPercentA.setText(mSettings.getString(PERCENT_A, "4"));
         edtTimeperiod.setText(mSettings.getString(TIMEPERIOD, "1"));
         txtProfitAValue.setText(mSettings.getString(PROFIT, "0"));
         txtGrowValue.setText(mSettings.getString(GROW, "0"));
         txtFullSummValue.setText(mSettings.getString(FULL_SUMM_VALUE, "0"));
-        edtBeginDate.setText(mSettings.getString(BEGIN_DATE, "1-2-2016"));
+        edtBeginDate.setText(mSettings.getString(BEGIN_DATE, "1-1-2016"));
         spnCapital.setSelection(mSettings.getInt(SPN_CAPITAL, 0));
         spnTimeperiod.setSelection(mSettings.getInt(SPN_TIMELINE, 2));
-        spnCurrency.setSelection(mSettings.getInt(SPN_CURRENCY_A, 0));
+        spnCurrency.setSelection(mSettings.getInt(SPN_CURRENCY_A, 2));
 
     }
 

@@ -95,7 +95,7 @@ public class CompareFragment extends Fragment {
         colorTemplate = "<font color='%1$s'>%2$s </font>";
         colorOne = "green";
         colorKurs = String.valueOf(getResources().getColor(R.color.colorAccent));
-        colorTwo = "red";
+        colorTwo = "blue";
         vkladOneColored = String.format(colorTemplate, colorOne ,getResources().getStringArray(R.array.tabs_array)[0]);
         vkladTwoColored = String.format(colorTemplate, colorTwo ,getResources().getStringArray(R.array.tabs_array)[1]);
 

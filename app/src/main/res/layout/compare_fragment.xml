@@ -155,12 +155,10 @@
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:layout_gravity="center_horizontal"
                             android:id="@+id/tab12" />
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:layout_gravity="center_horizontal"
                             android:id="@+id/tab13" />
                     </TableRow>
 
@@ -260,12 +258,10 @@
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:layout_gravity="center_horizontal"
                             android:id="@+id/tab22" />
 
                         <TextView
                             style="@style/MyViewTable"
-                            android:layout_gravity="center_horizontal"
                             android:id="@+id/tab23" />
                     </TableRow>
 
