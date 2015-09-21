@@ -72,6 +72,9 @@
         <item>EUR</item>
         <item>USD</item>
         <item>UAH</item>
+        <item>KZT</item>
+        <item>AZN</item>
+        <item>AMD</item>
     </string-array>
 
     <string-array name="tabs_array">
