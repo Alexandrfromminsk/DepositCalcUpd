@@ -9,8 +9,8 @@ android {
         applicationId "com.by.alex.depositcalcupd"
         minSdkVersion 11
         targetSdkVersion 22
-        versionCode 9
-        versionName "0.9.9c"
+        versionCode 12
+        versionName "1.0.1"
     }
     buildTypes {
         release {
@@ -25,5 +25,4 @@ dependencies {
     compile fileTree('src/main/libs')
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.0.0'
-
 }

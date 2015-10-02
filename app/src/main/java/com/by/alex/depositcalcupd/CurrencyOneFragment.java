@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -287,36 +288,45 @@ public class CurrencyOneFragment extends Fragment implements OnClickListener, Te
             boolean russian_tax = mSettings.getBoolean("russian_tax", false);
             boolean ukr_tax = mSettings.getBoolean("ukr_tax", false);
 
+            TypedValue typedValue = new TypedValue();
+
             if (russian_tax) {
-                int tax_percent;
-                float key_percent;
-                String tax_percent_string = mSettings.getString("tax_percent", "35");
+                float tax_percent, default_tax_percent, key_percent;
+                getResources().getValue(R.dimen.default_rus_tax_percent_value, typedValue, true);
+                default_tax_percent = typedValue.getFloat();
+                getResources().getValue(R.dimen.key_percent_foreign_float, typedValue, true);
+                String tax_percent_string = mSettings.getString("tax_percent", String.valueOf(typedValue.getFloat()));
+                getResources().getValue(R.dimen.key_percent_foreign_float, typedValue, true);
                 String key_percent_string = (spnCurrency.getSelectedItem().toString().equals("RUR"))?
-                        mSettings.getString("key_percent", "18.25"): mSettings.getString("key_percent_foreign", "9");
+                        mSettings.getString("key_percent", String.valueOf(default_tax_percent)): mSettings.getString("key_percent_foreign", String.valueOf(typedValue.getFloat()));
+
 
 
                 try {
                     key_percent = Float.valueOf(key_percent_string);
-                    tax_percent= Integer.valueOf(tax_percent_string);
+                    tax_percent= Float.valueOf(tax_percent_string);
                 } catch (NumberFormatException nfe)
                 {
 
-                    tax_percent = (int) getResources().getDimension(R.dimen.default_rus_tax_percent_int);
-                    key_percent = getResources().getDimension(R.dimen.default_key_percent_float);
+                    tax_percent = default_tax_percent;
+                    getResources().getValue(R.dimen.default_key_percent_float, typedValue, true);
+                    key_percent = typedValue.getFloat();
                 }
 
                 profit = Calculator.calcProfit(s, pr, days, cap, tax_percent, key_percent);
 
             }
             else if (ukr_tax) {
-                int ukr_tax_percent;
-                String ukr_tax_percent_string = mSettings.getString("ukr_tax_percent", "20");
+                float ukr_tax_percent, default_ukr_tax_value;
+                getResources().getValue(R.dimen.default_ukr_tax_percent_value, typedValue, true);
+                default_ukr_tax_value = typedValue.getFloat();
+                String ukr_tax_percent_string = mSettings.getString("ukr_tax_percent", String.valueOf(default_ukr_tax_value));
 
                 try {
-                    ukr_tax_percent= Integer.valueOf(ukr_tax_percent_string);
+                    ukr_tax_percent= Float.valueOf(ukr_tax_percent_string);
                 } catch (NumberFormatException nfe)
                 {
-                    ukr_tax_percent = (int)getResources().getDimension(R.dimen.default_ukr_tax_percent_int);
+                    ukr_tax_percent = default_ukr_tax_value;
                 }
 
                 profit = Calculator.calcProfit(s, pr, days, cap, ukr_tax_percent);

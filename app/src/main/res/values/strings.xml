@@ -13,14 +13,14 @@
     <string name="help_title">Помощь</string>
     <string name="help_category_one">Значения полей</string>
     <string name="help_category_two">Порядок работы</string>
-    <string name="help_category_three">Принципы рассчета</string>
+    <string name="help_category_three">Принципы расчета</string>
     <string name="help_dismiss">Отмена</string>
 
     <string name="about_text">Калькулятор валютных депозитов</string>
     <string name="about_text_version">Версия</string>
 
-    <string name="txtCurrencyA">Валюта 1</string>
-    <string name="txtCurrencyB">Валюта 2</string>
+    <string name="txtCurrencyA">Валюта</string>
+    <string name="txtCurrencyB">Валюта</string>
     <string name="txtExchangeRate">Конверсия</string>
     <string name="txtSumm">Сумма вклада</string>
     <string name="txtPercent">Годовая % ставка</string>
@@ -94,11 +94,11 @@
     <string name="ukr_tax_description">В Украине любой доход со вкладов облагается налогом.</string>
     <string name="show_overlays_description">Подсказки будут показаны при следующей запуске</string>
     <string name="tax_percent">Величина налога</string>
-    <item name="default_rus_tax_percent_int" format="integer" type="dimen">35</item>
-    <item name="default_ukr_tax_percent_int" format="integer" type="dimen">20</item>
+    <item name="default_rus_tax_percent_value" format="float" type="dimen">35</item>
+    <item name="default_ukr_tax_percent_value" format="float" type="dimen">21.5</item>
 
     <string name="key_percent">Ключевая ставка</string>
-    <string name="key_percent_description">Налог будет рассчитываться для вкладов в рублях, если их ставка превышает указанную. </string>
+    <string name="key_percent_description">Налог будет расчитываться для вкладов в рублях, если их ставка превышает указанную. </string>
     <item name="default_key_percent_float" format="float" type="dimen">18.25</item>
     <string name="key_percent_foreign">Максимальная безналоговая ставка для вкладов в иностранной валюте</string>
     <string name="key_percent_foreign_description">Вклады в иностранной валюте по ставке выше указанной будут облагаться налогом.</string>
